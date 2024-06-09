@@ -35,12 +35,13 @@
                 android:layout_height="150dp"
                 android:id="@+id/uploadImage"
                 android:layout_marginTop="10dp"
+                android:src="@drawable/img_12"
                 android:scaleType="fitXY"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/uploadTopic"
-                android:background="@drawable/"
+                android:background="@drawable/lavender_boder"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
                 android:hint="Shoe name"
@@ -48,7 +49,7 @@
                 android:textColor="@color/lavender"/>
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="60dp"
                 android:id="@+id/uploadDesc"
                 android:background="@drawable/lavender_boder"
                 android:layout_marginTop="20dp"
