@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+
+            android:name=".MainActivity"
+
             android:name=".recycler_item"
             android:exported="false" />
         <activity
@@ -41,6 +44,7 @@
             android:exported="false" />
         <activity
             android:name=".AddEditOne"
+
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,6 +52,63 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddEditOne"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".AdminActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".CartActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".DetailedActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ThongTinKHActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ProductActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".GiamGia"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".Order"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".History"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".OrderSuccess"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".DetailOrder"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>
