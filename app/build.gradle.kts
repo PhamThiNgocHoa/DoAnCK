@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+
+
 android {
     namespace = "com.example.myapplication"
     compileSdk = 34
@@ -32,7 +34,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("androidx.recyclerview:recyclerview:1.2.0")  // (hoặc phiên bản mới nhất)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

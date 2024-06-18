@@ -3,31 +3,39 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CartActivity extends AppCompatActivity {
+public class OrderSuccess extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_cart);
-        Button checkout = findViewById(R.id.cartActivityCheckoutBtn);
+        setContentView(R.layout.activity_hoan_thanh);
         ImageView back = findViewById(R.id.back);
+        TextView load = findViewById(R.id.load);
+        TextView detail = findViewById(R.id.detail);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CartActivity.this, ProductActivity.class);
+                Intent intent = new Intent(OrderSuccess.this, History.class);
                 startActivity(intent);
             }
         });
-
-        checkout.setOnClickListener(new View.OnClickListener() {
+        load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CartActivity.this, ThongTinKHActivity.class);
+                Intent intent = new Intent(OrderSuccess.this, History.class);
+                startActivity(intent);
+            }
+        });
+        detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OrderSuccess.this, DetailOrder.class);
                 startActivity(intent);
             }
         });

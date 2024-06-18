@@ -9,28 +9,26 @@ import android.widget.ImageView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CartActivity extends AppCompatActivity {
+public class ThongTinKHActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_cart);
-        Button checkout = findViewById(R.id.cartActivityCheckoutBtn);
+        setContentView(R.layout.activity_thong_tin_khactivity);
         ImageView back = findViewById(R.id.back);
+        Button xacNhan = findViewById(R.id.XacnhanButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CartActivity.this, ProductActivity.class);
+                Intent intent = new Intent(ThongTinKHActivity.this, CartActivity.class);
                 startActivity(intent);
             }
         });
-
-        checkout.setOnClickListener(new View.OnClickListener() {
+        xacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CartActivity.this, ThongTinKHActivity.class);
+                Intent intent = new Intent(ThongTinKHActivity.this, GiamGia.class);
                 startActivity(intent);
             }
         });
-
     }
 }
