@@ -13,6 +13,33 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".recycler_item"
+            android:exported="false" />
+        <activity
+            android:name=".process_layout"
+            android:exported="false" />
+        <activity
+            android:name=".item"
+            android:exported="false" />
+        <activity
+            android:name=".header"
+            android:exported="false" />
+        <activity
+            android:name=".each"
+            android:exported="false" />
+        <activity
+            android:name=".Update"
+            android:exported="false" />
+        <activity
+            android:name=".Address"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
             android:name=".AddEditOne"
             android:exported="true">
             <intent-filter>
