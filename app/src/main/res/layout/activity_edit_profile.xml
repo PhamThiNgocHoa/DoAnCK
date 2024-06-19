@@ -8,7 +8,6 @@
     android:orientation="vertical"
     android:background="@drawable/img"
     android:gravity="center"
-
     tools:context=".EditProfileActivity">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,6 +15,14 @@
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            tools:ignore="MissingConstraints" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

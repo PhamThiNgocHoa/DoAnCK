@@ -9,24 +9,24 @@ import android.widget.ImageView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ProfileActivity extends AppCompatActivity {
+public class DetailProductAdmin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_profile);
-        Button editButton = findViewById(R.id.editButton);
+        setContentView(R.layout.activity_detail_product_admin);
         ImageView back = findViewById(R.id.back);
+        Button update = findViewById(R.id.detailActivityAddToCartBtn);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, ProductActivity.class);
+                Intent intent = new Intent(DetailProductAdmin.this, AdminActivity.class);
                 startActivity(intent);
             }
         });
-        editButton.setOnClickListener(new View.OnClickListener() {
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                Intent intent = new Intent(DetailProductAdmin.this, AdminActivity.class);
                 startActivity(intent);
             }
         });
