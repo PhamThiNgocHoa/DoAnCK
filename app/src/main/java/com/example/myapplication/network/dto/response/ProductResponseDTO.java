@@ -41,7 +41,7 @@ public class ProductResponseDTO {
         this.img = img;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 

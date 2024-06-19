@@ -37,7 +37,6 @@ public class CategoryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_category_list);
         getCategories();
-
     }
     private void getCategories()  {
         categoryService  = RetrofitClient.getCategoryService();
