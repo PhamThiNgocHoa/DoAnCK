@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".Update"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +17,14 @@
         android:layout_marginStart="20dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/back"
+            tools:ignore="MissingConstraints" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +35,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Update Data"
+                android:text="Thêm sản phẩm "
                 android:textSize="30sp"
                 android:textAlignment="center"
                 android:textColor="@color/lavender"/>
@@ -44,7 +53,7 @@
                 android:background="@drawable/lavender_boder"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
-                android:hint="Enter topic name"
+                android:hint="Ten san pham"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/lavender"/>
             <EditText
@@ -54,7 +63,7 @@
                 android:background="@drawable/lavender_boder"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
-                android:hint="Enter description"
+                android:hint="Mo ta"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/lavender"/>
             <EditText
@@ -64,7 +73,7 @@
                 android:background="@drawable/lavender_boder"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
-                android:hint="Enter language"
+                android:hint="Gia"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/lavender"/>
             <Button
@@ -74,6 +83,7 @@
                 android:id="@+id/updateButton"
                 android:textSize="18sp"
                 android:layout_marginTop="20dp"
+                android:backgroundTint="@color/lavender"
                 app:cornerRadius = "20dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
