@@ -17,14 +17,16 @@ import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 
 import java.util.ArrayList;
 
-public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHolder>{
+public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHolder> {
 
     ArrayList<CustomerResponseDTO> items;
 
     public CustomerAdapter(ArrayList<CustomerResponseDTO> items) {
         this.items = items;
     }
+
     Context context;
+
     @NonNull
     @Override
     public CustomerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,9 +46,11 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     public int getItemCount() {
         return items.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView username,email,phone;
+        TextView username, email, phone;
         ConstraintLayout layout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.username);
