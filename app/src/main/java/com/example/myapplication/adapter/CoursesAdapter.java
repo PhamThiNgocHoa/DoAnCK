@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.domain.CoursesDomain;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHolder> {
@@ -56,7 +55,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name_product = itemView.findViewById(R.id.name_product);
-            price = itemView.findViewById(R.id.price);
+            price = itemView.findViewById(R.id.price_label);
             image_product = itemView.findViewById(R.id.image_product);
             layout = itemView.findViewById(R.id.product_layout);
         }

@@ -7,14 +7,14 @@ import java.util.Set;
 public class OrderResponseDTO {
     private Integer id;
     private Integer customerId;
-    private LocalDateTime orderDate;
-    private double totalAmount;
+    private String orderDate;
+    private Integer totalAmount;
     private String address;
     private String numberPhone;
     private String status;
     private Set<OrderDetailResponseDTO> orderDetails;
 
-    public OrderResponseDTO(Integer id, Integer customerId, LocalDateTime orderDate, double totalAmount, String address, String numberPhone, String status, Set<OrderDetailResponseDTO> orderDetails) {
+    public OrderResponseDTO(Integer id, Integer customerId, String orderDate, Integer totalAmount, String address, String numberPhone, String status, Set<OrderDetailResponseDTO> orderDetails) {
         this.id = id;
         this.customerId = customerId;
         this.orderDate = orderDate;
@@ -23,6 +23,9 @@ public class OrderResponseDTO {
         this.numberPhone = numberPhone;
         this.status = status;
         this.orderDetails = orderDetails;
+    }
+
+    public OrderResponseDTO() {
     }
 
     public Integer getId() {
@@ -41,19 +44,19 @@ public class OrderResponseDTO {
         this.customerId = customerId;
     }
 
-    public LocalDateTime getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDateTime orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
-    public double getTotalAmount() {
+    public Integer getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
+    public void setTotalAmount(Integer totalAmount) {
         this.totalAmount = totalAmount;
     }
 

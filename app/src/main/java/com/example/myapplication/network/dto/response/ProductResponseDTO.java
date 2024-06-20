@@ -6,15 +6,19 @@ public class ProductResponseDTO {
     private int id;
     private String name;
     private String img;
-    private double price;
+    private Integer price;
     private String categoryName;
 
-    public ProductResponseDTO(int id, String name, String img, double price, String categoryName) {
+    public ProductResponseDTO(int id, String name, String img, Integer price, String categoryName) {
         this.id = id;
         this.name = name;
         this.img = img;
         this.price = price;
         this.categoryName = categoryName;
+
+    }
+
+    public ProductResponseDTO() {
     }
 
     public int getId() {
@@ -41,11 +45,11 @@ public class ProductResponseDTO {
         this.img = img;
     }
 
-    public double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -55,16 +59,5 @@ public class ProductResponseDTO {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductResponseDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", img='" + img + '\'' +
-                ", price=" + price +
-                ", categoryName='" + categoryName + '\'' +
-                '}';
     }
 }
