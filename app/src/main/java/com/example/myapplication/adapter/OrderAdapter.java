@@ -6,15 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.activity.CategoryListActivity;
-import com.example.myapplication.activity.OrderListActivity;
 import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
@@ -36,6 +33,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     Context context;
 
+    public interface OnOrderClickListener {
+        void onOrderClick(OrderResponseDTO order);
+    }
+
+    private OnOrderClickListener onOrderClickListener;
+
+    public void setOnOrderClickListener(OnOrderClickListener listener) {
+        this.onOrderClickListener = listener;
+    }
 
     @NonNull
     @Override
@@ -88,10 +94,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             super(itemView);
             address = itemView.findViewById(R.id.address);
             customerName = itemView.findViewById(R.id.customer_name);
-            price = itemView.findViewById(R.id.price);
+            price = itemView.findViewById(R.id.price_product);
             orderDate = itemView.findViewById(R.id.order_date);
             phone = itemView.findViewById(R.id.phone);
             layout = itemView.findViewById(R.id.order_layout);
+
+            itemView.setOnClickListener(v -> {
+                OrderResponseDTO order = items.get(getAdapterPosition());
+                if (onOrderClickListener != null) {
+                    onOrderClickListener.onOrderClick(order);
+                }
+            });
         }
     }
 }

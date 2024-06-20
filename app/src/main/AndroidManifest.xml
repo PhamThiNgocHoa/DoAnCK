@@ -39,6 +39,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.OrderDetailListActivity"
+            android:exported="false">
+            <!-- Các thiết lập khác -->
+        </activity>
         <!--<<<<<<< HEAD-->
         <activity
             android:name=".activity.CoursesListActivity"

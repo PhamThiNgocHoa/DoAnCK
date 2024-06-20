@@ -7,6 +7,7 @@ public class OrderDetailRequestDTO implements Serializable {
     private int productId;
     private int quantity;
 
+
     public OrderDetailRequestDTO(int productId, int quantity) {
         this.productId = productId;
         this.quantity = quantity;
