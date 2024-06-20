@@ -23,12 +23,17 @@
         </activity>
         <activity
             android:name=".activity.CategoryListActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <!--=======-->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <!--&gt;>>>>>> 8908c0589638cf79827bf2406782b5facede9336-->
+
+        </activity>
+        <activity
+            android:name=".activity.OrderListActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -62,9 +67,9 @@
         <activity
             android:name=".SignUp"
             android:exported="true" />
-<!--        <activity-->
-<!--            android:name=".AddEditOne"-->
-<!--            android:exported="true" />-->
+        <!--        <activity-->
+        <!--            android:name=".AddEditOne"-->
+        <!--            android:exported="true" />-->
 
         <activity
             android:name=".CartActivity"
