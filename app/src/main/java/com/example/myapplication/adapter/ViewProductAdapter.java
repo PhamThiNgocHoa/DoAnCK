@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.activity.DetailedActivity;
 import com.example.myapplication.network.dto.response.ProductResponseDTO;
 
 import java.text.DecimalFormat;
@@ -36,6 +37,7 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewProductAdapter.ViewHolder holder, int position) {
+        ProductResponseDTO product = items.get(position);
         holder.textProductName.setText(items.get(position).getName());
         holder.textProductPrice.setText(formatCurrency(items.get(position).getPrice()));
         Glide.with(context).load(items.get(position).getImg()).into(holder.imageProduct);
@@ -43,9 +45,8 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
         holder.buttonViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailedAdapter.class);
-                // Pass any necessary data to DetailedActivity using intent extras
-                // For example: intent.putExtra("productId", product.getId());
+                Intent intent = new Intent(context, DetailedActivity.class);
+                intent.putExtra("id", product.getId());
                 context.startActivity(intent);
             }
         });
