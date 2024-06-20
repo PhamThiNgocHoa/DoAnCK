@@ -38,12 +38,11 @@ public class ProfileActivity extends AppCompatActivity {
         profilePhone = findViewById(R.id.profilePhone);
         profilePassword = findViewById(R.id.profilePassword);
         SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(this);
-        String username = sharedPrefManager.getUsername();
         String password = sharedPrefManager.getPassword();
         int customerId = sharedPrefManager.getCustomerId();
         profilePassword.setText(password);
         System.out.println(customerId);
-        final String[] email = {""};
+
         Call<CustomerResponseDTO> call = customerService.getCustomer(customerId);
         call.enqueue(new Callback<CustomerResponseDTO>() {
             @Override
@@ -65,7 +64,6 @@ public class ProfileActivity extends AppCompatActivity {
                 // ...
             }
         });
-        System.out.println(email[0]);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +75,30 @@ public class ProfileActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-                startActivity(intent);
+                // Gọi API để lấy thông tin khách hàng
+                Call<CustomerResponseDTO> call = customerService.getCustomer(customerId);
+                call.enqueue(new Callback<CustomerResponseDTO>() {
+                    @Override
+                    public void onResponse(Call<CustomerResponseDTO> call, Response<CustomerResponseDTO> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            CustomerResponseDTO responseDTO = response.body();
+                            // Chuyển sang EditProfileActivity và gửi dữ liệu responseDTO
+                            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                            intent.putExtra("customer", responseDTO);
+                            startActivity(intent);
+                        } else {
+                            Log.e("ProfileActivity", "Failed to get customer data. Code: " + response.code());
+                            // Xử lý khi không thành công (ví dụ: hiển thị thông báo lỗi)
+                            // Toast.makeText(ProfileActivity.this, "Failed to get customer data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<CustomerResponseDTO> call, Throwable t) {
+                        Log.e("ProfileActivity", "Error fetching customer data", t);
+                        // Xử lý khi gọi API thất bại (ví dụ: hiển thị thông báo lỗi)
+                        // Toast.makeText(ProfileActivity.this, "Failed to fetch customer data", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
