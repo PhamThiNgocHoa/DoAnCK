@@ -24,11 +24,9 @@
         <activity
             android:name=".activity.CategoryListActivity"
             android:exported="true" />
-        <!--=======-->
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <!--&gt;>>>>>> 8908c0589638cf79827bf2406782b5facede9336-->
 
         </activity>
         <activity
@@ -44,12 +42,10 @@
             android:exported="false">
             <!-- Các thiết lập khác -->
         </activity>
-        <!--<<<<<<< HEAD-->
         <activity
             android:name=".activity.CoursesListActivity"
             android:exported="false" />
 
-        <!--=======-->
         <activity
             android:name=".AdminActivity"
             android:exported="true" />
@@ -72,10 +68,6 @@
         <activity
             android:name=".SignUp"
             android:exported="true" />
-        <!--        <activity-->
-        <!--            android:name=".AddEditOne"-->
-        <!--            android:exported="true" />-->
-
         <activity
             android:name=".CartActivity"
             android:exported="true" />
@@ -124,7 +116,6 @@
         <activity
             android:name=".recycler_item"
             android:exported="true">
-            <!--&gt;>>>>>> 8908c0589638cf79827bf2406782b5facede9336-->
         </activity>
 
     </application>
