@@ -4,10 +4,10 @@ package com.example.myapplication.network.dto.response;
 public class OrderDetailResponseDTO {
     private int id;
     private int  orderId;
-    private int  productId;
+    private ProductResponseDTO  productId;
     private int  quantity;
 
-    public OrderDetailResponseDTO(int id, int orderId, int productId, int quantity) {
+    public OrderDetailResponseDTO(int id, int orderId, ProductResponseDTO productId, int quantity) {
         this.id = id;
         this.orderId = orderId;
         this.productId = productId;
@@ -30,11 +30,11 @@ public class OrderDetailResponseDTO {
         this.orderId = orderId;
     }
 
-    public int getProductId() {
+    public ProductResponseDTO getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(ProductResponseDTO productId) {
         this.productId = productId;
     }
 
