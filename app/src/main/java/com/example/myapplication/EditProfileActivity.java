@@ -115,6 +115,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
                 startActivity(intent);
+
             }
         });
     }
