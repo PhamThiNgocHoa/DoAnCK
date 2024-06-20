@@ -2,7 +2,13 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+import android.text.TextUtils;
+import android.util.Log;
+import android.util.Patterns;
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,6 +45,7 @@ public class SignUp extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         Button sigUp = findViewById(R.id.buttonsignup);
         TextView login  = findViewById(R.id.loginRedirectText);
         login.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +59,12 @@ public class SignUp extends AppCompatActivity {
         email = findViewById(R.id.email);
         phone = findViewById(R.id.phonesignup);
         password = findViewById(R.id.passwordsignup);
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
         sigUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +73,39 @@ public class SignUp extends AppCompatActivity {
                 String emailInput = email.getText().toString();
                 String phoneInput = phone.getText().toString();
                 String passwordInput = password.getText().toString();
+<<<<<<< HEAD
+=======
+                if (TextUtils.isEmpty(usernameInput) &&
+                        TextUtils.isEmpty(emailInput)&&
+                        TextUtils.isEmpty(phoneInput)&&
+                        TextUtils.isEmpty(passwordInput)){
+                    Toast.makeText(SignUp.this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(usernameInput)){
+                    Toast.makeText(SignUp.this, "You have not entered a user name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(emailInput)){
+                    Toast.makeText(SignUp.this, "You have not entered an email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+                    Toast.makeText(SignUp.this, "Invalid email format", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(phoneInput)){
+                    Toast.makeText(SignUp.this, "You have not entered a phone number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(passwordInput)){
+                    Toast.makeText(SignUp.this, "You have not entered a password", Toast.LENGTH_SHORT).show();
+                    return;
+                }if (passwordInput.length() < 6){
+                    Toast.makeText(SignUp.this, "Password length must be greater than 6 characters", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
                 CustomerRequestDTO customerRequestDTO = new CustomerRequestDTO(usernameInput, emailInput, passwordInput, phoneInput);
                 customerService.register(customerRequestDTO).enqueue(new Callback<Integer>() {
                     @Override
@@ -70,7 +116,11 @@ public class SignUp extends AppCompatActivity {
                                 Intent intent = new Intent(SignUp.this, MainActivity.class);
                                 startActivity(intent);
                             }else{
+<<<<<<< HEAD
                                 username.setError("Tài khoản đã tồn tại ");
+=======
+                                username.setError("Tài khoản đã tồn tại hoặc email đã tồn tại ");
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
                                 Log.e("MainActivity", "Response not successful");
                                 Toast.makeText(SignUp.this, "Failed login", Toast.LENGTH_SHORT).show();
                             }
@@ -83,7 +133,12 @@ public class SignUp extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Integer> call, Throwable t) {
+<<<<<<< HEAD
 
+=======
+                        Toast.makeText(getApplicationContext(), "Network error occurred: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.e("NetworkError", "Error: ", t);
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
                     }
                 });
             }

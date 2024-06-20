@@ -43,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
         TextView sigUp = findViewById(R.id.signupRedirectText);
         EditText username = findViewById(R.id.username);
         EditText password = findViewById(R.id.password);
+<<<<<<< HEAD
 
+=======
+        TextView forgot = findViewById(R.id.forgot);
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SignUp.class);
+                startActivity(intent);
+            }
+        });
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ForgotPassword.class);
                 startActivity(intent);
             }
         });

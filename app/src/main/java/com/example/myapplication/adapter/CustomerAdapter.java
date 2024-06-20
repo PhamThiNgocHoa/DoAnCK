@@ -18,7 +18,7 @@ import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 
 import java.util.ArrayList;
 
-public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHolder>{
+public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHolder> {
 
     ArrayList<CustomerResponseDTO> items;
     private OnCustomerActionListener onCustomerActionListener;
@@ -28,12 +28,16 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         this.onCustomerActionListener = listener;
 
     }
+<<<<<<< HEAD
     public interface OnCustomerActionListener {
         void onEdit(CustomerResponseDTO customer);
         void onDelete(CustomerResponseDTO customer);
     }
+=======
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
 
     Context context;
+
     @NonNull
     @Override
     public CustomerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -54,10 +58,16 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     public int getItemCount() {
         return items.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
+<<<<<<< HEAD
         TextView username,email,phone;
         Button edit, delete;
+=======
+        TextView username, email, phone;
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
         ConstraintLayout layout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.username);

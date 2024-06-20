@@ -1,6 +1,9 @@
 package com.example.myapplication.activity;
 
+<<<<<<< HEAD
 import android.content.Intent;
+=======
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+<<<<<<< HEAD
 import com.example.myapplication.adapter.CategoryAdapter;
 import com.example.myapplication.adapter.CustomerAdapter;
 import com.example.myapplication.network.CategoryService;
@@ -19,6 +23,13 @@ import com.example.myapplication.network.dto.response.CategoryResponseDTO;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 
 import java.io.Serializable;
+=======
+import com.example.myapplication.adapter.CustomerAdapter;
+import com.example.myapplication.network.CustomerService;
+import com.example.myapplication.network.RetrofitClient;
+import com.example.myapplication.network.dto.response.CustomerResponseDTO;
+
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,28 +37,45 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+<<<<<<< HEAD
 public class CustomerListActivity  extends AppCompatActivity implements CustomerAdapter.OnCustomerActionListener {
     private RecyclerView.Adapter adapterCustomerList;
     private RecyclerView recyclerView;
     private CustomerService customerService;
     List<CustomerResponseDTO> customers;
+=======
+public class CustomerListActivity extends AppCompatActivity {
+    private RecyclerView.Adapter adapterCustomerList;
+    private RecyclerView recyclerView;
+    private CustomerService customerService;
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_customer_list);
         getCustomers();
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
     private void getCustomers(){
         customerService = RetrofitClient.getCustomerService();
         customerService.getCustomers().enqueue(new Callback<List<CustomerResponseDTO>>() {
             @Override
             public void onResponse(Call<List<CustomerResponseDTO>> call, Response<List<CustomerResponseDTO>> response) {
                 if (response.isSuccessful() && response.body() != null) {
+<<<<<<< HEAD
                     customers = response.body();
                     recyclerView = findViewById(R.id.view);
                     recyclerView.setLayoutManager(new LinearLayoutManager(CustomerListActivity.this, LinearLayoutManager.VERTICAL, false));
                     adapterCustomerList = new CustomerAdapter((ArrayList<CustomerResponseDTO>) customers, CustomerListActivity.this);
+=======
+                    List<CustomerResponseDTO> customers = response.body();
+                    recyclerView = findViewById(R.id.view);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(CustomerListActivity.this, LinearLayoutManager.VERTICAL, false));
+                    adapterCustomerList = new CustomerAdapter((ArrayList<CustomerResponseDTO>) customers);
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
                     recyclerView.setAdapter(adapterCustomerList);
                 } else {
                     Log.e("CoursesListActivity", "Response not successful");
@@ -62,6 +90,7 @@ public class CustomerListActivity  extends AppCompatActivity implements Customer
             }
         });
     }
+<<<<<<< HEAD
 
     @Override
     public void onEdit(CustomerResponseDTO customer) {
@@ -96,4 +125,6 @@ public class CustomerListActivity  extends AppCompatActivity implements Customer
         });
     }
 
+=======
+>>>>>>> 2c828b443b82a11dc3bc21f75606d712643d96dc
 }
