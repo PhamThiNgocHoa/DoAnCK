@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,10 +21,18 @@ import java.util.ArrayList;
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHolder>{
 
     ArrayList<CustomerResponseDTO> items;
+    private OnCustomerActionListener onCustomerActionListener;
 
-    public CustomerAdapter(ArrayList<CustomerResponseDTO> items) {
+    public CustomerAdapter(ArrayList<CustomerResponseDTO> items, OnCustomerActionListener listener) {
         this.items = items;
+        this.onCustomerActionListener = listener;
+
     }
+    public interface OnCustomerActionListener {
+        void onEdit(CustomerResponseDTO customer);
+        void onDelete(CustomerResponseDTO customer);
+    }
+
     Context context;
     @NonNull
     @Override
@@ -38,14 +47,16 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         holder.username.setText(items.get(position).getUsername());
         holder.email.setText(String.valueOf(items.get(position).getEmail()));
         holder.phone.setText(String.valueOf(items.get(position).getPhone()));
+        holder.edit.setOnClickListener(v -> onCustomerActionListener.onEdit(items.get(position)));
+        holder.delete.setOnClickListener(v -> onCustomerActionListener.onDelete(items.get(position)));
     }
-
     @Override
     public int getItemCount() {
         return items.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView username,email,phone;
+        Button edit, delete;
         ConstraintLayout layout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,6 +64,8 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
             email = itemView.findViewById(R.id.email);
             phone = itemView.findViewById(R.id.phone);
             layout = itemView.findViewById(R.id.customer_layout);
+            edit =itemView.findViewById(R.id.btn_edit);
+            delete = itemView.findViewById(R.id.btn_delete);
         }
     }
 }

@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class OrderResponseDTO {
     private Integer id;
-    private Integer customerId;
+    private CustomerResponseDTO customerId;
     private LocalDateTime orderDate;
     private double totalAmount;
     private String address;
@@ -14,7 +14,7 @@ public class OrderResponseDTO {
     private String status;
     private Set<OrderDetailResponseDTO> orderDetails;
 
-    public OrderResponseDTO(Integer id, Integer customerId, LocalDateTime orderDate, double totalAmount, String address, String numberPhone, String status, Set<OrderDetailResponseDTO> orderDetails) {
+    public OrderResponseDTO(Integer id, CustomerResponseDTO customerId, LocalDateTime orderDate, double totalAmount, String address, String numberPhone, String status, Set<OrderDetailResponseDTO> orderDetails) {
         this.id = id;
         this.customerId = customerId;
         this.orderDate = orderDate;
@@ -33,11 +33,11 @@ public class OrderResponseDTO {
         this.id = id;
     }
 
-    public Integer getCustomerId() {
+    public CustomerResponseDTO getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(CustomerResponseDTO customerId) {
         this.customerId = customerId;
     }
 
