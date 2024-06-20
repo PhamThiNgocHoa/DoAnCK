@@ -27,6 +27,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText editName, editEmail, editPhoneNumber, editPassword;
     private CustomerService customerService = RetrofitClient.getCustomerService();
     private CustomerRequestDTO customerRequestDTO;
+    private Button back;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -109,6 +110,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 });
             }
         });
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
