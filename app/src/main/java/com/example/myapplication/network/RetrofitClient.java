@@ -16,6 +16,7 @@ public class RetrofitClient {
         }
         return retrofit;
     }
+
     public static CustomerService getCustomerService() {
         return getRetrofitInstance().create(CustomerService.class);
     }
@@ -23,6 +24,7 @@ public class RetrofitClient {
     public static ProductService getProductService() {
         return getRetrofitInstance().create(ProductService.class);
     }
+
     public static CartItemService getCartItemService() {
         return getRetrofitInstance().create(CartItemService.class);
     }
@@ -30,6 +32,7 @@ public class RetrofitClient {
     public static CartService getCartService() {
         return getRetrofitInstance().create(CartService.class);
     }
+
     public static CategoryService getCategoryService() {
         return getRetrofitInstance().create(CategoryService.class);
     }
@@ -38,5 +41,8 @@ public class RetrofitClient {
         return getRetrofitInstance().create(OrderService.class);
     }
 
+    public static OrderDetailService getOrderDetailService() {
+        return getRetrofitInstance().create(OrderDetailService.class);
+    }
 
 }

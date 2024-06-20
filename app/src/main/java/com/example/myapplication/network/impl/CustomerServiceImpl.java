@@ -8,6 +8,9 @@ import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 
 import java.util.List;
 
+import retrofit2.http.GET;
+
 public class CustomerServiceImpl {
+
 
 }
