@@ -55,7 +55,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name_product = itemView.findViewById(R.id.name_product);
-            price = itemView.findViewById(R.id.price_label);
+            price = itemView.findViewById(R.id.price);
             image_product = itemView.findViewById(R.id.image_product);
             layout = itemView.findViewById(R.id.product_layout);
         }

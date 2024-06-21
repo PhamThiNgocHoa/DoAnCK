@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.OrderAdapter;
+import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.OrderService;
 import com.example.myapplication.network.RetrofitClient;
+import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 import com.example.myapplication.network.dto.response.OrderResponseDTO;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class OrderListActivity extends AppCompatActivity {
     private OrderAdapter adapterOrderList;
     private RecyclerView recyclerView;
     private OrderService orderService;
+    private CustomerService customerService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,32 +46,63 @@ public class OrderListActivity extends AppCompatActivity {
             public void onResponse(Call<List<OrderResponseDTO>> call, Response<List<OrderResponseDTO>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<OrderResponseDTO> orders = response.body();
-                    recyclerView = findViewById(R.id.view);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(OrderListActivity.this, LinearLayoutManager.VERTICAL, false);
-                    recyclerView.setLayoutManager(layoutManager);
-                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
-                    recyclerView.addItemDecoration(dividerItemDecoration);
-                    adapterOrderList = new OrderAdapter((ArrayList<OrderResponseDTO>) orders);
-                    adapterOrderList.setOnOrderClickListener(order -> {
-                        // Xử lý khi order được click
-                        // Chuyển đến màn hình khác với order id
-                        // Ví dụ:
-                        Intent intent = new Intent(OrderListActivity.this, OrderDetailListActivity.class);
-                        intent.putExtra("orderId", order.getId());
-                        startActivity(intent);
-                    });
-                    recyclerView.setAdapter(adapterOrderList);
+                    setupRecyclerView(orders);
                 } else {
-                    Log.e("OrderListActivity", "Response not successfull");
-                    Toast.makeText(OrderListActivity.this, "Failed to load orders", Toast.LENGTH_SHORT).show();
+                    handleOrderLoadError();
                 }
             }
 
             @Override
             public void onFailure(Call<List<OrderResponseDTO>> call, Throwable t) {
-                Log.e("CoursesListActivity", "onFailure: ", t);
-                Toast.makeText(OrderListActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                handleOrderLoadError();
             }
         });
     }
+
+    private void setupRecyclerView(List<OrderResponseDTO> orders) {
+        recyclerView = findViewById(R.id.view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(OrderListActivity.this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
+        adapterOrderList = new OrderAdapter((ArrayList<OrderResponseDTO>) orders);
+        adapterOrderList.setOnOrderClickListener(this::handleOrderClick);
+        recyclerView.setAdapter(adapterOrderList);
+    }
+
+    private void handleOrderClick(OrderResponseDTO order) {
+        customerService = RetrofitClient.getCustomerService();
+        Call<CustomerResponseDTO> callCustomer = customerService.getCustomerById(order.getCustomerId());
+        callCustomer.enqueue(new Callback<CustomerResponseDTO>() {
+            @Override
+            public void onResponse(Call<CustomerResponseDTO> call, Response<CustomerResponseDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    CustomerResponseDTO responseDTO = response.body();
+                    Intent intent = new Intent(OrderListActivity.this, OrderDetailListActivity.class);
+                    intent.putExtra("fullname", responseDTO.getFullname());
+                    intent.putExtra("orderId", order.getId());
+                    intent.putExtra("totalPrice", order.getTotalAmount());
+                    intent.putExtra("address", order.getAddress());
+                    intent.putExtra("phone", order.getNumberPhone());
+                    intent.putExtra("status", order.getStatus());
+                    startActivity(intent);
+                } else {
+                    Log.e("Không tìm thấy customer", "Không tìm thấy customer");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomerResponseDTO> call, Throwable t) {
+                Log.e("CoursesListActivity", "onFailure: ", t);
+            }
+        });
+    }
+
+    private void handleOrderLoadError() {
+        Log.e("OrderListActivity", "Response not successful");
+        Toast.makeText(OrderListActivity.this, "Failed to load orders", Toast.LENGTH_SHORT).show();
+    }
+
+
 }

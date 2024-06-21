@@ -1,14 +1,19 @@
 package com.example.myapplication.network;
 
+import com.example.myapplication.network.dto.request.OrderEditRequestDTO;
 import com.example.myapplication.network.dto.response.OrderResponseDTO;
-import com.example.myapplication.network.dto.response.ProductResponseDTO;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface OrderService {
     @GET("api/order/list")
     Call<List<OrderResponseDTO>> getOrders();
+
+    @PUT("api/order/order/{orderId}")
+    Call<Void> editOrder(@Path("orderId") int orderId, OrderEditRequestDTO requestDTO);
 }

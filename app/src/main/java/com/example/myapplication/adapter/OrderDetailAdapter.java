@@ -1,5 +1,6 @@
 package com.example.myapplication.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.format.FormatCurrency;
 import com.example.myapplication.network.OrderDetailService;
 import com.example.myapplication.network.ProductService;
 import com.example.myapplication.network.RetrofitClient;
@@ -62,9 +64,10 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         return new ViewHolder(inflator);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull OrderDetailAdapter.ViewHolder holder, int position) {
-        holder.quantity.setText("x" + Integer.toString(items.get(position).getQuantity()));
+        holder.quantity.setText("x" + items.get(position).getQuantity());
         Call<ProductResponseDTO> call = productService.getProduct(items.get(position).getProductId());
         call.enqueue(new Callback<ProductResponseDTO>() {
             @Override
@@ -72,7 +75,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
                 if (response.isSuccessful() && response.body() != null) {
                     ProductResponseDTO responseDTO = response.body();
 //                    Glide.with(context).load(responseDTO.getImg()).into(holder.image);
-                    holder.price.setText(Integer.toString(responseDTO.getPrice()));
+                    holder.price.setText(FormatCurrency.formatCurrency(responseDTO.getPrice()));
                     holder.name.setText(responseDTO.getName());
                     holder.category.setText(responseDTO.getCategoryName());
                 } else {

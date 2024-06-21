@@ -115,8 +115,10 @@
             android:exported="true" />
         <activity
             android:name=".recycler_item"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
+        <activity
+            android:name=".activity.EditOrderAdmin"
+            android:exported="false" />
 
     </application>
 

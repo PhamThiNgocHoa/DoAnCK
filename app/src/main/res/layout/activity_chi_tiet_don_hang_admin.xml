@@ -67,6 +67,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="150dp"
@@ -162,11 +163,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Gía "
+                            android:text="Giá"
                             android:textSize="16dp"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/price"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"
@@ -242,6 +244,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/fullname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"
@@ -261,6 +264,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"
@@ -280,6 +284,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"
