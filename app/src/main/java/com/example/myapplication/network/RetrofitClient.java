@@ -4,10 +4,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    // ipHuy: 192.168.1.17
-    private static final String BASE_URL = "http://192.168.0.13:8080/";
+    private static final String BASE_URL = "http://192.168.1.2:8080/";
     private static volatile Retrofit retrofit;
-
+    //192.168.1.2
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -45,4 +44,5 @@ public class RetrofitClient {
     public static OrderDetailService getOrderDetailService() {
         return getRetrofitInstance().create(OrderDetailService.class);
     }
+
 }
