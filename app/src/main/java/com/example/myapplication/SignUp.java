@@ -2,8 +2,8 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
+import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -55,9 +55,6 @@ public class SignUp extends AppCompatActivity {
         email = findViewById(R.id.email);
         phone = findViewById(R.id.phonesignup);
         password = findViewById(R.id.passwordsignup);
-
-
-
         sigUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +63,7 @@ public class SignUp extends AppCompatActivity {
                 String emailInput = email.getText().toString();
                 String phoneInput = phone.getText().toString();
                 String passwordInput = password.getText().toString();
+
                 if (TextUtils.isEmpty(usernameInput) &&
                         TextUtils.isEmpty(emailInput)&&
                         TextUtils.isEmpty(phoneInput)&&
@@ -106,6 +104,7 @@ public class SignUp extends AppCompatActivity {
                                 Intent intent = new Intent(SignUp.this, MainActivity.class);
                                 startActivity(intent);
                             }else{
+                                username.setError("Tài khoản đã tồn tại ");
                                 username.setError("Tài khoản đã tồn tại hoặc email đã tồn tại ");
                                 Log.e("MainActivity", "Response not successful");
                                 Toast.makeText(SignUp.this, "Failed login", Toast.LENGTH_SHORT).show();
@@ -119,6 +118,7 @@ public class SignUp extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Integer> call, Throwable t) {
+
                         Toast.makeText(getApplicationContext(), "Network error occurred: " + t.getMessage(), Toast.LENGTH_LONG).show();
                         Log.e("NetworkError", "Error: ", t);
                     }

@@ -1,9 +1,6 @@
 package com.example.myapplication.network.dto.request;
 
-
-import java.io.Serializable;
-
-public class CartItemRequestDTO implements Serializable {
+public class CartItemRequestDTO {
     private int cartId;
     private int productId;
     private int quantity;

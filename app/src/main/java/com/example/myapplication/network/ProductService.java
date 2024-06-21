@@ -27,4 +27,5 @@ public interface ProductService {
     Call<ProductResponseDTO> getProduct(@Path("productId") int productId);
     @GET("api/product/list")
     Call<List<ProductResponseDTO>> getProducts();
+
 }

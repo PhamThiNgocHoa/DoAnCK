@@ -13,7 +13,6 @@ public class OrderResponseDTO {
     private String numberPhone;
     private String status;
     private Set<OrderDetailResponseDTO> orderDetails;
-
     public OrderResponseDTO(Integer id, Integer customerId, String orderDate, Integer totalAmount, String address, String numberPhone, String status, Set<OrderDetailResponseDTO> orderDetails) {
         this.id = id;
         this.customerId = customerId;
@@ -36,11 +35,11 @@ public class OrderResponseDTO {
         this.id = id;
     }
 
-    public Integer getCustomerId() {
+    public CustomerResponseDTO getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(CustomerResponseDTO customerId) {
         this.customerId = customerId;
     }
 

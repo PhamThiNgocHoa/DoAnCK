@@ -1,21 +1,14 @@
 package com.example.myapplication.network.dto.response;
 
-
 import java.util.List;
 
 public class CartResponseDTO {
     private int id;
     private int customerId;
-    private float totalPrice;
+    private double totalPrice;
     private List<CartItemResponseDTO> cartItems;
 
-    public CartResponseDTO(int id, int customerId, float totalPrice, List<CartItemResponseDTO> cartItems) {
-        this.id = id;
-        this.customerId = customerId;
-        this.totalPrice = totalPrice;
-        this.cartItems = cartItems;
-    }
-
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -32,11 +25,11 @@ public class CartResponseDTO {
         this.customerId = customerId;
     }
 
-    public float getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(float totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
