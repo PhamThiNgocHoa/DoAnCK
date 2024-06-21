@@ -11,12 +11,14 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.myapplication.activity.CustomerListActivity;
+import com.example.myapplication.activity.ProductActivity;
 import com.example.myapplication.adapter.CustomerAdapter;
 import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.RetrofitClient;
@@ -33,6 +35,9 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private CustomerService customerService;
+    private EditText username;
+    private EditText password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +46,10 @@ public class MainActivity extends AppCompatActivity {
 
         Button login = findViewById(R.id.loginButton);
         TextView sigUp = findViewById(R.id.signupRedirectText);
-        EditText username = findViewById(R.id.username);
-        EditText password = findViewById(R.id.password);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
         TextView forgot = findViewById(R.id.forgot);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,15 +73,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<CustomerResponseDTO> call, Response<CustomerResponseDTO> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             CustomerResponseDTO customerResponseDTO = response.body();
-                            SharedPrefManager.getInstance(MainActivity.this).saveLoginInfo(
-                                    customerResponseDTO.getUsername(),
-                                    passwordText, // Thay thế với hash password nếu có
-                                    customerResponseDTO.getId()
-                            );
 
+                            // Lưu thông tin đăng nhập vào Shared Preferences
+                            saveLoginInfo(customerResponseDTO);
+
+                            // Chuyển sang màn hình ProductActivity sau khi đăng nhập thành công
                             Intent intent = new Intent(MainActivity.this, ProductActivity.class);
                             startActivity(intent);
-                            finish();
+                            finish(); // Kết thúc Activity hiện tại sau khi chuyển màn hình
                         } else {
                             username.setError("Tài khoản hoặc mật khẩu sai");
                             Log.e("MainActivity", "Response not successful");
@@ -91,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
         sigUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,5 +112,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void saveLoginInfo(CustomerResponseDTO customerResponseDTO) {
+        // Lưu thông tin đăng nhập vào Shared Preferences
+        SharedPrefManager.getInstance(MainActivity.this).saveLoginInfo(
+                customerResponseDTO.getUsername(),
+                "#####hash#########", // Thay thế với hash password nếu có
+                customerResponseDTO.getId()
+        );
     }
 }

@@ -1,6 +1,7 @@
 package com.example.myapplication.network.dto.response;
 
 
+import java.io.Serializable;
 
 import java.io.Serializable;
 

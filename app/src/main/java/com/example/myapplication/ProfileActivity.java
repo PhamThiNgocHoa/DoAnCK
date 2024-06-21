@@ -13,12 +13,10 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 import com.example.myapplication.ultil.SharedPrefManager;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

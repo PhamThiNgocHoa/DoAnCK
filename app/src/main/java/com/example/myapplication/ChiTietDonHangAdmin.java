@@ -32,10 +32,5 @@ public class ChiTietDonHangAdmin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
-
     }
 }

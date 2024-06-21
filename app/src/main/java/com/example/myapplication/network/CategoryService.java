@@ -11,4 +11,5 @@ import retrofit2.http.GET;
 public interface CategoryService {
     @GET("api/category/list")
     Call<List<CategoryResponseDTO>> getCategories();
+
 }

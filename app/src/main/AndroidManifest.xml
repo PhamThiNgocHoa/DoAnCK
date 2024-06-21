@@ -10,41 +10,51 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
 
         <activity
-            android:name=".EnterCode"
-            android:exported="false" />
-        <activity
-            android:name=".ForgotPassword"
-            android:exported="false" />
-        <activity
             android:name=".AddEditOne"
             android:exported="false" />
         <activity
             android:name=".activity.CategoryListActivity"
+
             android:exported="true" />
         <activity
+            android:name=".activity.OrderListActivity"
+<!--             android:exported="true"> -->
+            android:exported="true" /> 
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.OrderListActivity"
-            android:exported="true" />
+        <activity android:name=".activity.DetailedActivity" android:exported="true"/>
+        <activity android:name=".activity.CoursesListActivity" android:exported="false"/>
+        <activity android:name=".AdminActivity"
+            android:exported="true">
+        </activity>
+
         <activity
             android:name=".activity.OrderDetailListActivity"
-            android:exported="false" />
+            android:exported="false">
+            <!-- Các thiết lập khác -->
+        </activity>
         <activity
             android:name=".activity.CoursesListActivity"
             android:exported="false" />
+
+
+        </activity> 
+        <activity
+            android:name=".activity.CoursesListActivity"
+            android:exported="false" /> <!-- ======= -->
         <activity
             android:name=".AdminActivity"
             android:exported="true" />
@@ -63,57 +73,71 @@
         <activity
             android:name=".Update"
             android:exported="true" />
+
         <activity
             android:name=".SignUp"
             android:exported="true" />
         <activity
             android:name=".CartActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".DetailProductAdmin"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".ChiTietDonHangAdmin"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".DoanhThu"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".OrderAdmin"
-            android:exported="true" />
-        <activity
-            android:name=".DetailedActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".EditProfileActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".ThongTinKHActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ProductActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
+<!--        <activity-->
+<!--            android:name=".activity.ProductActivity"-->
+<!--            android:exported="true">-->
+<!--        </activity>-->
         <activity
             android:name=".ProfileActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".GiamGia"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".Order"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".History"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".OrderSuccess"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".DetailOrder"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".recycler_item"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
+
 
     </application>
 
