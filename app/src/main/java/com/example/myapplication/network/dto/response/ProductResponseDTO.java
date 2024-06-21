@@ -10,8 +10,7 @@ public class ProductResponseDTO {
     private String categoryName;
     private String detail;
 
-    public ProductResponseDTO(int id, String name, String img, double price, String categoryName, String detail) {
-
+    public ProductResponseDTO(int id, String name, String img, int price, String categoryName, String detail) {
         this.id = id;
         this.name = name;
         this.img = img;
@@ -48,7 +47,7 @@ public class ProductResponseDTO {
         this.img = img;
     }
 
-    public Double getPrice() {
+    public int getPrice() {
 
         return price;
     }

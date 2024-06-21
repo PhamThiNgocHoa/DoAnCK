@@ -35,13 +35,7 @@ public class OrderResponseDTO {
         this.id = id;
     }
 
-    public CustomerResponseDTO getCustomerId() {
-        return customerId;
-    }
 
-    public void setCustomerId(CustomerResponseDTO customerId) {
-        this.customerId = customerId;
-    }
 
     public String getOrderDate() {
         return orderDate;
