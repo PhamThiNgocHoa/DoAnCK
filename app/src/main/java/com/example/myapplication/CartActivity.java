@@ -16,20 +16,12 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cart);
-        Button checkout = findViewById(R.id.cartActivityCheckoutBtn);
         ImageView back = findViewById(R.id.back);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CartActivity.this, ProductActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CartActivity.this, ThongTinKHActivity.class);
                 startActivity(intent);
             }
         });

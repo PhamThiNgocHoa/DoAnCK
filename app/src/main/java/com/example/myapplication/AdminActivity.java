@@ -11,12 +11,10 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminActivity extends AppCompatActivity {
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-
-        setContentView(R.layout.activity_admin_main);
-
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        EdgeToEdge.enable(this);
+//        setContentView(R.layout.activity_admin_main);
 //        setContentView(R.layout.activity_admin);
 //        ImageView back = findViewById(R.id.back);
 //        TextView product = findViewById(R.id.product);
@@ -24,7 +22,6 @@ public class AdminActivity extends AppCompatActivity {
 //        TextView idProduct = findViewById(R.id.idProduct);
 //        TextView order = findViewById(R.id.order);
 //        TextView doanh_thu = findViewById(R.id.doanh_thu);
-//>>>>>>> 8908c0589638cf79827bf2406782b5facede9336
 //
 //        back.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -68,5 +65,20 @@ public class AdminActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+//    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+
+        setContentView(R.layout.activity_admin_main);
+        setContentView(R.layout.activity_admin);
+        ImageView back = findViewById(R.id.back);
+        TextView product = findViewById(R.id.product);
+        Button them = findViewById(R.id.them);
+        TextView idProduct = findViewById(R.id.idProduct);
+        TextView order = findViewById(R.id.order);
+        TextView doanh_thu = findViewById(R.id.doanh_thu);
+
+
     }
 }

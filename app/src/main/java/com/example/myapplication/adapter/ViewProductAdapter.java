@@ -38,9 +38,9 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewProductAdapter.ViewHolder holder, int position) {
         ProductResponseDTO product = items.get(position);
-        holder.textProductName.setText(items.get(position).getName());
-        holder.textProductPrice.setText(formatCurrency(items.get(position).getPrice()));
-        Glide.with(context).load(items.get(position).getImg()).into(holder.imageProduct);
+        holder.textProductName.setText(product.getName());
+        holder.textProductPrice.setText(formatCurrency(product.getPrice()));
+        Glide.with(context).load(product.getImg()).into(holder.imageProduct);
         // Set OnClickListener for "Xem chi tiết" button
         holder.buttonViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override

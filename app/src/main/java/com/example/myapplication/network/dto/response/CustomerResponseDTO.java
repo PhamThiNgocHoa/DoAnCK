@@ -1,9 +1,9 @@
 package com.example.myapplication.network.dto.response;
 
 
+import java.io.Serializable;
 
-
-public class CustomerResponseDTO {
+public class CustomerResponseDTO implements Serializable {
     private int id;
 
     private String username;
