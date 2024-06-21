@@ -16,7 +16,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/img_product"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="5dp"
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/img"
+            android:layout_toRightOf="@+id/img_product"
             android:singleLine="true"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:layout_toRightOf="@+id/img"
+            android:layout_toRightOf="@+id/img_product"
             android:layout_below="@+id/txt"
             android:singleLine="true"
             android:layout_marginLeft="10dp"

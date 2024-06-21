@@ -1,5 +1,16 @@
 package com.example.myapplication.network;
 
+import com.example.myapplication.network.dto.response.CustomerResponseDTO;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
+public interface CustomerService {
+
+    @GET("api/customer/{customerId}")
+    Call<CustomerResponseDTO> getCustomerById(@Path("customerId") int customerId);
+
 import com.example.myapplication.network.dto.request.CustomerRequestDTO;
 import com.example.myapplication.network.dto.request.LoginRequest;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
@@ -21,12 +32,13 @@ public interface CustomerService {
     Call<CustomerResponseDTO> login (@Body LoginRequest loginRequest);
 @POST("api/customer")
     Call<Integer> register(@Body CustomerRequestDTO customerRequestDTO);
+
 @DELETE("api/customer/{customerId}")
     Call<Void> delete(@Path("customerId") int customerId);
 @PUT("api/customer/admin/{customerId}")
     Call<Void> updateByAdmin(@Path("customerId") int customerId, @Body CustomerResponseDTO customerResponseDTO);
-
-
-
-
+  @GET("api/customer/{customerId}")
+    Call<CustomerResponseDTO> getCustomer(@Path("customerId") int customerId);
+    @PUT("api/customer/{customerId}")
+    Call<Void> updateCustomer(@Path("customerId") int customerId, @Body CustomerRequestDTO customer);
 }

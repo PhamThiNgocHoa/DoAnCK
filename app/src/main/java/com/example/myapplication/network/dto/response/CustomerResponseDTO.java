@@ -3,8 +3,15 @@ package com.example.myapplication.network.dto.response;
 
 import java.io.Serializable;
 
+public class CustomerResponseDTO {
+
+import java.io.Serializable;
+
 public class CustomerResponseDTO implements Serializable {
+
     private int id;
+
+    private String fullname;
 
     private String username;
 
@@ -12,11 +19,20 @@ public class CustomerResponseDTO implements Serializable {
 
     private String phone;
 
-    public CustomerResponseDTO(int id, String username, String email, String phone) {
+    public CustomerResponseDTO(int id, String fullname, String username, String email, String phone) {
         this.id = id;
+        this.fullname = fullname;
         this.username = username;
         this.email = email;
         this.phone = phone;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public int getId() {

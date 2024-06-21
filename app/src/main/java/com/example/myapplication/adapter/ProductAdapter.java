@@ -13,10 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
-import com.example.myapplication.domain.CoursesDomain;
 import com.example.myapplication.network.dto.response.ProductResponseDTO;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     ArrayList<ProductResponseDTO> items;
@@ -59,7 +57,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name_product = itemView.findViewById(R.id.name_product);
-            price = itemView.findViewById(R.id.price);
+            price = itemView.findViewById(R.id.price_label);
             image_product = itemView.findViewById(R.id.image_product);
             layout = itemView.findViewById(R.id.product_layout);
         }

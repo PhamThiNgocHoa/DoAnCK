@@ -6,17 +6,22 @@ public class ProductResponseDTO {
     private int id;
     private String name;
     private String img;
-    private double price;
+    private Integer price;
     private String categoryName;
     private String detail;
 
     public ProductResponseDTO(int id, String name, String img, double price, String categoryName, String detail) {
+
         this.id = id;
         this.name = name;
         this.img = img;
         this.price = price;
         this.categoryName = categoryName;
         this.detail = detail;
+
+    }
+
+    public ProductResponseDTO() {
     }
 
     public int getId() {
@@ -44,10 +49,11 @@ public class ProductResponseDTO {
     }
 
     public Double getPrice() {
+
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -78,4 +84,5 @@ public class ProductResponseDTO {
                 ", detail='" + detail + '\'' +
                 '}';
     }
+
 }

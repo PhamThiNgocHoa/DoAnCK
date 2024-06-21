@@ -18,37 +18,46 @@
 
         <activity
             android:name=".AddEditOne"
-            android:exported="false">
+            android:exported="false" />
+        <activity
+            android:name=".activity.CategoryListActivity"
 
-        </activity>
-        <activity android:name=".activity.ProductActivity" android:exported="true">
-
-        </activity>
-<!--        <activity android:name=".activity.CategoryListActivity" android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-
-        <activity android:name=".MainActivity"
-            android:exported="true">
-
+            android:exported="true" />
+        <activity
+            android:name=".activity.OrderListActivity"
+<!--             android:exported="true"> -->
+            android:exported="true" /> 
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.DetailedActivity" android:exported="true"/>
-
-
         <activity android:name=".activity.CoursesListActivity" android:exported="false"/>
-
-
         <activity android:name=".AdminActivity"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".activity.OrderDetailListActivity"
+            android:exported="false">
+            <!-- Các thiết lập khác -->
+        </activity>
+        <activity
+            android:name=".activity.CoursesListActivity"
+            android:exported="false" />
+
+
+        </activity> 
+        <activity
+            android:name=".activity.CoursesListActivity"
+            android:exported="false" /> <!-- ======= -->
+        <activity
+            android:name=".AdminActivity"
+            android:exported="true" />
         <activity
             android:name=".process_layout"
             android:exported="true" />
@@ -68,8 +77,6 @@
         <activity
             android:name=".SignUp"
             android:exported="true" />
-
-
         <activity
             android:name=".CartActivity"
             android:exported="true">
@@ -88,10 +95,6 @@
         </activity>
         <activity
             android:name=".OrderAdmin"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".DetailedActivity"
             android:exported="true">
         </activity>
         <activity
@@ -133,7 +136,6 @@
         <activity
             android:name=".recycler_item"
             android:exported="true">
-
         </activity>
 
 
