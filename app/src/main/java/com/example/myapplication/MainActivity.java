@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                             CustomerResponseDTO customerResponseDTO = response.body();
                             SharedPrefManager.getInstance(MainActivity.this).saveLoginInfo(
                                     customerResponseDTO.getUsername(),
-                                    "#####hash#########", // Thay thế với hash password nếu có
+                                    passwordText, // Thay thế với hash password nếu có
                                     customerResponseDTO.getId()
                             );
 

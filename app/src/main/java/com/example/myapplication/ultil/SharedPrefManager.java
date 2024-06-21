@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "my_shared_pref";
     private static final String KEY_USERNAME = "username";
-    private static final String KEY_PASSWORD = "password";
+    private static String KEY_PASSWORD = "password";
     private static final String KEY_CUSTOMER_ID = "customer_id";
     private static SharedPrefManager instance;
     private static Context ctx;
@@ -54,4 +54,12 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
     }
+    public void setPassword(String password) {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_PASSWORD, password);
+        editor.apply();
+    }
+
+
 }

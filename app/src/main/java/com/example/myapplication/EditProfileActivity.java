@@ -96,6 +96,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
                             startActivity(intent);
+                            sharedPrefManager.setPassword(newPassword);
                         } else {
                             // Handle the error response
                             // You can show a Toast or a dialog to inform the user
