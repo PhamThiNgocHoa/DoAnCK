@@ -36,7 +36,7 @@
                     android:text="Tên sản phẩm"
                     />
                 <TextView
-                    android:id="@+id/totalAmount"
+                    android:id="@+id/total"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:text="40.000.000VND"

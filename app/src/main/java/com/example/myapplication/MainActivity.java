@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     private CustomerService customerService;
     private EditText username;
     private EditText password;
-    private String passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         TextView forgot = findViewById(R.id.forgot);
-        passwordText = password.getText().toString();
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 customerService = RetrofitClient.getCustomerService();
                 String usernameText = username.getText().toString();
-
+                String passwordText = password.getText().toString();
 
                 if (usernameText.isEmpty() || passwordText.isEmpty()) {
                     if (usernameText.isEmpty()) {
@@ -119,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         // Lưu thông tin đăng nhập vào Shared Preferences
         SharedPrefManager.getInstance(MainActivity.this).saveLoginInfo(
                 customerResponseDTO.getUsername(),
-                passwordText, // Thay thế với hash password nếu có
+                "#####hash#########", // Thay thế với hash password nếu có
                 customerResponseDTO.getId()
         );
     }

@@ -2,21 +2,22 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.adapter.OrderHistoryAdapter;
-import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.OrderService;
 import com.example.myapplication.network.RetrofitClient;
-import com.example.myapplication.network.dto.response.OrderResponseDTO;
 import com.example.myapplication.ultil.SharedPrefManager;
-
+import com.example.myapplication.network.dto.response.OrderResponseDTO;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,10 +30,13 @@ public class History extends AppCompatActivity {
     private RecyclerView recyclerView;
     private OrderService orderService = RetrofitClient.getOrderService();
     private OrderHistoryAdapter orderHistoryAdapter;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lich_su_don_hang);
+
         ImageView back = findViewById(R.id.back);
         TextView success = findViewById(R.id.success);
         recyclerView = findViewById(R.id.rcv_oder);
@@ -43,16 +47,25 @@ public class History extends AppCompatActivity {
         call.enqueue(new Callback<List<OrderResponseDTO>>() {
             @Override
             public void onResponse(Call<List<OrderResponseDTO>> call, Response<List<OrderResponseDTO>> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     List<OrderResponseDTO> orderList = response.body();
-                    orderHistoryAdapter = new OrderHistoryAdapter(orderList);
-                    recyclerView.setAdapter(orderHistoryAdapter);
+                    if (orderList != null) {
+                        // Hiển thị danh sách đơn hàng lấy được từ server
+                        Toast.makeText(History.this, "Customer ID: " + customerId, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(History.this, orderList.toString(), Toast.LENGTH_SHORT).show();
+                        orderHistoryAdapter = new OrderHistoryAdapter(new ArrayList<>(orderList));
+                        recyclerView.setAdapter(orderHistoryAdapter);
+                    } else {
+                        // Xử lý trường hợp không có đơn hàng nào trả về
+                        Toast.makeText(History.this, "No orders found", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<List<OrderResponseDTO>> call, Throwable t) {
-                    
+                // Xử lý lỗi khi gọi API không thành công
+                Toast.makeText(History.this, "Failed to retrieve orders", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -63,6 +76,7 @@ public class History extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         success.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,8 +84,5 @@ public class History extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
     }
 }
