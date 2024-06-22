@@ -15,7 +15,7 @@ public class ProductResponseDTO {
         this.id = id;
         this.name = name;
         this.img = img;
-        this.price = price;
+        this.price = (int) price;
         this.categoryName = categoryName;
         this.detail = detail;
 
@@ -48,7 +48,7 @@ public class ProductResponseDTO {
         this.img = img;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
 
         return price;
     }

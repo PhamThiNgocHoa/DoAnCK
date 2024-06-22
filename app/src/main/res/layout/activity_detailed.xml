@@ -7,7 +7,7 @@
     android:background="@color/white"
     tools:context=".DetailedActivity">
 
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -33,7 +33,7 @@
             android:paddingLeft="70dp"
             android:text="DETAIL PRODUCT"
             android:textSize="25dp" />
-    </Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

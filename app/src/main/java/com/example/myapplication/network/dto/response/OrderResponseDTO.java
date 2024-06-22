@@ -1,7 +1,6 @@
 package com.example.myapplication.network.dto.response;
 
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 public class OrderResponseDTO {
@@ -35,12 +34,12 @@ public class OrderResponseDTO {
         this.id = id;
     }
 
-    public CustomerResponseDTO getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
     public void setCustomerId(CustomerResponseDTO customerId) {
-        this.customerId = customerId;
+        this.customerId = customerId.getId();
     }
 
     public String getOrderDate() {
