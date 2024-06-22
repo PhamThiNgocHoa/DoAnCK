@@ -69,6 +69,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     public void onBindViewHolder(@NonNull OrderDetailAdapter.ViewHolder holder, int position) {
         holder.quantity.setText("x" + items.get(position).getQuantity());
         Call<ProductResponseDTO> call = productService.getProduct(items.get(position).getProductId());
+
         call.enqueue(new Callback<ProductResponseDTO>() {
             @Override
             public void onResponse(Call<ProductResponseDTO> call, Response<ProductResponseDTO> response) {

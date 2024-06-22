@@ -4,124 +4,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ProductActivity">
+    tools:context=".activity.ProductActivity">
 
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/white"
-        android:elevation="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LAPTOP PRO"
-                android:textColor="#82C4E1"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <ImageView
-                android:id="@+id/cartIv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_baseline_shopping_cart_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </Toolbar>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="90dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="5dp">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchview"
-            android:layout_width="match_parent"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:hint="Tìm kiếm"
-            android:iconifiedByDefault="false" />
-    </androidx.cardview.widget.CardView>
-
-    <!-- Khung sản phẩm -->
-    <LinearLayout
-        android:id="@+id/frameProduct"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_below="@id/card"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="vertical">
-        <!-- Hình ảnh sản phẩm -->
-        <ImageView
-            android:id="@+id/imageProduct"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/adidas_questar_shoes"
+            android:text="LAPTOP PRO"
+            android:textColor="#82C4E1"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:id="@+id/textProductName"
-            android:layout_width="150dp"
+        <ImageView
+            android:id="@+id/cartIv"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên sản phẩm"
-            android:layout_marginLeft="5dp"
-            android:textSize="13sp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_baseline_shopping_cart_24"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/imageProduct"
-            app:layout_constraintTop_toBottomOf="@+id/imageProduct" />
-        <TextView
-            android:id="@+id/textProductPrice"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Giá tiền: $100"
-            android:layout_marginLeft="5dp"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageProduct"
-            app:layout_constraintTop_toBottomOf="@+id/textProductName" />
-        <TextView
-            android:id="@+id/buttonViewDetail"
-            android:background="@drawable/edit_text"
-            android:layout_width="80dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="8dp"
-            android:textSize="12dp"
-            android:text="Xem chi tiết"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/lavender"
-            android:paddingTop="2dp"
-            android:paddingLeft="6dp"
-            android:layout_marginLeft="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageProduct"
-            app:layout_constraintTop_toBottomOf="@+id/textProductPrice" />
-    </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/seachProduct"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/baseline_search_24"
+            tools:ignore="MissingConstraints">
+        </ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/card"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="10dp"-->
+<!--        android:layout_marginTop="90dp"-->
+<!--        app:cardCornerRadius="5dp"-->
+<!--        app:cardElevation="5dp">-->
+
+<!--        <androidx.appcompat.widget.SearchView-->
+<!--            android:id="@+id/searchview"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:hint="Tìm kiếm"-->
+<!--            android:iconifiedByDefault="false" />-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginLeft="20dp"
+        android:id="@+id/view"
+        android:layout_marginTop="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/tool"
@@ -134,34 +83,31 @@
         android:layout_gravity="top"
         android:background="@drawable/show">
 
-        <Toolbar
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/white">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/home"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/baseline_home_24"
-                    android:layout_marginLeft="30dp" />
-                <ImageView
-                    android:id="@+id/history"
-                    android:layout_marginLeft="100dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/baseline_menu_24" />
-                <ImageView
-                    android:id="@+id/user"
-                    android:layout_marginLeft="100dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/baseline_person_24" />
-            </LinearLayout>
-        </Toolbar>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/home"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/baseline_home_24"
+                android:layout_marginLeft="30dp" />
+            <ImageView
+                android:id="@+id/history"
+                android:layout_marginLeft="100dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/baseline_menu_24" />
+            <ImageView
+                android:id="@+id/user"
+                android:layout_marginLeft="100dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/baseline_person_24" />
+        </LinearLayout>
+
 
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

@@ -1,32 +1,31 @@
 package com.example.myapplication.network.dto.response;
 
-
-
+import com.example.myapplication.network.dto.request.ProductRequestDTO;
 
 public class CartItemResponseDTO {
-    private int id;
-    private int productId;
+    private int cartId;
+    private ProductRequestDTO productId;
     private int quantity;
 
-    public CartItemResponseDTO(int id, int productId, int quantity) {
-        this.id = id;
+    public CartItemResponseDTO(int cartId, ProductRequestDTO productId, int quantity) {
+        this.cartId = cartId;
         this.productId = productId;
         this.quantity = quantity;
     }
 
-    public int getId() {
-        return id;
+    public int getCartId() {
+        return cartId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
 
-    public int getProductId() {
+    public ProductRequestDTO getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(ProductRequestDTO productId) {
         this.productId = productId;
     }
 
