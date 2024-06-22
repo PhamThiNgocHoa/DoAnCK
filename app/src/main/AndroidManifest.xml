@@ -40,8 +40,8 @@
             android:name=".activity.OrderDetailListActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.CoursesListActivity"
-            android:exported="false" />
+            android:name=".activity.ProductActivity"
+            android:exported="true" />
         <activity
             android:name=".process_layout"
             android:exported="true" />
@@ -81,10 +81,6 @@
         <activity
             android:name=".ThongTinKHActivity"
             android:exported="true" />
-        <!--        <activity-->
-        <!--            android:name=".activity.ProductActivity"-->
-        <!--            android:exported="true">-->
-        <!--        </activity>-->
         <activity
             android:name=".ProfileActivity"
             android:exported="true" />

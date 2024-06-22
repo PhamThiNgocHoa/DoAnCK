@@ -59,10 +59,10 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 customerService = RetrofitClient.getCustomerService();
-                String usernameInput = username.getText().toString();
+                String usernameInput = username.getText().toString().toLowerCase().trim();
                 String emailInput = email.getText().toString();
-                String phoneInput = phone.getText().toString();
-                String passwordInput = password.getText().toString();
+                String phoneInput = phone.getText().toString().toLowerCase().trim();
+                String passwordInput = password.getText().toString().toLowerCase().trim();
 
                 if (TextUtils.isEmpty(usernameInput) &&
                         TextUtils.isEmpty(emailInput)&&

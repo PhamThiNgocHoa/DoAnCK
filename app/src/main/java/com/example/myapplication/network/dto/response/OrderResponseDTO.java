@@ -31,6 +31,14 @@ public class OrderResponseDTO {
         return id;
     }
 
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

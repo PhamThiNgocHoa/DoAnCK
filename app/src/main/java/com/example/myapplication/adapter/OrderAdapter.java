@@ -60,7 +60,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.price.setText(items.get(position).getTotalAmount().toString());
         Integer customerId = items.get(position).getCustomerId();
         System.out.println(customerId);
-        Call<CustomerResponseDTO> call = customerService.getCustomerById(customerId);
+        Call<CustomerResponseDTO> call = customerService.getCustomer(customerId);
         call.enqueue(new Callback<CustomerResponseDTO>() {
             @Override
             public void onResponse(Call<CustomerResponseDTO> call, Response<CustomerResponseDTO> response) {
