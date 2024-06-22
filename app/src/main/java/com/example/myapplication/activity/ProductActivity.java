@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -35,6 +36,7 @@ public class ProductActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ProductService productService;
     private CartService cartService;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +49,19 @@ public class ProductActivity extends AppCompatActivity {
         ImageView history = findViewById(R.id.history);
         ImageView user = findViewById(R.id.user);
         ImageView cartIv = findViewById(R.id.cartIv);
+        ImageView seach = findViewById(R.id.seachProduct);
 
         cartIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProductActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
+        seach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProductActivity.this, ProductSeach.class);
                 startActivity(intent);
             }
         });

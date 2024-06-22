@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -39,7 +39,7 @@
 
                 />
 
-        </Toolbar>
+        </androidx.appcompat.widget.Toolbar>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginLeft="20dp"
             android:id="@+id/view"
