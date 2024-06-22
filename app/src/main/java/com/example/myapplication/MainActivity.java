@@ -33,6 +33,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private CustomerService customerService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

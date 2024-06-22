@@ -11,21 +11,20 @@ public class OrderResponseDTO {
     private Integer totalAmount;
     private String address;
     private String numberPhone;
+    private String receiver;
     private String status;
     private Set<OrderDetailResponseDTO> orderDetails;
 
-    public OrderResponseDTO(Integer id, Integer customerId, String orderDate, Integer totalAmount, String address, String numberPhone, String status, Set<OrderDetailResponseDTO> orderDetails) {
+    public OrderResponseDTO(Integer id, Integer customerId, String orderDate, Integer totalAmount, String address, String numberPhone, String receiver, String status, Set<OrderDetailResponseDTO> orderDetails) {
         this.id = id;
         this.customerId = customerId;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.address = address;
         this.numberPhone = numberPhone;
+        this.receiver = receiver;
         this.status = status;
         this.orderDetails = orderDetails;
-    }
-
-    public OrderResponseDTO() {
     }
 
     public Integer getId() {
@@ -74,6 +73,14 @@ public class OrderResponseDTO {
 
     public void setNumberPhone(String numberPhone) {
         this.numberPhone = numberPhone;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 
     public String getStatus() {

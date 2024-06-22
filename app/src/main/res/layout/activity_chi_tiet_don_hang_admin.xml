@@ -15,7 +15,7 @@
         <Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:elevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,17 +24,30 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/de"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/back"
-                    tools:ignore="MissingConstraints" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/back_btn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/back"
+                        tools:ignore="MissingConstraints" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/textView"
@@ -48,6 +61,47 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+
+                <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+                <!--                    android:id="@+id/delete_btn"-->
+                <!--                    android:layout_width="45dp"-->
+                <!--                    android:layout_height="45dp"-->
+                <!--                    android:layout_marginEnd="16dp"-->
+                <!--                    android:background="@drawable/back_btn"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent"-->
+                <!--                    tools:ignore="MissingConstraints">-->
+
+                <!--                    <ImageButton-->
+                <!--                        android:id="@+id/imageButton"-->
+                <!--                        android:layout_width="35dp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:backgroundTint="@color/white"-->
+                <!--                        android:contentDescription="TODO"-->
+                <!--                        android:importantForAccessibility="no"-->
+                <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                <!--                        app:layout_constraintTop_toTopOf="parent"-->
+                <!--                        app:srcCompat="@drawable/ic_baseline_delete_24" />-->
+                <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+                <ImageButton
+                    android:id="@+id/delete_btn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/back_btn"
+                    android:contentDescription="Delete Button"
+                    android:importantForAccessibility="no"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.953"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </Toolbar>
@@ -64,72 +118,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/status"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="150dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
                     android:inputType="text"
                     android:text="Đang xử lý"
                     android:textSize="21dp"
                     android:textStyle="bold" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tv_ma_giao_dich_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="Mã giao dịch: "
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_toRightOf="@id/tv_ma_giao_dich_label"
-                        android:gravity="right"
-                        android:text="hdksjind"
-                        android:textSize="17dp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tv_thoi_gian_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="Thời gian giao dịch:  "
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_toRightOf="@id/tv_thoi_gian_label"
-                        android:gravity="right"
-                        android:text="hdksjind"
-                        android:textSize="17dp" />
-                </RelativeLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10px"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10px"
                     android:orientation="horizontal">
 
@@ -183,15 +190,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Khuyến mại "
-                            android:textSize="16dp"
+                            android:text="Người đặt hàng"
+                            android:textSize="17dp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="- 40.000VND" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -202,11 +204,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tổng tiền "
+                            android:text="Họ và tên"
                             android:textSize="16dp"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/fullname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"
@@ -244,7 +247,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/fullname"
+                            android:id="@+id/receiver"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"

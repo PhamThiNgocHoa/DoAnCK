@@ -86,6 +86,7 @@ public class OrderListActivity extends AppCompatActivity {
                     intent.putExtra("address", order.getAddress());
                     intent.putExtra("phone", order.getNumberPhone());
                     intent.putExtra("status", order.getStatus());
+                    intent.putExtra("receiver", order.getReceiver());
                     startActivity(intent);
                 } else {
                     Log.e("Không tìm thấy customer", "Không tìm thấy customer");

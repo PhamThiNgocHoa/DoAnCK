@@ -61,6 +61,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.phone.setText("Phone: " + items.get(position).getNumberPhone());
         holder.orderDate.setText("Order Date: " + items.get(position).getOrderDate());
         holder.price.setText("Total Price: " + FormatCurrency.formatCurrency(items.get(position).getTotalAmount()));
+        holder.receiver.setText("Receiver: " + items.get(position).getReceiver());
         Call<CustomerResponseDTO> call = customerService.getCustomerById(items.get(position).getCustomerId());
         call.enqueue(new Callback<CustomerResponseDTO>() {
             @Override
@@ -87,7 +88,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView address, customerName, phone, price, orderDate;
+        TextView address, customerName, phone, price, orderDate, receiver;
         ConstraintLayout layout;
 
 
@@ -98,6 +99,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             price = itemView.findViewById(R.id.price);
             orderDate = itemView.findViewById(R.id.order_date);
             phone = itemView.findViewById(R.id.phone);
+            receiver = itemView.findViewById(R.id.fullname);
             layout = itemView.findViewById(R.id.order_layout);
 
             itemView.setOnClickListener(v -> {

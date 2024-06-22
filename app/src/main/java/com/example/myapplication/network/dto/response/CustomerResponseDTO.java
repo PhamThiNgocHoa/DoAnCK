@@ -1,10 +1,9 @@
 package com.example.myapplication.network.dto.response;
 
 
-
-public class CustomerResponseDTO {
-
 import java.io.Serializable;
+
+
 
 public class CustomerResponseDTO implements Serializable {
 

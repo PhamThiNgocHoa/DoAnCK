@@ -1,14 +1,16 @@
 package com.example.myapplication.activity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.adapter.OrderDetailAdapter;
 import com.example.myapplication.format.FormatCurrency;
 import com.example.myapplication.network.OrderDetailService;
+import com.example.myapplication.network.OrderService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.response.OrderDetailResponseDTO;
 
@@ -30,9 +33,11 @@ import retrofit2.Response;
 public class OrderDetailListActivity extends AppCompatActivity {
     private OrderDetailAdapter adapterOrderDetailList;
     private RecyclerView recyclerView;
+    private OrderService orderService;
     private OrderDetailService orderDetailService;
-    private TextView priceView, fullnameView, phoneView, addressView, statusView;
+    private TextView priceView, fullnameView, phoneView, addressView, statusView, receiverView;
     private Button updateButton;
+    private ImageButton deleteButton;
 
 
     @SuppressLint({"MissingInflatedId", "SetTextI18n"})
@@ -47,8 +52,9 @@ public class OrderDetailListActivity extends AppCompatActivity {
         phoneView = findViewById(R.id.phone);
         addressView = findViewById(R.id.address);
         statusView = findViewById(R.id.status);
+        receiverView = findViewById(R.id.receiver);
         updateButton = findViewById(R.id.updateButton);
-
+        deleteButton = findViewById(R.id.delete_btn);
 
         // Kiểm tra xem intent có chứa dữ liệu không
         if (intent != null) {
@@ -59,21 +65,27 @@ public class OrderDetailListActivity extends AppCompatActivity {
             String address = intent.getStringExtra("address");
             String fullname = intent.getStringExtra("fullname");
             String status = intent.getStringExtra("status");
+            String receiver = intent.getStringExtra("receiver");
 
             priceView.setText(FormatCurrency.formatCurrency(totalPrice));
             phoneView.setText(phone);
             fullnameView.setText(fullname);
             addressView.setText(address);
             statusView.setText(status);
+            receiverView.setText(receiver);
 
             updateButton.setOnClickListener(v -> {
                 Intent intent1 = new Intent(OrderDetailListActivity.this, EditOrderAdmin.class);
                 intent1.putExtra("phone", phone);
                 intent1.putExtra("address", address);
-                intent1.putExtra("fullname", fullname);
+                intent1.putExtra("receiver", receiver);
                 intent1.putExtra("status", status);
                 intent1.putExtra("orderId", orderId);
                 startActivity(intent1);
+            });
+
+            deleteButton.setOnClickListener(v -> {
+                showDialogDelete(orderId);
             });
             // Xử lý dữ liệu theo nhu cầu của bạn
             getOrderDetails(orderId);
@@ -110,4 +122,33 @@ public class OrderDetailListActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void showDialogDelete(int orderId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Thông báo").setMessage("Bạn muốn xóa đơn hàng này").setPositiveButton("Xác nhận", (dialog, which) -> {
+            orderService = RetrofitClient.getOrderService();
+            orderService.deleteOrder(orderId).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    Log.i("Delete thanh cong", "Delete thanh cong");
+                    showSuccessDialog();
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Log.e("Khong goi duoc api", "khong goi duoc api", t);
+                }
+            });
+        }).setCancelable(true).show();
+    }
+
+    private void showSuccessDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setTitle("Thành công").setMessage("Đã xóa đơn hàng thành công").setPositiveButton("Xác nhận", (dialog, which) -> {
+            // Chuyển về trang OrderListActivity khi người dùng bấm xác nhận
+            Intent intent = new Intent(OrderDetailListActivity.this, OrderListActivity.class);
+            startActivity(intent);
+        }).setCancelable(false).show();
+    }
 }
+
