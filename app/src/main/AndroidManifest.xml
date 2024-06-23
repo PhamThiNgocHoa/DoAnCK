@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".EnterCode"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" /> <!-- <<<<<<< HEAD -->
 
         <activity
             android:name=".AddEditOne"
@@ -25,6 +33,7 @@
         <activity
             android:name=".activity.OrderListActivity"
             android:exported="true"/>
+
 
         <activity
             android:name=".MainActivity"
@@ -46,10 +55,23 @@
         </activity>
         <activity android:name=".activity.ProductActivity" android:exported="true"/>
         <activity
-            android:name=".activity.OrderDetailListActivity"
-            android:exported="false">
-            <!-- Các thiết lập khác -->
+            android:name=".activity.EditOrderAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
         </activity>
+        <activity
+            android:name=".activity.OrderDetailListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activity.CoursesListActivity"
+            android:exported="false" /> <!-- ======= -->
+        <activity
+            android:name=".AdminActivity"
+            android:exported="true" />
 
         <activity
             android:name=".process_layout"
@@ -70,6 +92,11 @@
         <activity
             android:name=".SignUp"
             android:exported="true" />
+
+        <!-- <activity -->
+        <!-- android:name=".AddEditOne" -->
+        <!-- android:exported="true" /> -->
+
         <activity
             android:name=".CartActivity"
             android:exported="true">
@@ -125,6 +152,10 @@
         </activity>
         <activity
             android:name=".recycler_item"
+
+            android:exported="true" />
+
+
             android:exported="true">
         </activity>
 

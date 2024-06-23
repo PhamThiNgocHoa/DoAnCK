@@ -10,121 +10,73 @@
     android:background="@drawable/list_background_1">
 
     <TextView
-        android:id="@+id/price_label"
+        android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:text="Price: "
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customer_name_label" />
-
-    <TextView
-        android:id="@+id/order_date_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:text="Order Date:"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/price_label" />
-
-    <TextView
-        android:id="@+id/customer_name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:text="Customer: "
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/address_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:text="Address:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_date_label" />
-
-    <TextView
-        android:id="@+id/phone_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        android:text="Phone:"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_label" />
-
-    <TextView
-        android:id="@+id/customer_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/customer_name_label"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/price_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/price_label"
-        app:layout_constraintTop_toBottomOf="@+id/customer_name" />
+        app:layout_constraintBottom_toTopOf="@+id/order_date"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/order_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:text="TextView"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="5dp"
+        android:text="Order Date:"
+        android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/order_date_label"
-        app:layout_constraintTop_toBottomOf="@+id/price_product" />
+        app:layout_constraintBottom_toTopOf="@+id/address"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/customer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="5dp"
+        android:text="Customer: "
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/price"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:text="TextView"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="5dp"
+        android:text="Address:"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/address_label"
-        app:layout_constraintTop_toBottomOf="@+id/order_date_label" />
+        app:layout_constraintBottom_toTopOf="@+id/phone"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="5dp"
-        android:text="TextView"
+        android:text="Phone:"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/phone_label"
-        app:layout_constraintTop_toBottomOf="@id/address" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address" />
+
+    <TextView
+        android:id="@+id/fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:text="Receiver: "
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
