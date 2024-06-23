@@ -16,6 +16,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.activity.DetailedActivity;
 import com.example.myapplication.network.dto.response.ProductResponseDTO;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ProductSeachAdapter extends RecyclerView.Adapter<ProductSeachAdapter.ProductViewHolder> {
@@ -39,7 +40,7 @@ public class ProductSeachAdapter extends RecyclerView.Adapter<ProductSeachAdapte
         if (productList == null) return;
         ProductResponseDTO product = productList.get(position);
         holder.productName.setText(product.getName());
-        holder.productPrice.setText("Giá tiền: $" + product.getPrice());
+        holder.productPrice.setText("Giá tiền:  " + formatCurrency(product.getPrice()));
         Glide.with(holder.itemView.getContext()).load(product.getImg()).into(holder.productImage);
 
         holder.buttonViewDetail.setOnClickListener(new View.OnClickListener() {
@@ -75,5 +76,11 @@ public class ProductSeachAdapter extends RecyclerView.Adapter<ProductSeachAdapte
             productPrice = itemView.findViewById(R.id.textProductPrice);
             buttonViewDetail = itemView.findViewById(R.id.buttonViewDetail);
         }
+    }
+
+    // Format currency to display VND
+    private String formatCurrency(double amount) {
+        DecimalFormat formatter = new DecimalFormat("#,### VNĐ");
+        return formatter.format(amount * 1000);
     }
 }
