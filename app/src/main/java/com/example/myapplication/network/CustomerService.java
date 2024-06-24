@@ -41,7 +41,7 @@ public interface CustomerService {
     Call<Void> resetPassword(
             @Path("username") String username,
             @Query("resetCode") String resetCode,
-            @Body String newPassword
+            @Query("newPassword") String newPassword
     );
 
     @POST("api/customer/initPasswordReset/{username}")

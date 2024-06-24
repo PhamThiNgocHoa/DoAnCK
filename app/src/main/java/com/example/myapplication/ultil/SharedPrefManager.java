@@ -54,4 +54,11 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
     }
+
+    public void setPassword(String password) {
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_PASSWORD, password);
+        editor.apply();
+    }
 }

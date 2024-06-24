@@ -12,13 +12,15 @@ import java.io.Serializable;
         private String email;
 
         private String phone;
+        private String password;
 
-        public CustomerResponseDTO(int id, String fullname, String username, String email, String phone) {
+        public CustomerResponseDTO(int id, String fullname, String username, String email, String phone, String password) {
             this.id = id;
             this.fullname = fullname;
             this.username = username;
             this.email = email;
             this.phone = phone;
+            this.password = password;
         }
 
         public String getFullname() {
@@ -59,5 +61,13 @@ import java.io.Serializable;
 
         public void setPhone(String phone) {
             this.phone = phone;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
         }
     }
