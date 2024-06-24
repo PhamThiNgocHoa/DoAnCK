@@ -4,11 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,9 +15,7 @@ import com.example.myapplication.domain.CoursesDomain;
 import com.example.myapplication.network.ProductService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.response.ProductResponseDTO;
-import com.example.myapplication.network.impl.ProductServiceImpl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

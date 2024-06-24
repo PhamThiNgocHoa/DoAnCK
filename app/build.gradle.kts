@@ -1,20 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.application")
 }
 
-
-
 android {
-    namespace = "com.example.myapplication"
     compileSdk = 34
 
+    namespace = "com.example.myapplication"
     defaultConfig {
         applicationId = "com.example.myapplication"
         minSdk = 34
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -27,14 +24,16 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
+
 dependencies {
-    implementation ("androidx.recyclerview:recyclerview:1.2.0")  // (hoặc phiên bản mới nhất)
+    implementation(libs.recyclerview)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -43,8 +42,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation("com.github.bumptech.glide:glide:4.12.0")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-//    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation(libs.glide)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+    // https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
+    implementation("com.github.PhilJay:MPAndroidChart:3.0.0")
+
+
 }

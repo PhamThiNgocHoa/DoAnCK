@@ -1,48 +1,60 @@
 package com.example.myapplication.network.dto.response;
 
 
-public class OrderDetailResponseDTO {
-    private int id;
-    private int  orderId;
-    private ProductResponseDTO  productId;
-    private int  quantity;
+import java.io.Serializable;
 
-    public OrderDetailResponseDTO(int id, int orderId, ProductResponseDTO productId, int quantity) {
+public class OrderDetailResponseDTO implements Serializable {
+    private Integer id;
+    private Integer orderId;
+    private ProductResponseDTO productResponseDTO;
+    private Integer quantity;
+
+    public OrderDetailResponseDTO(Integer id, Integer orderId, ProductResponseDTO productResponseDTO, Integer quantity) {
         this.id = id;
         this.orderId = orderId;
-        this.productId = productId;
+        this.productResponseDTO = productResponseDTO;
         this.quantity = quantity;
     }
 
-    public int getId() {
+    @Override
+    public String toString() {
+        return "OrderDetailResponseDTO{" +
+                "id=" + id +
+                ", orderId=" + orderId +
+                ", productResponseDTO=" + productResponseDTO +
+                ", quantity=" + quantity +
+                '}';
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
-    public ProductResponseDTO getProductId() {
-        return productId;
+    public ProductResponseDTO getProductResponseDTO() {
+        return productResponseDTO;
     }
 
-    public void setProductId(ProductResponseDTO productId) {
-        this.productId = productId;
+    public void setProductResponseDTO(ProductResponseDTO productResponseDTO) {
+        this.productResponseDTO = productResponseDTO;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 }

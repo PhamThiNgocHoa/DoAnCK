@@ -25,14 +25,16 @@ public class CategoryListActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterCategoryList;
     private RecyclerView recyclerView;
     private CategoryService categoryService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_category_list);
         getCategories();
     }
-    private void getCategories()  {
-        categoryService  = RetrofitClient.getCategoryService();
+
+    private void getCategories() {
+        categoryService = RetrofitClient.getCategoryService();
         categoryService.getCategories().enqueue(new Callback<List<CategoryResponseDTO>>() {
             @Override
             public void onResponse(Call<List<CategoryResponseDTO>> call, Response<List<CategoryResponseDTO>> response) {

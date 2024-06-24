@@ -1,6 +1,7 @@
 package com.example.myapplication.network;
 
 import com.example.myapplication.network.dto.request.OrderEditRequestDTO;
+import com.example.myapplication.network.dto.response.MonthlyRevenueResponse;
 import com.example.myapplication.network.dto.response.OrderResponseDTO;
 
 import java.util.List;
@@ -21,4 +22,7 @@ public interface OrderService {
 
     @DELETE("api/order/{orderId}")
     Call<Void> deleteOrder(@Path("orderId") int orderId);
+
+    @GET("api/order/revenue")
+    Call<List<MonthlyRevenueResponse>> getMonthlyRevenue();
 }
