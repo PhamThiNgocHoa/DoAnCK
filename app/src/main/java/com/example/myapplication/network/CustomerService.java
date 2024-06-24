@@ -19,6 +19,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface CustomerService {
 
@@ -48,6 +49,18 @@ public interface CustomerService {
 
     @PUT("api/customer/{customerId}")
     Call<Void> updateCustomer(@Path("customerId") int customerId, @Body CustomerRequestDTO customer);
+
+    @POST("api/customer/resetPassword/{username}")
+    Call<Void> resetPassword(
+            @Path("username") String username,
+            @Query("resetCode") String resetCode,
+            @Query("newPassword") String newPassword
+    );
+
+    @POST("api/customer/initPasswordReset/{username}")
+    Call<Void> initPasswordReset(
+            @Path("username") String username
+    );
 }
 
 

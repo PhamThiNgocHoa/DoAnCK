@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -19,10 +21,10 @@
         tools:targetApi="31">
         <activity
             android:name=".EnterCode"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ForgotPassword"
-            android:exported="false" /> <!-- <<<<<<< HEAD -->
+            android:exported="true" /> <!-- <<<<<<< HEAD -->
 
         <activity
             android:name=".AddEditOne"
@@ -47,7 +49,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
         </activity>
         <activity
             android:name=".activity.DetailedActivity"
@@ -141,10 +142,7 @@
             android:exported="true" />
         <activity
             android:name=".recycler_item"
-
             android:exported="true" />
-
-
     </application>
 
 </manifest>

@@ -73,6 +73,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         holder.name.setText(items.get(position).getProductResponseDTO().getName());
         holder.category.setText(items.get(position).getProductResponseDTO().getCategoryName());
 
+
     }
 
     @Override

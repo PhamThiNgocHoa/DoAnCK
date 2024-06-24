@@ -46,18 +46,29 @@
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />
-
+            <EditText
+                android:id="@+id/newPass"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/edit_text"
+                android:drawablePadding="8dp"
+                android:hint="New password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background" />
             <Button
                 android:id="@+id/sentButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="26dp"
                 android:backgroundTint="@color/purple"
-                android:text="SentCode"
+                android:text="OK"
                 android:textSize="16sp"
                 app:cornerRadius="20dp" />
         </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
-  </LinearLayout>
+</LinearLayout>

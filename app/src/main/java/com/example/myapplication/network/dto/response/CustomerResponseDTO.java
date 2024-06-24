@@ -11,7 +11,6 @@ public class CustomerResponseDTO implements Serializable {
     private String username;
 
     private String email;
-
     private String phone;
     private boolean role;
 
@@ -80,7 +79,6 @@ public class CustomerResponseDTO implements Serializable {
         return role;
     }
 
-    public void setRole(boolean role) {
-        this.role = role;
-    }
+   
+    
 }

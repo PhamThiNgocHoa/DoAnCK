@@ -2,6 +2,14 @@ plugins {
     id("com.android.application")
 }
 
+//apply plugin: 'com.android.application'
+//apply plugin: 'com.google.gms.google-services'
+//plugins {
+//    id ("com.android.application")
+//    id ("com.google.gms.google-services")
+//}
+
+
 android {
     compileSdk = 34
 
@@ -50,3 +58,4 @@ dependencies {
 
 
 }
+
