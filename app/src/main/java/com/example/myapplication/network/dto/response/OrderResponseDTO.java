@@ -1,30 +1,47 @@
 package com.example.myapplication.network.dto.response;
 
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
-public class OrderResponseDTO {
+public class OrderResponseDTO implements Serializable {
     private Integer id;
-    private Integer customerId;
+    private CustomerResponseDTO customerDTO;
     private String orderDate;
     private Integer totalAmount;
     private String address;
     private String numberPhone;
-    private String receiver;
     private String status;
-    private Set<OrderDetailResponseDTO> orderDetails;
+    private String receiver;
+    private List<OrderDetailResponseDTO> orderDetails;
 
-    public OrderResponseDTO(Integer id, Integer customerId, String orderDate, Integer totalAmount, String address, String numberPhone, String receiver, String status, Set<OrderDetailResponseDTO> orderDetails) {
-
+    public OrderResponseDTO(Integer id, CustomerResponseDTO customerDTO, String orderDate, Integer totalAmount, String address, String numberPhone, String status, String receiver, List<OrderDetailResponseDTO> orderDetails) {
         this.id = id;
-        this.customerId = customerId;
+        this.customerDTO = customerDTO;
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.address = address;
         this.numberPhone = numberPhone;
-        this.receiver = receiver;
         this.status = status;
+        this.receiver = receiver;
         this.orderDetails = orderDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderResponseDTO{" +
+                "id=" + id +
+                ", customerDTO=" + customerDTO +
+                ", orderDate='" + orderDate + '\'' +
+                ", totalAmount=" + totalAmount +
+                ", address='" + address + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
+                ", status='" + status + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", orderDetails=" + orderDetails +
+                '}';
     }
 
     public Integer getId() {
@@ -35,12 +52,12 @@ public class OrderResponseDTO {
         this.id = id;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
+    public CustomerResponseDTO getCustomerDTO() {
+        return customerDTO;
     }
 
-    public void setCustomerId(CustomerResponseDTO customerId) {
-        this.customerId = customerId.getId();
+    public void setCustomerDTO(CustomerResponseDTO customerDTO) {
+        this.customerDTO = customerDTO;
     }
 
     public String getOrderDate() {
@@ -75,14 +92,6 @@ public class OrderResponseDTO {
         this.numberPhone = numberPhone;
     }
 
-    public String getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -91,11 +100,19 @@ public class OrderResponseDTO {
         this.status = status;
     }
 
-    public Set<OrderDetailResponseDTO> getOrderDetails() {
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public List<OrderDetailResponseDTO> getOrderDetails() {
         return orderDetails;
     }
 
-    public void setOrderDetails(Set<OrderDetailResponseDTO> orderDetails) {
+    public void setOrderDetails(List<OrderDetailResponseDTO> orderDetails) {
         this.orderDetails = orderDetails;
     }
 }

@@ -1,8 +1,9 @@
 package com.example.myapplication.network.dto.response;
 
 
+import java.io.Serializable;
 
-public class ProductResponseDTO {
+public class ProductResponseDTO implements Serializable {
     private int id;
     private String name;
     private String img;
@@ -10,12 +11,12 @@ public class ProductResponseDTO {
     private String categoryName;
     private String detail;
 
-    public ProductResponseDTO(int id, String name, String img, double price, String categoryName, String detail) {
+    public ProductResponseDTO(int id, String name, String img, int price, String categoryName, String detail) {
 
         this.id = id;
         this.name = name;
         this.img = img;
-        this.price = (int) price;
+        this.price = price;
         this.categoryName = categoryName;
         this.detail = detail;
 

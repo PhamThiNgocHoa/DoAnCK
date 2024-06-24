@@ -68,27 +68,12 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     @Override
     public void onBindViewHolder(@NonNull OrderDetailAdapter.ViewHolder holder, int position) {
         holder.quantity.setText("x" + items.get(position).getQuantity());
-        Call<ProductResponseDTO> call = productService.getProduct(items.get(position).getProductId().getId());
+//        Glide.with(context).load(responseDTO.getImg()).into(holder.image);
+        holder.price.setText(FormatCurrency.formatCurrency(items.get(position).getProductResponseDTO().getPrice()));
+        holder.name.setText(items.get(position).getProductResponseDTO().getName());
+        holder.category.setText(items.get(position).getProductResponseDTO().getCategoryName());
 
-        call.enqueue(new Callback<ProductResponseDTO>() {
-            @Override
-            public void onResponse(Call<ProductResponseDTO> call, Response<ProductResponseDTO> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    ProductResponseDTO responseDTO = response.body();
-//                    Glide.with(context).load(responseDTO.getImg()).into(holder.image);
-                    holder.price.setText(FormatCurrency.formatCurrency(responseDTO.getPrice()));
-                    holder.name.setText(responseDTO.getName());
-                    holder.category.setText(responseDTO.getCategoryName());
-                } else {
-                    Log.e("Không tìm thấy product", "Không tìm thấy product");
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ProductResponseDTO> call, Throwable t) {
-                Log.e("CoursesListActivity", "onFailure: ", t);
-            }
-        });
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.myapplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -17,6 +18,8 @@ import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.OrderService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
+import com.example.myapplication.network.dto.response.MonthlyRevenueResponse;
+import com.example.myapplication.network.dto.response.OrderDetailResponseDTO;
 import com.example.myapplication.network.dto.response.OrderResponseDTO;
 
 import java.util.ArrayList;
@@ -40,6 +43,8 @@ public class OrderListActivity extends AppCompatActivity {
     }
 
     private void getOrders() {
+        recyclerView = findViewById(R.id.view);
+
         orderService = RetrofitClient.getOrderService();
         orderService.getOrders().enqueue(new Callback<List<OrderResponseDTO>>() {
             @Override
@@ -48,16 +53,18 @@ public class OrderListActivity extends AppCompatActivity {
                     List<OrderResponseDTO> orders = response.body();
                     setupRecyclerView(orders);
                 } else {
-                    handleOrderLoadError();
+                    Log.e("Response null", "Response null");
                 }
             }
 
             @Override
-            public void onFailure(Call<List<OrderResponseDTO>> call, Throwable t) {
-                handleOrderLoadError();
+            public void onFailure(Call<List<OrderResponseDTO>> call, Throwable throwable) {
+                handleOrderLoadError(throwable);
             }
         });
+
     }
+
 
     private void setupRecyclerView(List<OrderResponseDTO> orders) {
         recyclerView = findViewById(R.id.view);
@@ -72,36 +79,14 @@ public class OrderListActivity extends AppCompatActivity {
     }
 
     private void handleOrderClick(OrderResponseDTO order) {
-        customerService = RetrofitClient.getCustomerService();
-        Call<CustomerResponseDTO> callCustomer = customerService.getCustomerById(order.getCustomerId());
-        callCustomer.enqueue(new Callback<CustomerResponseDTO>() {
-            @Override
-            public void onResponse(Call<CustomerResponseDTO> call, Response<CustomerResponseDTO> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    CustomerResponseDTO responseDTO = response.body();
-                    Intent intent = new Intent(OrderListActivity.this, OrderDetailListActivity.class);
-                    intent.putExtra("fullname", responseDTO.getFullname());
-                    intent.putExtra("orderId", order.getId());
-                    intent.putExtra("totalPrice", order.getTotalAmount());
-                    intent.putExtra("address", order.getAddress());
-                    intent.putExtra("phone", order.getNumberPhone());
-                    intent.putExtra("status", order.getStatus());
-                    intent.putExtra("receiver", order.getReceiver());
-                    startActivity(intent);
-                } else {
-                    Log.e("Không tìm thấy customer", "Không tìm thấy customer");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CustomerResponseDTO> call, Throwable t) {
-                Log.e("CoursesListActivity", "onFailure: ", t);
-            }
-        });
+        Intent intent = new Intent(OrderListActivity.this, OrderDetailListActivity.class);
+        intent.putExtra("order", order); // Đối tượng order là một instance của OrderResponseDTO
+        startActivity(intent);
     }
 
-    private void handleOrderLoadError() {
-        Log.e("OrderListActivity", "Response not successful");
+
+    private void handleOrderLoadError(Throwable throwable) {
+        Log.e("OrderListActivity", "Response not successful" + throwable.getMessage());
         Toast.makeText(OrderListActivity.this, "Failed to load orders", Toast.LENGTH_SHORT).show();
     }
 

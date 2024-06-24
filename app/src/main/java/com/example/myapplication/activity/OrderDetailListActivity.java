@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -22,6 +23,7 @@ import com.example.myapplication.network.OrderDetailService;
 import com.example.myapplication.network.OrderService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.response.OrderDetailResponseDTO;
+import com.example.myapplication.network.dto.response.OrderResponseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,36 +61,26 @@ public class OrderDetailListActivity extends AppCompatActivity {
         // Kiểm tra xem intent có chứa dữ liệu không
         if (intent != null) {
             // Lấy dữ liệu từ intent (ví dụ: orderId)
-            int orderId = intent.getIntExtra("orderId", -1); // -1 là giá trị mặc định nếu không tìm thấy
-            int totalPrice = intent.getIntExtra("totalPrice", -1);
-            String phone = intent.getStringExtra("phone");
-            String address = intent.getStringExtra("address");
-            String fullname = intent.getStringExtra("fullname");
-            String status = intent.getStringExtra("status");
-            String receiver = intent.getStringExtra("receiver");
+            OrderResponseDTO order = (OrderResponseDTO) intent.getSerializableExtra("order");
 
-            priceView.setText(FormatCurrency.formatCurrency(totalPrice));
-            phoneView.setText(phone);
-            fullnameView.setText(fullname);
-            addressView.setText(address);
-            statusView.setText(status);
-            receiverView.setText(receiver);
+            priceView.setText(FormatCurrency.formatCurrency(order.getTotalAmount()));
+            phoneView.setText(order.getNumberPhone());
+            fullnameView.setText(order.getCustomerDTO().getFullname());
+            addressView.setText(order.getAddress());
+            statusView.setText(order.getStatus());
+            receiverView.setText(order.getReceiver());
 
             updateButton.setOnClickListener(v -> {
                 Intent intent1 = new Intent(OrderDetailListActivity.this, EditOrderAdmin.class);
-                intent1.putExtra("phone", phone);
-                intent1.putExtra("address", address);
-                intent1.putExtra("receiver", receiver);
-                intent1.putExtra("status", status);
-                intent1.putExtra("orderId", orderId);
+                intent1.putExtra("order", order); // Đối tượng order là một instance của OrderResponseDTO
                 startActivity(intent1);
             });
 
             deleteButton.setOnClickListener(v -> {
-                showDialogDelete(orderId);
+                showDialogDelete(order.getId());
             });
             // Xử lý dữ liệu theo nhu cầu của bạn
-            getOrderDetails(orderId);
+            getOrderDetails(order);
             // Ví dụ: hiển thị thông tin chi tiết của order có orderId
         } else {
             // Xử lý khi không có intent
@@ -98,49 +90,44 @@ public class OrderDetailListActivity extends AppCompatActivity {
 
     }
 
-    private void getOrderDetails(int orderId) {
-        orderDetailService = RetrofitClient.getOrderDetailService();
-        orderDetailService.getOrderDetails(orderId).enqueue(new Callback<List<OrderDetailResponseDTO>>() {
-            @Override
-            public void onResponse(Call<List<OrderDetailResponseDTO>> call, Response<List<OrderDetailResponseDTO>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    List<OrderDetailResponseDTO> orderDetails = response.body();
-                    recyclerView = findViewById(R.id.view);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(OrderDetailListActivity.this, LinearLayoutManager.VERTICAL, false));
-                    adapterOrderDetailList = new OrderDetailAdapter((ArrayList<OrderDetailResponseDTO>) orderDetails);
-                    recyclerView.setAdapter(adapterOrderDetailList);
-                } else {
-                    Log.e("OrderListActivity", "Response not successfull");
-                    Toast.makeText(OrderDetailListActivity.this, "Failed to load orders", Toast.LENGTH_SHORT).show();
-                }
-            }
+    private void getOrderDetails(OrderResponseDTO order) {
+        List<OrderDetailResponseDTO> orderDetails = order.getOrderDetails();
+        Log.e("OrderDetail", "OrderDetail" + orderDetails);
+        recyclerView = findViewById(R.id.view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(OrderDetailListActivity.this, LinearLayoutManager.VERTICAL, false));
+        adapterOrderDetailList = new OrderDetailAdapter((ArrayList<OrderDetailResponseDTO>) orderDetails);
+        recyclerView.setAdapter(adapterOrderDetailList);
 
-            @Override
-            public void onFailure(Call<List<OrderDetailResponseDTO>> call, Throwable t) {
-                Log.e("CoursesListActivity", "onFailure: ", t);
-                Toast.makeText(OrderDetailListActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void showDialogDelete(int orderId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Thông báo").setMessage("Bạn muốn xóa đơn hàng này").setPositiveButton("Xác nhận", (dialog, which) -> {
-            orderService = RetrofitClient.getOrderService();
-            orderService.deleteOrder(orderId).enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    Log.i("Delete thanh cong", "Delete thanh cong");
-                    showSuccessDialog();
-                }
+        builder.setTitle("Thông báo")
+                .setMessage("Bạn muốn xóa đơn hàng này")
+                .setPositiveButton("Xác nhận", (dialog, which) -> {
+                    // Xử lý khi người dùng xác nhận xóa đơn hàng
+                    orderService = RetrofitClient.getOrderService();
+                    orderService.deleteOrder(orderId).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Log.i("Delete thanh cong", "Delete thanh cong");
+                            showSuccessDialog();
+                        }
 
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    Log.e("Khong goi duoc api", "khong goi duoc api", t);
-                }
-            });
-        }).setCancelable(true).show();
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Log.e("Khong goi duoc api", "khong goi duoc api", t);
+                        }
+                    });
+                })
+                .setNegativeButton("Hủy bỏ", (dialog, which) -> {
+                    // Xử lý khi người dùng hủy bỏ
+                    dialog.dismiss();
+                })
+                .setCancelable(true)
+                .show();
     }
+
 
     private void showSuccessDialog() {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);

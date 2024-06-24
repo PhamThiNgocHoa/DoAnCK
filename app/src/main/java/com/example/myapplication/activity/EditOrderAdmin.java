@@ -16,6 +16,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.network.OrderService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.request.OrderEditRequestDTO;
+import com.example.myapplication.network.dto.response.OrderResponseDTO;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,17 +36,19 @@ public class EditOrderAdmin extends AppCompatActivity {
         phoneView = findViewById(R.id.phone_info);
         addressView = findViewById(R.id.address_info);
         updateButton = findViewById(R.id.updateButton);
-        int orderId;
 
+        OrderResponseDTO order;
         Intent intent = getIntent();
         if (intent != null) {
-            statusView.setText(intent.getStringExtra("status"));
-            fullnameView.setText(intent.getStringExtra("receiver"));
-            phoneView.setText(intent.getStringExtra("phone"));
-            addressView.setText(intent.getStringExtra("address"));
-            orderId = intent.getIntExtra("orderId", -1);
+            order = (OrderResponseDTO) intent.getSerializableExtra("order");
+            statusView.setText(order.getStatus());
+            fullnameView.setText(order.getReceiver());
+            phoneView.setText(order.getNumberPhone());
+            addressView.setText(order.getAddress());
+
         } else {
-            orderId = 0;
+            order = null;
+
         }
 
         updateButton.setOnClickListener(v -> {
@@ -56,7 +59,7 @@ public class EditOrderAdmin extends AppCompatActivity {
 
             orderService = RetrofitClient.getOrderService();
             OrderEditRequestDTO requestDTO = new OrderEditRequestDTO(fullnameEdited, addressEdited, statusEdited, phoneEdited);
-            orderService.editOrder(orderId, requestDTO).enqueue(new Callback<Void>() {
+            orderService.editOrder(order.getId(), requestDTO).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     Log.i("Edit thanh cong", "edit thanh cong");

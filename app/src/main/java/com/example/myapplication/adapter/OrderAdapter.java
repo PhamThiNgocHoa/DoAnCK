@@ -62,24 +62,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.orderDate.setText("Order Date: " + items.get(position).getOrderDate());
         holder.price.setText("Total Price: " + FormatCurrency.formatCurrency(items.get(position).getTotalAmount()));
         holder.receiver.setText("Receiver: " + items.get(position).getReceiver());
-        Call<CustomerResponseDTO> call = customerService.getCustomerById(items.get(position).getCustomerId());
-
-        call.enqueue(new Callback<CustomerResponseDTO>() {
-            @Override
-            public void onResponse(Call<CustomerResponseDTO> call, Response<CustomerResponseDTO> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    CustomerResponseDTO responseDTO = response.body();
-                    holder.customerName.setText("Customer: " + responseDTO.getFullname()); // Sử dụng thông tin khách hàng từ responseDTO
-                } else {
-                    Log.e("Không tìm thấy customer", "Không tìm thấy customer");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CustomerResponseDTO> call, Throwable t) {
-                Log.e("CoursesListActivity", "onFailure: ", t);
-            }
-        });
+        holder.customerName.setText("Customer: " + items.get(position).getCustomerDTO().getFullname());
     }
 
 

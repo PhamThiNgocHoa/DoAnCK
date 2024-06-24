@@ -20,34 +20,22 @@ public class DoanhThu extends AppCompatActivity {
         TextView order = findViewById(R.id.order);
         TextView doanh_thu = findViewById(R.id.doanh_thu);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DoanhThu.this, AdminActivity.class);
-                startActivity(intent);
-            }
+        back.setOnClickListener(view -> {
+            Intent intent = new Intent(DoanhThu.this, AdminActivity.class);
+            startActivity(intent);
         });
-        product.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DoanhThu.this, AdminActivity.class);
-                startActivity(intent);
-            }
+        product.setOnClickListener(view -> {
+            Intent intent = new Intent(DoanhThu.this, AdminActivity.class);
+            startActivity(intent);
         });
 
-        order.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DoanhThu.this, OrderAdmin.class);
-                startActivity(intent);
-            }
+        order.setOnClickListener(view -> {
+            Intent intent = new Intent(DoanhThu.this, OrderAdmin.class);
+            startActivity(intent);
         });
-        doanh_thu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DoanhThu.this, DoanhThu.class);
-                startActivity(intent);
-            }
+        doanh_thu.setOnClickListener(view -> {
+            Intent intent = new Intent(DoanhThu.this, DoanhThu.class);
+            startActivity(intent);
         });
     }
 }
