@@ -54,12 +54,9 @@ public class DetailedActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         detailActivityAddToCartBtn = findViewById(R.id.detailActivityAddToCartBtn);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DetailedActivity.this, ProductActivity.class);
-                startActivity(intent);
-            }
+        back.setOnClickListener(view -> {
+            Intent intent = new Intent(DetailedActivity.this, ProductActivity.class);
+            startActivity(intent);
         });
 
         productId = getIntent().getIntExtra("id", -1);

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,55 +52,43 @@ public class ProductActivity extends AppCompatActivity {
         ImageView cartIv = findViewById(R.id.cartIv);
         ImageView seach = findViewById(R.id.seachProduct);
 
-        cartIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductActivity.this, CartActivity.class);
-                startActivity(intent);
-            }
+        cartIv.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductActivity.this, CartActivity.class);
+            startActivity(intent);
         });
-        seach.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductActivity.this, ProductSeach.class);
-                startActivity(intent);
-            }
+        seach.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductActivity.this, ProductSeach.class);
+            startActivity(intent);
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductActivity.this, ProductActivity.class);
-                startActivity(intent);
-            }
+        home.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductActivity.this, ProductActivity.class);
+            startActivity(intent);
         });
 
-        history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductActivity.this, History.class);
-                startActivity(intent);
-            }
+        history.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductActivity.this, History.class);
+            startActivity(intent);
         });
 
-        user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
+        user.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductActivity.this, ProfileActivity.class);
+            startActivity(intent);
         });
     }
 
-    private void getProducts(){
+    private void getProducts() {
         productService = RetrofitClient.getProductService();
         productService.getProducts().enqueue(new Callback<List<ProductResponseDTO>>() {
             @Override
             public void onResponse(Call<List<ProductResponseDTO>> call, Response<List<ProductResponseDTO>> response) {
-                if(response.isSuccessful() && response.body() != null){
+                if (response.isSuccessful() && response.body() != null) {
                     List<ProductResponseDTO> list = response.body();
                     recyclerView = findViewById(R.id.view);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(ProductActivity.this, LinearLayoutManager.VERTICAL, false));
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(ProductActivity.this, LinearLayoutManager.VERTICAL, false);
+                    recyclerView.setLayoutManager(layoutManager);
+                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+                    recyclerView.addItemDecoration(dividerItemDecoration);
                     adapterProducts = new ViewProductAdapter((ArrayList<ProductResponseDTO>) list);
                     recyclerView.setAdapter(adapterProducts);
                 } else {
