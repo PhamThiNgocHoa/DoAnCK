@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         // Lưu thông tin đăng nhập vào Shared Preferences
         SharedPrefManager.getInstance(MainActivity.this).saveLoginInfo(
                 customerResponseDTO.getUsername(),
-                "#####hash#########", // Thay thế với mã băm mật khẩu nếu có
+                String.valueOf(password.getText()), // Thay thế với mã băm mật khẩu nếu có
                 customerResponseDTO.getId()
         );
     }

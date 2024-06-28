@@ -90,7 +90,7 @@ public class SignUp extends AppCompatActivity {
                 Toast.makeText(SignUp.this, "Password length must be greater than 6 characters", Toast.LENGTH_SHORT).show();
                 return;
             }
-            CustomerRequestDTO customerRequestDTO = new CustomerRequestDTO(usernameInput, emailInput, passwordInput, phoneInput);
+            CustomerRequestDTO  customerRequestDTO = new CustomerRequestDTO(usernameInput, emailInput, passwordInput, phoneInput);
             customerService.register(customerRequestDTO).enqueue(new Callback<Integer>() {
                 @Override
                 public void onResponse(Call<Integer> call, Response<Integer> response) {

@@ -2,6 +2,7 @@ package com.example.myapplication.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,16 +24,18 @@ import java.util.ArrayList;
 public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.ViewHolder> {
     ArrayList<ProductResponseDTO> items;
 
-    public ViewProductAdapter(ArrayList<ProductResponseDTO> items){
+    public ViewProductAdapter(ArrayList<ProductResponseDTO> items) {
         this.items = items;
     }
+
     Context context;
+
     @NonNull
     @Override
     public ViewProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflator = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_list_product, parent, false);
         context = parent.getContext();
-        return  new ViewProductAdapter.ViewHolder(inflator);
+        return new ViewProductAdapter.ViewHolder(inflator);
     }
 
     @Override
@@ -41,14 +44,12 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
         holder.textProductName.setText(product.getName());
         holder.textProductPrice.setText(formatCurrency(product.getPrice()));
         Glide.with(context).load(product.getImg()).into(holder.imageProduct);
+        Log.e("Image", "Image " + product.getImg());
         // Set OnClickListener for "Xem chi tiết" button
-        holder.buttonViewDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, DetailedActivity.class);
-                intent.putExtra("id", product.getId());
-                context.startActivity(intent);
-            }
+        holder.buttonViewDetail.setOnClickListener(view -> {
+            Intent intent = new Intent(context, DetailedActivity.class);
+            intent.putExtra("id", product.getId());
+            context.startActivity(intent);
         });
 
     }
@@ -62,6 +63,7 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
         TextView textProductName, textProductPrice, buttonViewDetail;
         ImageView imageProduct;
         ConstraintLayout layout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textProductName = itemView.findViewById(R.id.textProductName);
@@ -71,6 +73,7 @@ public class ViewProductAdapter extends RecyclerView.Adapter<ViewProductAdapter.
             layout = itemView.findViewById(R.id.frameProduct);
         }
     }
+
     // Format currency to display VND
     private String formatCurrency(double amount) {
         DecimalFormat formatter = new DecimalFormat("#,### VNĐ");

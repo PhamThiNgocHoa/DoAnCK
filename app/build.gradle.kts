@@ -50,12 +50,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.glide)
+    implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation(libs.retrofit)
     implementation(libs.retrofit2.converter.gson)
     // https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
     implementation("com.github.PhilJay:MPAndroidChart:3.0.0")
-
+    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
 
 }
 

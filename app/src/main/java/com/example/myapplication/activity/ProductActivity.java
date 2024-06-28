@@ -86,11 +86,12 @@ public class ProductActivity extends AppCompatActivity {
                     List<ProductResponseDTO> list = response.body();
                     recyclerView = findViewById(R.id.view);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(ProductActivity.this, LinearLayoutManager.VERTICAL, false);
+                    adapterProducts = new ViewProductAdapter((ArrayList<ProductResponseDTO>) list);
+                    recyclerView.setAdapter(adapterProducts);
                     recyclerView.setLayoutManager(layoutManager);
                     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
                     recyclerView.addItemDecoration(dividerItemDecoration);
-                    adapterProducts = new ViewProductAdapter((ArrayList<ProductResponseDTO>) list);
-                    recyclerView.setAdapter(adapterProducts);
+
                 } else {
                     Log.e("ProductActivity", "Response not successful");
                     Toast.makeText(ProductActivity.this, "Failed to load products", Toast.LENGTH_SHORT).show();
