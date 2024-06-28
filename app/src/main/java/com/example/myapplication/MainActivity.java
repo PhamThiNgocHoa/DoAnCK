@@ -23,6 +23,7 @@ import com.example.myapplication.network.dto.request.LoginRequest;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 import com.example.myapplication.ultil.SharedPrefManager;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,12 +32,20 @@ public class MainActivity extends AppCompatActivity {
     private CustomerService customerService;
     private EditText username;
     private EditText password;
+//    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        // Khởi tạo FirebaseApp nếu chưa được khởi tạo
+//        if (FirebaseApp.getApps(this).isEmpty()) {
+//            FirebaseApp.initializeApp(this);
+//        }
+//
+//        // Lấy tham chiếu đến FirebaseAuth sau khi FirebaseApp được khởi tạo
+//        auth = FirebaseAuth.getInstance();
 
         Button login = findViewById(R.id.loginButton);
         TextView signUp = findViewById(R.id.signupRedirectText);

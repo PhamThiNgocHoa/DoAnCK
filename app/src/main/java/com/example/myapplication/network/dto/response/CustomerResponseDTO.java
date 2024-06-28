@@ -1,38 +1,44 @@
 package com.example.myapplication.network.dto.response;
 
+
 import java.io.Serializable;
 
 public class CustomerResponseDTO implements Serializable {
-
     private int id;
-
-    private String fullname;
 
     private String username;
 
     private String email;
-    private String phone;
-    private boolean role;
 
-    public CustomerResponseDTO(int id, String fullname, String username, String email, String phone, boolean role) {
+    private String phone;
+    private String fullname;
+    private boolean role;
+    private int cartId;
+
+    public CustomerResponseDTO(int id, String username, String email, String phone) {
         this.id = id;
-        this.fullname = fullname;
         this.username = username;
         this.email = email;
         this.phone = phone;
+    }
+
+    public CustomerResponseDTO(int id, String username, String email, String phone, String fullname, boolean role) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.phone = phone;
+        this.fullname = fullname;
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "CustomerResponseDTO{" +
-                "id=" + id +
-                ", fullname='" + fullname + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", role=" + role +
-                '}';
+    public CustomerResponseDTO(int id, String username, String email, String phone, String fullname, boolean role, int cartId) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.phone = phone;
+        this.fullname = fullname;
+        this.role = role;
+        this.cartId = cartId;
     }
 
     public int getId() {
@@ -41,14 +47,6 @@ public class CustomerResponseDTO implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
     }
 
     public String getUsername() {
@@ -75,10 +73,27 @@ public class CustomerResponseDTO implements Serializable {
         this.phone = phone;
     }
 
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
     public boolean isRole() {
         return role;
     }
 
-   
-    
+    public void setRole(boolean role) {
+        this.role = role;
+    }
+
+    public int getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
 }

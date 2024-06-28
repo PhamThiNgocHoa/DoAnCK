@@ -1,31 +1,35 @@
 package com.example.myapplication.network.dto.response;
 
-import com.example.myapplication.network.dto.request.ProductRequestDTO;
 
-public class CartItemResponseDTO {
-    private int cartId;
-    private ProductRequestDTO productId;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class CartItemResponseDTO implements Serializable {
+    private int id;
+    @SerializedName("productResponseDTO")
+    private ProductResponseDTO productId;
     private int quantity;
 
-    public CartItemResponseDTO(int cartId, ProductRequestDTO productId, int quantity) {
-        this.cartId = cartId;
+    public CartItemResponseDTO(int id, ProductResponseDTO productId, int quantity) {
+        this.id = id;
         this.productId = productId;
         this.quantity = quantity;
     }
 
-    public int getCartId() {
-        return cartId;
+    public int getId() {
+        return id;
     }
 
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public ProductRequestDTO getProductId() {
+    public ProductResponseDTO getProductId() {
         return productId;
     }
 
-    public void setProductId(ProductRequestDTO productId) {
+    public void setProductId(ProductResponseDTO productId) {
         this.productId = productId;
     }
 

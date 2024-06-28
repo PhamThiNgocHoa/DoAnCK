@@ -54,9 +54,12 @@ public class DetailedActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         detailActivityAddToCartBtn = findViewById(R.id.detailActivityAddToCartBtn);
 
-        back.setOnClickListener(view -> {
-            Intent intent = new Intent(DetailedActivity.this, ProductActivity.class);
-            startActivity(intent);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailedActivity.this, ProductActivity.class);
+                startActivity(intent);
+            }
         });
 
         productId = getIntent().getIntExtra("id", -1);
@@ -67,7 +70,6 @@ public class DetailedActivity extends AppCompatActivity {
         }
 
     }
-
     private void getProductDetails(int productId) {
         productService = RetrofitClient.getProductService();
         productService.getProduct(productId).enqueue(new Callback<ProductResponseDTO>() {
@@ -78,7 +80,6 @@ public class DetailedActivity extends AppCompatActivity {
                     detailActivityShoeNameTv.setText(product.getName());
                     detailActivityShoePriceTv.setText(formatCurrency(product.getPrice()));
                     textView3.setText(product.getDetail());
-                    Log.e("Detail", "Detail " + product.getDetail());
                     Glide.with(DetailedActivity.this).load(product.getImg()).into(detailActivityShoeIV);
                 } else {
                     Log.e(TAG, "Không thể tải chi tiết sản phẩm: " + response.errorBody());

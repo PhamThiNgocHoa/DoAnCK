@@ -44,7 +44,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/namehehe"
+                android:id="@+id/n_cus"
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
@@ -53,19 +53,7 @@
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="40dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/sex"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_male_24"
-                android:drawablePadding="8dp"
-                android:hint="Giới tính"
-                android:padding="8dp"
 
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="20dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

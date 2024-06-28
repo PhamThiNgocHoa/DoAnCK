@@ -20,8 +20,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.request.CustomerRequestDTO;
-import com.example.myapplication.network.dto.response.CustomerResponseDTO;
-import com.example.myapplication.ultil.SharedPrefManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;

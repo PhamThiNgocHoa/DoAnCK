@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".DetailedActivity">
-
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -17,24 +16,25 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <ImageView
             android:id="@+id/back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
+            android:background="@drawable/back"
             android:layout_marginTop="35dp"
-            android:background="@drawable/back" />
-
+            android:layout_marginLeft="10dp"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:text="DETAIL PRODUCT"
+            android:textSize="25dp"
             android:layout_marginTop="30dp"
             android:paddingLeft="70dp"
-            android:text="DETAIL PRODUCT"
-            android:textSize="25dp" />
-    </Toolbar>
 
+            />
+
+    </Toolbar>
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
@@ -50,15 +50,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/detailActivityShoeIV"
+            android:id="@+id/detailProductImage"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:scaleType="centerCrop"
+            android:layout_height="wrap_content"
             app:srcCompat="@drawable/adidas_ultraboost" />
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/detailActivityShoeNameTv"
+        android:id="@+id/detail_nameProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -71,29 +71,29 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <TextView
-        android:id="@+id/detailActivityShoeBrandNameTv"
+        android:id="@+id/detail_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Gía tiền"
+        android:text="Da"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailActivityShoeNameTv" />
+        app:layout_constraintTop_toBottomOf="@+id/detail_nameProduct" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula "
+        android:text=" Đây một chiếc laptop cao cấp thuộc dòng Mobile WorkStation, được thiết kế với chất build cứng cáp và đạt chuẩn độ bền quân đội. Mặc dù vẻ ngoài của máy có phần hơi thô thiển, nhưng Lenovo ThinkPad P1 Gen 5 vẫn duy trì được những nét tinh tế đặc trưng của dòng ThinkPad. Các góc cạnh trên máy được thiết kế tinh xảo, kết hợp với lớp sơn phủ màu đen truyền thống trông rất sang trọng."
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailActivityShoeBrandNameTv" />
+        app:layout_constraintTop_toBottomOf="@+id/detail_category" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/detailActivityAddToCartBtn"
@@ -110,15 +110,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/detailActivityShoePriceTv"
+        android:id="@+id/detail_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="TextView"
-        android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/detailActivityShoeBrandNameTv"
-        app:layout_constraintTop_toTopOf="@+id/detailActivityShoeBrandNameTv" />
-
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/detail_category"
+        app:layout_constraintTop_toTopOf="@+id/detail_category" />
 </androidx.constraintlayout.widget.ConstraintLayout>
