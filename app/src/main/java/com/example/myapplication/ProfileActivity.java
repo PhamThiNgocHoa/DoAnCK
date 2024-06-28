@@ -1,9 +1,6 @@
 package com.example.myapplication;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.activity.ProductActivity;
 import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
@@ -38,8 +34,8 @@ public class ProfileActivity extends AppCompatActivity {
         profileName = findViewById(R.id.profileName);
         profileEmail = findViewById(R.id.profileEmail);
         profilePhone = findViewById(R.id.profilePhone);
-        SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(this);
-        int customerId = sharedPrefManager.getCustomerId();
+        CustomerResponseDTO sharedPrefManager = SharedPrefManager.getCustomer(getApplicationContext());
+        int customerId = sharedPrefManager.getId();
         System.out.println(customerId);
 
         Call<CustomerResponseDTO> call = customerService.getCustomer(customerId);

@@ -7,26 +7,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.myapplication.adapter.CartItemAdapter;
 import com.example.myapplication.network.OrderService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.request.OrderDetailRequestDTO;
 import com.example.myapplication.network.dto.request.OrderRequestDTO;
 import com.example.myapplication.network.dto.response.CartItemResponseDTO;
 import com.example.myapplication.network.dto.response.CartResponseDTO;
-import com.example.myapplication.network.dto.response.ProductResponseDTO;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,6 +56,7 @@ public class ThongTinKHActivity extends AppCompatActivity {
                 Toast.makeText(ThongTinKHActivity.this, "CLick vao xac nhan", Toast.LENGTH_SHORT).show();
                 if(cartResponseDTO!=null){
                     OrderRequestDTO orderRequestDTO = new OrderRequestDTO();
+                    orderRequestDTO.setReceiver(name.getText().toString());
                     orderRequestDTO.setAddress(address.getText().toString());
                     orderRequestDTO.setNumberPhone(phone.getText().toString());
                     orderRequestDTO.setCustomerId(cartResponseDTO.getCustomerId());

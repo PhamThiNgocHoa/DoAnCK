@@ -1,22 +1,17 @@
 package com.example.myapplication;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.activity.ProductActivity;
+import com.example.myapplication.activity.AdminActivity;
 import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.request.LoginRequest;
@@ -39,13 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        // Khởi tạo FirebaseApp nếu chưa được khởi tạo
-//        if (FirebaseApp.getApps(this).isEmpty()) {
-//            FirebaseApp.initializeApp(this);
-//        }
-//
-//        // Lấy tham chiếu đến FirebaseAuth sau khi FirebaseApp được khởi tạo
-//        auth = FirebaseAuth.getInstance();
 
         Button login = findViewById(R.id.loginButton);
         TextView signUp = findViewById(R.id.signupRedirectText);
@@ -76,12 +64,19 @@ public class MainActivity extends AppCompatActivity {
                         CustomerResponseDTO customerResponseDTO = response.body();
 
                         // Lưu thông tin đăng nhập vào Shared Preferences
-                        saveLoginInfo(customerResponseDTO);
+                        SharedPrefManager.saveCustomer(getApplicationContext(), customerResponseDTO);
 
-                        // Chuyển sang màn hình ProductActivity sau khi đăng nhập thành công
-                        Intent intent = new Intent(MainActivity.this, ProductActivity.class);
-                        startActivity(intent);
-                        finish(); // Kết thúc Activity hiện tại sau khi chuyển màn hình
+                        if(customerResponseDTO.isRole()){
+                            Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            Intent intent = new Intent(MainActivity.this, ProductActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        // Kết thúc Activity hiện tại sau khi chuyển màn hình
                     } else {
                         username.setError("Tên đăng nhập hoặc mật khẩu không đúng");
                         Log.e("MainActivity", "Response không thành công");
@@ -108,12 +103,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void saveLoginInfo(CustomerResponseDTO customerResponseDTO) {
-        // Lưu thông tin đăng nhập vào Shared Preferences
-        SharedPrefManager.getInstance(MainActivity.this).saveLoginInfo(
-                customerResponseDTO.getUsername(),
-                String.valueOf(password.getText()), // Thay thế với mã băm mật khẩu nếu có
-                customerResponseDTO.getId()
-        );
-    }
+
 }

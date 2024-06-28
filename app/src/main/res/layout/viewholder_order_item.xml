@@ -28,6 +28,7 @@
             android:layout_marginLeft="10dp"
             android:orientation="vertical">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,13 +43,6 @@
                     android:textSize="17dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="40.000VND"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -64,6 +58,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="x1" />
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:gravity="right"
+                android:text="40.000VND"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,8 +14,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.DetailedActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.activity.DetailedActivity;
 import com.example.myapplication.network.dto.response.ProductResponseDTO;
 
 import java.text.DecimalFormat;

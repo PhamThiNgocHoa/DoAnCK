@@ -48,71 +48,68 @@ public class EditProfileActivity extends AppCompatActivity {
             editPhoneNumber.setText(customer.getPhone());
 
         }
-        SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(this);
-        int customerId = sharedPrefManager.getCustomerId();
-        editPassword.setText(sharedPrefManager.getPassword());
+        CustomerResponseDTO sharedPrefManager = SharedPrefManager.getCustomer(getApplicationContext());
+        int customerId = sharedPrefManager.getId();
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newEmail = editEmail.getText().toString().trim().toLowerCase();
-                String newName = editName.getText().toString().trim().toLowerCase();
-                String newPhoneNumber = editPhoneNumber.getText().toString().trim().toLowerCase();
-                String newPassword = editPassword.getText().toString().trim().toLowerCase();
-                customerRequestDTO = new CustomerUpdateRequestDTO(newName, newEmail, newPhoneNumber, newPassword);
 
-                if (TextUtils.isEmpty(newEmail) &&
-                        TextUtils.isEmpty(newName) &&
-                        TextUtils.isEmpty(newPhoneNumber) &&
-                        TextUtils.isEmpty(newPassword)) {
-                    Toast.makeText(EditProfileActivity.this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(newName)) {
-                    Toast.makeText(EditProfileActivity.this, "You have not entered a user name", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(newEmail)) {
-                    Toast.makeText(EditProfileActivity.this, "You have not entered an email", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (!Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
-                    Toast.makeText(EditProfileActivity.this, "Invalid email format", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(newPhoneNumber)) {
-                    Toast.makeText(EditProfileActivity.this, "You have not entered a phone number", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(newPassword)) {
-                    Toast.makeText(EditProfileActivity.this, "You have not entered a password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (newPassword.length() < 6) {
-                    Toast.makeText(EditProfileActivity.this, "Password length must be greater than 6 characters", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Call<CustomerResponseDTO> call = customerService.updateUserClientSide(customerId, customerRequestDTO);
-                call.enqueue(new Callback<CustomerResponseDTO>() {
-                    @Override
-                    public void onResponse(Call<CustomerResponseDTO> call, Response<CustomerResponseDTO> response) {
-                        if (response.isSuccessful()) {
-                            Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
-                            startActivity(intent);
-                            sharedPrefManager.setPassword(newPassword);
-                        } else {
-                            // Handle the error response
-                            // You can show a Toast or a dialog to inform the user
-                        }
-                    }
+        saveButton.setOnClickListener(view -> {
+            String newEmail = editEmail.getText().toString().trim().toLowerCase();
+            String newName = editName.getText().toString().trim().toLowerCase();
+            String newPhoneNumber = editPhoneNumber.getText().toString().trim().toLowerCase();
+            String newPassword = editPassword.getText().toString().trim().toLowerCase();
+            customerRequestDTO = new CustomerUpdateRequestDTO(newName, newEmail, newPhoneNumber, newPassword);
 
-                    @Override
-                    public void onFailure(Call<CustomerResponseDTO> call, Throwable t) {
-                        // Handle the failure response
+            if (TextUtils.isEmpty(newEmail) &&
+                    TextUtils.isEmpty(newName) &&
+                    TextUtils.isEmpty(newPhoneNumber) &&
+                    TextUtils.isEmpty(newPassword)) {
+                Toast.makeText(EditProfileActivity.this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(newName)) {
+                Toast.makeText(EditProfileActivity.this, "You have not entered a user name", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(newEmail)) {
+                Toast.makeText(EditProfileActivity.this, "You have not entered an email", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
+                Toast.makeText(EditProfileActivity.this, "Invalid email format", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(newPhoneNumber)) {
+                Toast.makeText(EditProfileActivity.this, "You have not entered a phone number", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(newPassword)) {
+                Toast.makeText(EditProfileActivity.this, "You have not entered a password", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (newPassword.length() < 6) {
+                Toast.makeText(EditProfileActivity.this, "Password length must be greater than 6 characters", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Call<CustomerResponseDTO> call = customerService.updateUserClientSide(customerId, customerRequestDTO);
+            call.enqueue(new Callback<CustomerResponseDTO>() {
+                @Override
+                public void onResponse(Call<CustomerResponseDTO> call, Response<CustomerResponseDTO> response) {
+                    if (response.isSuccessful()) {
+                        Intent intent1 = new Intent(EditProfileActivity.this, ProfileActivity.class);
+                        startActivity(intent1);
+//                        sharedPrefManager.setPassword(newPassword);
+                    } else {
+                        // Handle the error response
                         // You can show a Toast or a dialog to inform the user
                     }
-                });
-            }
+                }
+
+                @Override
+                public void onFailure(Call<CustomerResponseDTO> call, Throwable t) {
+                    // Handle the failure response
+                    // You can show a Toast or a dialog to inform the user
+                }
+            });
         });
         back.setOnClickListener(new View.OnClickListener() {
             @Override

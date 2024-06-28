@@ -30,13 +30,33 @@
             android:name=".activity.CategoryListActivity"
             android:exported="true" />
         <activity
+            android:name=".activity.ProductListActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.OrderListActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.EditCategoryActivity"
             android:exported="true">
+        </activity>
+        <activity
+            android:name=".activity.EditCustomerActivity"
+            android:exported="true">
+        </activity>
 
+        <activity
+            android:name=".activity.CustomerListActivity"
+            android:exported="true">
         </activity>
         <activity
             android:name=".activity.StatisticalActivity"
             android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".activity.AdminActivity"
+            android:exported="true">
+
 
         </activity>
 
@@ -47,10 +67,11 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity
-            android:name=".activity.DetailedActivity"
+            android:name=".DetailedActivity"
             android:exported="true" />
 
 
@@ -59,11 +80,9 @@
 <!--            android:exported="true">-->
 
 <!--        </activity>-->
+
         <activity
-            android:name=".AdminActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activity.ProductActivity"
+            android:name=".ProductActivity"
             android:exported="true" />
         <activity
             android:name=".activity.EditOrderAdmin"

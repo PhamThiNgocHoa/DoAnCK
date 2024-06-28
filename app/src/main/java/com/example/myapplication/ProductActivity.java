@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -97,42 +98,27 @@ public class ProductActivity extends AppCompatActivity implements ProductCustome
                                           });
 
 
-        cartIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductActivity.this, CartActivity.class);
-                startActivity(intent);
-            }
+        cartIv.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductActivity.this, CartActivity.class);
+            startActivity(intent);
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductActivity.this, ProductActivity.class);
-                startActivity(intent);
-            }
+        home.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductActivity.this, ProductActivity.class);
+            startActivity(intent);
         });
-        history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductActivity.this, History.class);
-                startActivity(intent);
-            }
+        history.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductActivity.this, History.class);
+            startActivity(intent);
         });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPrefManager.deleteCustomer(getApplicationContext());
-                Intent intent = new Intent(ProductActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
+        logout.setOnClickListener(v -> {
+            SharedPrefManager.deleteCustomer(getApplicationContext());
+            Intent intent = new Intent(ProductActivity.this, MainActivity.class);
+            startActivity(intent);
         });
-        user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
+        user.setOnClickListener(view -> {
+            Intent intent = new Intent(ProductActivity.this, ProfileActivity.class);
+            startActivity(intent);
         });
         getCategories();
         getProducts();

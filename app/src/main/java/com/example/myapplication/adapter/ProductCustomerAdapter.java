@@ -41,8 +41,8 @@ public class ProductCustomerAdapter extends RecyclerView.Adapter<ProductCustomer
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name_product.setText(items.get(position).getName());
         holder.price.setText(String.valueOf(items.get(position).getPrice()));
-        Glide.with(context).load("http://192.168.1.128:8080/images/products/laptop1.jpg").into(holder.image_product);
-        holder.btn_viewDetail.setOnClickListener(v -> onProductCustomerActionListener.onViewDetail(items.get(position)));
+        Glide.with(context).load(items.get(position).getImg()).into(holder.image_product);
+        holder.layout.setOnClickListener(v -> onProductCustomerActionListener.onViewDetail(items.get(position)));
 
     }
 
@@ -62,7 +62,6 @@ public class ProductCustomerAdapter extends RecyclerView.Adapter<ProductCustomer
             name_product = itemView.findViewById(R.id.textProductName);
             price = itemView.findViewById(R.id.textProductPrice);
             image_product = itemView.findViewById(R.id.imageProduct);
-            btn_viewDetail = itemView.findViewById(R.id.buttonViewDetail);
             layout = itemView.findViewById(R.id.sanpham_layout);
         }
     }

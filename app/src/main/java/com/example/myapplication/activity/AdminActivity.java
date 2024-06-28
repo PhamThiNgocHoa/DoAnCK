@@ -8,13 +8,13 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.myapplication.ProductActivity;
 import com.example.myapplication.R;
 
 public class AdminActivity extends AppCompatActivity {
     private ConstraintLayout khachHang, sanPham, danhMuc, banHang;
     private ConstraintLayout thongKeBtn, donHangBtn;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +22,10 @@ public class AdminActivity extends AppCompatActivity {
         thongKeBtn = findViewById(R.id.thong_ke_btn);
         donHangBtn = findViewById(R.id.don_hang_btn);
         khachHang = findViewById(R.id.khachHang);
-//        sanPham = findViewById(R.id.sanPham);
-//        danhMuc = findViewById(R.id.danhMuc);
+        sanPham = findViewById(R.id.san_pham_btn);
+        danhMuc = findViewById(R.id.danh_muc_btn);
+        banHang = findViewById(R.id.ban_hang_btn);
 
-//        banHang = findViewById(R.id.banHang);
         khachHang.setOnClickListener(v -> {
             Intent intent = new Intent(AdminActivity.this, CustomerListActivity.class);
             startActivity(intent);
@@ -34,8 +34,17 @@ public class AdminActivity extends AppCompatActivity {
             Intent intent = new Intent(AdminActivity.this, ProductListActivity.class);
             startActivity(intent);
         });
-        thongKeBtn = findViewById(R.id.thong_ke_btn);
-        donHangBtn = findViewById(R.id.don_hang_btn);
+        danhMuc.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, CategoryListActivity.class);
+            startActivity(intent);
+        });
+
+        banHang.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, ProductActivity.class);
+            startActivity(intent);
+        });
+
+
         thongKeBtn.setOnClickListener(v ->
         {
             Intent intent = new Intent(AdminActivity.this, StatisticalActivity.class);

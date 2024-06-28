@@ -18,16 +18,19 @@ public class SharedPrefManager {
         editor.putString(CUSTOMER_KEY, customerJson);
         editor.apply();
     }
+
     public static CustomerResponseDTO getCustomer(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String customerJson = sharedPreferences.getString(CUSTOMER_KEY, "");
         return gson.fromJson(customerJson, CustomerResponseDTO.class);
     }
+
     public static void deleteCustomer(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(CUSTOMER_KEY);
         editor.apply();
     }
+
 }
