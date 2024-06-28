@@ -1,31 +1,24 @@
 package com.example.myapplication;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.activity.ProductActivity;
+import com.example.myapplication.ProductActivity;
 import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.request.LoginRequest;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 import com.example.myapplication.ultil.SharedPrefManager;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -81,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                             CustomerResponseDTO customerResponseDTO = response.body();
 
                             // Lưu thông tin đăng nhập vào Shared Preferences
-                            saveLoginInfo(customerResponseDTO);
+                            SharedPrefManager.saveCustomer(getApplicationContext(), customerResponseDTO);
 
                             // Chuyển sang màn hình ProductActivity sau khi đăng nhập thành công
                             Intent intent = new Intent(MainActivity.this, ProductActivity.class);
@@ -120,12 +113,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void saveLoginInfo(CustomerResponseDTO customerResponseDTO) {
-        // Lưu thông tin đăng nhập vào Shared Preferences
-        SharedPrefManager.getInstance(MainActivity.this).saveLoginInfo(
-                customerResponseDTO.getUsername(),
-                "#####hash#########", // Thay thế với mã băm mật khẩu nếu có
-                customerResponseDTO.getId()
-        );
-    }
+//    private void saveLoginInfo(CustomerResponseDTO customerResponseDTO) {
+//        // Lưu thông tin đăng nhập vào Shared Preferences
+//        SharedPrefManager.getInstance(MainActivity.this).saveLoginInfo(
+//                customerResponseDTO.getUsername(),
+//                "#####hash#########", // Thay thế với mã băm mật khẩu nếu có
+//                customerResponseDTO.getId()
+//        );
+//    }
 }

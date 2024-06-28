@@ -30,5 +30,9 @@ public interface ProductService {
     Call<List<ProductResponseDTO>> getProducts();
     @GET("/api/product/search")
     Call<List<ProductResponseDTO>> getProductByName(@Query("name") String name);
+    @GET("api/product/list/{categoryId}")
+    Call<List<ProductResponseDTO>> getProductsByCategoryId(@Path("categoryId") int categoryId);
+    @GET("api/product/list/findByName/{name}")
+    Call<List<ProductResponseDTO>> getProductsByName(@Path("name") String  name);
 
 }

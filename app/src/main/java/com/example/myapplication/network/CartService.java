@@ -16,4 +16,8 @@ public interface CartService {
 
     @GET("api/cart/{customerId}")
     Call<CartResponseDTO> getCartByCustomerId(@Path("customerId") int customerId);
+    @POST("api/cart")
+    Call<Integer> addCart(@Body CartRequestDTO cartRequestDTO);
+    @GET("api/cart/{customerId}")
+    Call<CartResponseDTO> getCart(@Path("customerId") int customerId);
 }
