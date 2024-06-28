@@ -112,6 +112,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/khachHang"
                     android:layout_width="0dp"
                     android:layout_height="170dp"
                     android:layout_marginStart="12dp"
