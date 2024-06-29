@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private CustomerService customerService;
     private EditText username;
     private EditText password;
-//    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +65,11 @@ public class MainActivity extends AppCompatActivity {
                         // Lưu thông tin đăng nhập vào Shared Preferences
                         SharedPrefManager.saveCustomer(getApplicationContext(), customerResponseDTO);
 
-                        if(customerResponseDTO.isRole()){
+                        if (customerResponseDTO.isRole()) {
                             Intent intent = new Intent(MainActivity.this, AdminActivity.class);
                             startActivity(intent);
                             finish();
-                        }else {
+                        } else {
                             Intent intent = new Intent(MainActivity.this, ProductActivity.class);
                             startActivity(intent);
                             finish();

@@ -27,8 +27,10 @@ public interface OrderService {
 
     @GET("api/order/revenue")
     Call<List<MonthlyRevenueResponse>> getMonthlyRevenue();
+
     @POST("api/order")
     Call<Integer> saveOrder(@Body OrderRequestDTO orderRequestDTO);
+
     @GET("api/order/customer/{customerId}")
     Call<List<OrderResponseDTO>> getOrdersByCustomerId(@Path("customerId") int customerId);
 }

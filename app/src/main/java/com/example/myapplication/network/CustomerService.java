@@ -33,7 +33,6 @@ public interface CustomerService {
 
     @POST("api/customer/login")
     Call<CustomerResponseDTO> login(@Body LoginRequest loginRequest);
-
     @POST("api/customer")
     Call<Integer> register(@Body CustomerRequestDTO customerRequestDTO);
 

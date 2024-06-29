@@ -34,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductActivity extends AppCompatActivity implements ProductCustomerAdapter.OnProductCustomerActionListener,CategoryCustomerAdapter.OnCategoryCustomerActionListener {
+public class ProductActivity extends AppCompatActivity implements ProductCustomerAdapter.OnProductCustomerActionListener, CategoryCustomerAdapter.OnCategoryCustomerActionListener {
     private RecyclerView.Adapter adapterCategoryList;
     private RecyclerView recyclerView;
     private CategoryService categoryService;
@@ -42,60 +42,57 @@ public class ProductActivity extends AppCompatActivity implements ProductCustome
     private ProductService productService;
     private RecyclerView recyclerViewProduct;
     private SearchView find_Product;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_product);
         CustomerResponseDTO savedCustomer = SharedPrefManager.getCustomer(getApplicationContext());
 
-//        TextView detailProduct = findViewById(R.id.buttonViewDetail);
         ImageView home = findViewById(R.id.home);
         ImageView history = findViewById(R.id.history);
         ImageView user = findViewById(R.id.user);
         ImageView cartIv = findViewById(R.id.cartIv);
         ImageView logout = findViewById(R.id.logout);
         find_Product = findViewById(R.id.search_product);
-//        if (find_Product == null) {
-//            Log.e("ProductActivity", "SearchView is null");
-//            return;
-//        }
+
         find_Product.setImeOptions(EditorInfo.IME_ACTION_SEARCH); // Set IME action to "Search"
         find_Product.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                                              @Override
-                                              public boolean onQueryTextSubmit(String query) {
-                                                  Toast.makeText(ProductActivity.this, "Searching for: " + query, Toast.LENGTH_SHORT).show();
-                                                  productService  = RetrofitClient.getProductService();
-                                                  productService.getProductsByName(query).enqueue(new Callback<List<ProductResponseDTO>>() {
-                                                      @Override
-                                                      public void onResponse(Call<List<ProductResponseDTO>> call, Response<List<ProductResponseDTO>> response) {
-                                                          if (response.isSuccessful() && response.body() != null) {
-                                                              List<ProductResponseDTO> products = response.body();
-                                                              Intent intent = new Intent(ProductActivity.this, TimKiemSanPhamActivity.class);
-                                                              intent.putExtra("products", (Serializable) products);
-                                                              startActivity(intent);
-                                                          } else {
-                                                              Log.e("CoursesListActivity", "Response not successful");
-                                                              Toast.makeText(ProductActivity.this, "Failed to load products", Toast.LENGTH_SHORT).show();
-                                                          }
-                                                      }
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(ProductActivity.this, "Searching for: " + query, Toast.LENGTH_SHORT).show();
+                productService = RetrofitClient.getProductService();
+                productService.getProductsByName(query).enqueue(new Callback<List<ProductResponseDTO>>() {
+                    @Override
+                    public void onResponse(Call<List<ProductResponseDTO>> call, Response<List<ProductResponseDTO>> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            List<ProductResponseDTO> products = response.body();
+                            Intent intent = new Intent(ProductActivity.this, TimKiemSanPhamActivity.class);
+                            intent.putExtra("products", (Serializable) products);
+                            startActivity(intent);
+                        } else {
+                            Log.e("CoursesListActivity", "Response not successful");
+                            Toast.makeText(ProductActivity.this, "Failed to load products", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-                                                      @Override
-                                                      public void onFailure(Call<List<ProductResponseDTO>> call, Throwable t) {
-                                                          Log.e("CoursesListActivity", "onFailure: ", t);
-                                                          Toast.makeText(ProductActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                                                      }
-                                                  });
+                    @Override
+                    public void onFailure(Call<List<ProductResponseDTO>> call, Throwable t) {
+                        Log.e("CoursesListActivity", "onFailure: ", t);
+                        Toast.makeText(ProductActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                                                  find_Product.clearFocus();
+                find_Product.clearFocus();
 
-                                                  return true;
-                                              }
+                return true;
+            }
 
-                                              @Override
-                                              public boolean onQueryTextChange(String newText) {
-                                                  return false;
-                                              }
-                                          });
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
 
         cartIv.setOnClickListener(view -> {
@@ -124,8 +121,9 @@ public class ProductActivity extends AppCompatActivity implements ProductCustome
         getProducts();
 
     }
+
     private void getCategories() {
-        categoryService  = RetrofitClient.getCategoryService();
+        categoryService = RetrofitClient.getCategoryService();
         categoryService.getCategories().enqueue(new Callback<List<CategoryResponseDTO>>() {
             @Override
             public void onResponse(Call<List<CategoryResponseDTO>> call, Response<List<CategoryResponseDTO>> response) {
@@ -148,8 +146,9 @@ public class ProductActivity extends AppCompatActivity implements ProductCustome
             }
         });
     }
-    private void getProducts()  {
-        productService  = RetrofitClient.getProductService();
+
+    private void getProducts() {
+        productService = RetrofitClient.getProductService();
         productService.getProducts().enqueue(new Callback<List<ProductResponseDTO>>() {
             @Override
             public void onResponse(Call<List<ProductResponseDTO>> call, Response<List<ProductResponseDTO>> response) {

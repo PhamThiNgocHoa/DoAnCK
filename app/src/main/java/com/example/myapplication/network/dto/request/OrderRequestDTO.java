@@ -12,7 +12,6 @@ public class OrderRequestDTO implements Serializable {
     private String numberPhone;
     private String status;
     private String receiver;
-
     private List<OrderDetailRequestDTO> orderDetails;
 
     public OrderRequestDTO(Integer customerId, Integer totalAmount, String address, String numberPhone, String status, List<OrderDetailRequestDTO> orderDetails) {
@@ -34,7 +33,9 @@ public class OrderRequestDTO implements Serializable {
         this.orderDetails = orderDetails;
     }
 
-    public OrderRequestDTO(){}
+    public OrderRequestDTO() {
+    }
+
     public Integer getCustomerId() {
         return customerId;
     }

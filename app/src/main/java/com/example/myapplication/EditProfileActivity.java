@@ -43,7 +43,8 @@ public class EditProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             CustomerResponseDTO customer = (CustomerResponseDTO) intent.getSerializableExtra("customer");
-            editName.setText(customer.getUsername());
+            assert customer != null;
+            editName.setText(customer.getFullname());
             editEmail.setText(customer.getEmail());
             editPhoneNumber.setText(customer.getPhone());
 
@@ -54,7 +55,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         saveButton.setOnClickListener(view -> {
             String newEmail = editEmail.getText().toString().trim().toLowerCase();
-            String newName = editName.getText().toString().trim().toLowerCase();
+            String newName = editName.getText().toString().trim();
             String newPhoneNumber = editPhoneNumber.getText().toString().trim().toLowerCase();
             String newPassword = editPassword.getText().toString().trim().toLowerCase();
             customerRequestDTO = new CustomerUpdateRequestDTO(newName, newEmail, newPhoneNumber, newPassword);
@@ -111,13 +112,10 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             });
         });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
-                startActivity(intent);
+        back.setOnClickListener(v -> {
+            Intent intent12 = new Intent(EditProfileActivity.this, ProfileActivity.class);
+            startActivity(intent12);
 
-            }
         });
     }
 }
