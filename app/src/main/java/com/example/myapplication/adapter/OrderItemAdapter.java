@@ -39,7 +39,7 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
         holder.price.setText(String.valueOf(productResponseDTO.getPrice()));
         holder.category.setText(productResponseDTO.getCategoryName());
         holder.quantity.setText(String.valueOf(items.get(position).getQuantity()));
-        Glide.with(context).load("http://192.168.1.3:8080/images/products/laptop1.jpg").into(holder.image_product);
+        Glide.with(context).load(items.get(position).getProductResponseDTO().getImg()).into(holder.image_product);
     }
 
     @Override

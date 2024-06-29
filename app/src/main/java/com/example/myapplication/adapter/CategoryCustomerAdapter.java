@@ -19,14 +19,18 @@ import java.util.ArrayList;
 public class CategoryCustomerAdapter extends RecyclerView.Adapter<CategoryCustomerAdapter.ViewHolder> {
     ArrayList<CategoryResponseDTO> items;
     private OnCategoryCustomerActionListener onCategoryCustomerActionListener;
+
     public CategoryCustomerAdapter(ArrayList<CategoryResponseDTO> items, OnCategoryCustomerActionListener onCategoryCustomerActionListener) {
         this.items = items;
         this.onCategoryCustomerActionListener = onCategoryCustomerActionListener;
     }
+
     Context context;
+
     public interface OnCategoryCustomerActionListener {
         void onClick(CategoryResponseDTO categoryResponseDTO);
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,7 +41,7 @@ public class CategoryCustomerAdapter extends RecyclerView.Adapter<CategoryCustom
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(context).load("http://192.168.1.128:8080/images/categories/asus.webp").into(holder.image_category);
+        Glide.with(context).load(items.get(position).getImg()).into(holder.image_category);
         holder.layout.setOnClickListener(v -> onCategoryCustomerActionListener.onClick(items.get(position)));
     }
 
@@ -45,9 +49,11 @@ public class CategoryCustomerAdapter extends RecyclerView.Adapter<CategoryCustom
     public int getItemCount() {
         return items.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image_category;
         ConstraintLayout layout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image_category = itemView.findViewById(R.id.anhDanhMuc);

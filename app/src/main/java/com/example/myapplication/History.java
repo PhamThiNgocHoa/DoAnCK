@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,11 +27,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class History extends AppCompatActivity implements OrderCustomerAdapter.OnOrderCustomerActionListener{
+public class History extends AppCompatActivity implements OrderCustomerAdapter.OnOrderCustomerActionListener {
     private RecyclerView.Adapter adapterOrdersList;
     private OrderService orderService;
     private RecyclerView recyclerViewOrder;
     CustomerResponseDTO savedCustomer;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -41,18 +41,16 @@ public class History extends AppCompatActivity implements OrderCustomerAdapter.O
         ImageView back = findViewById(R.id.back);
         TextView success = findViewById(R.id.success);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(History.this, ProductActivity.class);
-                startActivity(intent);
-            }
+        back.setOnClickListener(view -> {
+            Intent intent = new Intent(History.this, ProductActivity.class);
+            startActivity(intent);
         });
 
         getOrders();
 
     }
-    private void getOrders(){
+
+    private void getOrders() {
         orderService = RetrofitClient.getOrderService();
         orderService.getOrdersByCustomerId(savedCustomer.getId()).enqueue(new Callback<List<OrderResponseDTO>>() {
             @Override
@@ -63,7 +61,7 @@ public class History extends AppCompatActivity implements OrderCustomerAdapter.O
                     recyclerViewOrder.setLayoutManager(new LinearLayoutManager(History.this, LinearLayoutManager.VERTICAL, false));
                     adapterOrdersList = new OrderCustomerAdapter((ArrayList<OrderResponseDTO>) products, History.this);
                     recyclerViewOrder.setAdapter(adapterOrdersList);
-                    Toast.makeText(History.this, products.get(0).getOrderDetails().size() +" la kich thuoc cua no", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(History.this, products.get(0).getOrderDetails().size() + " la kich thuoc cua no", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e("CoursesListActivity", "Response not successful");
                     Toast.makeText(History.this, "Failed to load products", Toast.LENGTH_SHORT).show();
@@ -77,6 +75,7 @@ public class History extends AppCompatActivity implements OrderCustomerAdapter.O
             }
         });
     }
+
     @Override
     public void onViewDetail(OrderResponseDTO orderResponseDTO) {
         Intent intent = new Intent(History.this, Order.class);

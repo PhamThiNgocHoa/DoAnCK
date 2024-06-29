@@ -12,10 +12,16 @@ import retrofit2.http.Path;
 public interface CartItemService {
     @POST("api/cartItem")
     Call<Integer> saveCartItem(@Body CartItemRequestDTO cartItemRequestDTO);
+
     @POST("api/cartItem")
     Call<Integer> addCartItem(@Body CartItemRequestDTO cartItemRequestDTO);
+
     @PUT("api/cartItem/updatequantity/{cartItemId}")
     Call<Void> updateQuantityCartItem(@Path("cartItemId") int cartItemId, @Body int quantity);
+
     @DELETE("api/cartItem/{cartItemId}")
     Call<Void> deleteCartItem(@Path("cartItemId") int cartItemId);
+
+    @DELETE("api/cartItem/cartId/{cartId}")
+    Call<Void> deleteCartItemByCartId(@Path("cartId") int cartId);
 }

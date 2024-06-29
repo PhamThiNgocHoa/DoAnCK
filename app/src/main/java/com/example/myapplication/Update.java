@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myapplication.activity.AdminActivity;
+
 public class Update extends AppCompatActivity {
 
     @Override
@@ -22,19 +24,13 @@ public class Update extends AppCompatActivity {
         setContentView(R.layout.activity_update);
         ImageView back = findViewById(R.id.back);
         Button them = findViewById(R.id.updateButton);
-            back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Update.this, AdminActivity.class);
-                    startActivity(intent);
-                }
+            back.setOnClickListener(view -> {
+                Intent intent = new Intent(Update.this, AdminActivity.class);
+                startActivity(intent);
             });
-            them.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Update.this, AdminActivity.class);
-                    startActivity(intent);
-                }
+            them.setOnClickListener(view -> {
+                Intent intent = new Intent(Update.this, AdminActivity.class);
+                startActivity(intent);
             });
 
     }

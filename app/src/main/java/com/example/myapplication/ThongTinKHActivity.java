@@ -7,26 +7,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.myapplication.adapter.CartItemAdapter;
+import com.example.myapplication.network.CartItemService;
 import com.example.myapplication.network.OrderService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.request.OrderDetailRequestDTO;
 import com.example.myapplication.network.dto.request.OrderRequestDTO;
 import com.example.myapplication.network.dto.response.CartItemResponseDTO;
 import com.example.myapplication.network.dto.response.CartResponseDTO;
-import com.example.myapplication.network.dto.response.ProductResponseDTO;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,6 +30,7 @@ import retrofit2.Response;
 public class ThongTinKHActivity extends AppCompatActivity {
     private CartResponseDTO cartResponseDTO;
     private OrderService orderService;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -56,51 +52,62 @@ public class ThongTinKHActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-        xacNhan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(ThongTinKHActivity.this, "CLick vao xac nhan", Toast.LENGTH_SHORT).show();
-                if(cartResponseDTO!=null){
-                    OrderRequestDTO orderRequestDTO = new OrderRequestDTO();
-                    orderRequestDTO.setAddress(address.getText().toString());
-                    orderRequestDTO.setNumberPhone(phone.getText().toString());
-                    orderRequestDTO.setCustomerId(cartResponseDTO.getCustomerId());
-                    orderRequestDTO.setTotalAmount(cartResponseDTO.getPrice());
-                    orderRequestDTO.setStatus("Success");
-                    List<OrderDetailRequestDTO> orderDetailRequestDTOS = new ArrayList<>();
-                    for (CartItemResponseDTO cartItemResponseDTO: cartResponseDTO.getCartItems()){
-                        orderDetailRequestDTOS.add(new OrderDetailRequestDTO(cartItemResponseDTO.getProductId().getId(), cartItemResponseDTO.getQuantity()));
-                    }
-                    orderRequestDTO.setOrderDetails(orderDetailRequestDTOS);
-                    orderService = RetrofitClient.getOrderService();
-                    orderService.saveOrder(orderRequestDTO).enqueue(new Callback<Integer>() {
-                        @Override
-                        public void onResponse(Call<Integer> call, Response<Integer> response) {
-                            if (response.isSuccessful()) {
-                                Log.e("CoursesListActivity", "Response success");
-                                Toast.makeText(ThongTinKHActivity.this, "Chúc mừng bạn đặt hàng thành công" , Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(ThongTinKHActivity.this, ProductActivity.class);
-                                startActivity(intent);
-
-                            } else {
-                                Log.e("CoursesListActivity", "Response not successful");
-                                Toast.makeText(ThongTinKHActivity.this, "Đặt hàng thất bại", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Integer> call, Throwable t) {
-                            Toast.makeText(ThongTinKHActivity.this, "Failed API", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
+        xacNhan.setOnClickListener(view -> {
+            Toast.makeText(ThongTinKHActivity.this, "CLick vao xac nhan", Toast.LENGTH_SHORT).show();
+            if (cartResponseDTO != null) {
+                OrderRequestDTO orderRequestDTO = new OrderRequestDTO();
+                orderRequestDTO.setReceiver(name.getText().toString());
+                orderRequestDTO.setAddress(address.getText().toString());
+                orderRequestDTO.setNumberPhone(phone.getText().toString());
+                orderRequestDTO.setCustomerId(cartResponseDTO.getCustomerId());
+                orderRequestDTO.setTotalAmount(cartResponseDTO.getPrice());
+                orderRequestDTO.setStatus("Đang xử lý");
+                List<OrderDetailRequestDTO> orderDetailRequestDTOS = new ArrayList<>();
+                for (CartItemResponseDTO cartItemResponseDTO : cartResponseDTO.getCartItems()) {
+                    orderDetailRequestDTOS.add(new OrderDetailRequestDTO(cartItemResponseDTO.getProductId().getId(), cartItemResponseDTO.getQuantity()));
                 }
+                orderRequestDTO.setOrderDetails(orderDetailRequestDTOS);
+                orderService = RetrofitClient.getOrderService();
+                orderService.saveOrder(orderRequestDTO).enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(Call<Integer> call, Response<Integer> response) {
+                        if (response.isSuccessful()) {
+                            CartItemService cartItemService = RetrofitClient.getCartItemService();
+                            cartItemService.deleteCartItemByCartId(cartResponseDTO.getId()).enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    Log.e("Xoa gio hang thanh cong", "Xoa gio hang thanh cong");
+                                }
+
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable throwable) {
+
+                                }
+                            });
+                            Log.e("CoursesListActivity", "Response success");
+                            Toast.makeText(ThongTinKHActivity.this, "Chúc mừng bạn đặt hàng thành công", Toast.LENGTH_SHORT).show();
+                            Intent intent1 = new Intent(ThongTinKHActivity.this, ProductActivity.class);
+                            startActivity(intent1);
+
+                        } else {
+                            Log.e("CoursesListActivity", "Response not successful");
+                            Toast.makeText(ThongTinKHActivity.this, "Đặt hàng thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Integer> call, Throwable t) {
+                        Toast.makeText(ThongTinKHActivity.this, "Failed API", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
         });
 
 
     }
-    public void saveOrder(OrderRequestDTO orderRequestDTO){
+
+    public void saveOrder(OrderRequestDTO orderRequestDTO) {
 
 
     }

@@ -32,38 +32,35 @@ public class ForgotPassword extends AppCompatActivity {
         usernameEditText = findViewById(R.id.username);
         sentButton = findViewById(R.id.sentButton);
 
-        sentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = usernameEditText.getText().toString().trim();
+        sentButton.setOnClickListener(v -> {
+            String username = usernameEditText.getText().toString().trim();
 
-                if (username.isEmpty()) {
-                    Toast.makeText(ForgotPassword.this, "Please enter username", Toast.LENGTH_SHORT).show();
-                    return;
+            if (username.isEmpty()) {
+                Toast.makeText(ForgotPassword.this, "Please enter username", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Gọi phương thức initPasswordReset từ Retrofit Service
+            CustomerService service = RetrofitClient.getCustomerService();
+            Call<Void> call = service.initPasswordReset(username);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(ForgotPassword.this, "Check email", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ForgotPassword.this, EnterCode.class);
+                        intent.putExtra("username", username);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ForgotPassword.this, "Failed to send password reset request", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
-                // Gọi phương thức initPasswordReset từ Retrofit Service
-                CustomerService service = RetrofitClient.getRetrofitInstance().create(CustomerService.class);
-                Call<Void> call = service.initPasswordReset(username);
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(ForgotPassword.this, "Check email", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ForgotPassword.this, EnterCode.class);
-                            intent.putExtra("username", username);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(ForgotPassword.this, "Failed to send password reset request", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(ForgotPassword.this, "Network error. Please try again later.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(ForgotPassword.this, "Network error. Please try again later.", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 

@@ -40,12 +40,12 @@
                 />
 
         </Toolbar>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginLeft="20dp"
             android:id="@+id/cartitem_view"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 
 

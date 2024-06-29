@@ -10,15 +10,12 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.adapter.OrderItemAdapter;
-import com.example.myapplication.adapter.ProductCustomerAdapter;
 import com.example.myapplication.network.dto.response.OrderDetailResponseDTO;
 import com.example.myapplication.network.dto.response.OrderResponseDTO;
-import com.example.myapplication.network.dto.response.ProductResponseDTO;
 
 import java.util.ArrayList;
 
@@ -63,6 +60,7 @@ public class Order extends AppCompatActivity {
                 price.setText(String.valueOf(orderResponseDTO.getTotalAmount()));
                 phone.setText(orderResponseDTO.getNumberPhone());
                 address.setText(orderResponseDTO.getAddress());
+                hoTen.setText(orderResponseDTO.getReceiver());
                 recyclerViewOrderItem = findViewById(R.id.view_order_item);
                 recyclerViewOrderItem.setLayoutManager(new LinearLayoutManager(Order.this, LinearLayoutManager.VERTICAL, false));
                 adapterOrderItem = new OrderItemAdapter((ArrayList<OrderDetailResponseDTO>) orderResponseDTO.getOrderDetails());

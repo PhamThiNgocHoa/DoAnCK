@@ -2,7 +2,6 @@ package com.example.myapplication.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.format.FormatCurrency;
-import com.example.myapplication.network.CustomerService;
-import com.example.myapplication.network.RetrofitClient;
-import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 import com.example.myapplication.network.dto.response.OrderResponseDTO;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     ArrayList<OrderResponseDTO> items;
-    CustomerService customerService = RetrofitClient.getCustomerService();
 
     public OrderAdapter(ArrayList<OrderResponseDTO> items) {
         this.items = items;
@@ -56,7 +47,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull OrderAdapter.ViewHolder holder, int position) {
-        // Lấy thông tin khách hàng dựa trên ID
         holder.address.setText("Address: " + items.get(position).getAddress());
         holder.phone.setText("Phone: " + items.get(position).getNumberPhone());
         holder.orderDate.setText("Order Date: " + items.get(position).getOrderDate());

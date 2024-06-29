@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,27 +11,19 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.adapter.CartItemAdapter;
-import com.example.myapplication.adapter.CategoryCustomerAdapter;
-import com.example.myapplication.adapter.ProductCustomerAdapter;
 import com.example.myapplication.network.CartItemService;
 import com.example.myapplication.network.CartService;
-import com.example.myapplication.network.ProductService;
 import com.example.myapplication.network.RetrofitClient;
-import com.example.myapplication.network.dto.request.CartItemRequestDTO;
 import com.example.myapplication.network.dto.response.CartItemResponseDTO;
 import com.example.myapplication.network.dto.response.CartResponseDTO;
-import com.example.myapplication.network.dto.response.CategoryResponseDTO;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
-import com.example.myapplication.network.dto.response.ProductResponseDTO;
 import com.example.myapplication.ultil.SharedPrefManager;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,6 +38,7 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.O
 
     CustomerResponseDTO savedCustomer;
     private CartResponseDTO products;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -54,28 +46,23 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.O
         savedCustomer = SharedPrefManager.getCustomer(getApplicationContext());
         Button checkout = findViewById(R.id.cartActivityCheckoutBtn);
         ImageView back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CartActivity.this, ProductActivity.class);
-                startActivity(intent);
-            }
+        back.setOnClickListener(view -> {
+            Intent intent = new Intent(CartActivity.this, ProductActivity.class);
+            startActivity(intent);
         });
 
-        checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CartActivity.this, ThongTinKHActivity.class);
-                intent.putExtra("cart", products);
-                startActivity(intent);
-            }
+        checkout.setOnClickListener(view -> {
+            Intent intent = new Intent(CartActivity.this, ThongTinKHActivity.class);
+            intent.putExtra("cart", products);
+            startActivity(intent);
         });
         getCartItems();
         totalPrice = findViewById(R.id.cartActivityTotalPriceTv);
 
     }
-    private void getCartItems(){
-        cartService  = RetrofitClient.getCartService();
+
+    private void getCartItems() {
+        cartService = RetrofitClient.getCartService();
         cartService.getCart(savedCustomer.getId()).enqueue(new Callback<CartResponseDTO>() {
             @Override
             public void onResponse(Call<CartResponseDTO> call, Response<CartResponseDTO> response) {
@@ -87,7 +74,6 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.O
                     recyclerView.setAdapter(adapterCartItemList);
                     totalPrice.setText(String.valueOf(products.getPrice()));
                     Log.e("CoursesListActivity", "Response success");
-                    Toast.makeText(CartActivity.this, products.getCartItems().get(1).getProductId().getName() + "la kich thuoc cua no", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e("CoursesListActivity", "Response not successful");
                     Toast.makeText(CartActivity.this, "Failed to load products", Toast.LENGTH_SHORT).show();
@@ -139,8 +125,8 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.O
                 if (response.isSuccessful()) {
                     for (CartItemResponseDTO item : products.getCartItems()) {
                         if (item.getId() == cartItemResponseDTO.getId()) {
-                            item.setQuantity(item.getQuantity() -1 );
-                            if(item.getQuantity() <= 0){
+                            item.setQuantity(item.getQuantity() - 1);
+                            if (item.getQuantity() <= 0) {
                                 products.getCartItems().remove(item);
                             }
                             break;

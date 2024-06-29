@@ -20,15 +20,18 @@ import java.util.ArrayList;
 public class ProductCustomerAdapter extends RecyclerView.Adapter<ProductCustomerAdapter.ViewHolder> {
     ArrayList<ProductResponseDTO> items;
     private OnProductCustomerActionListener onProductCustomerActionListener;
+
     public ProductCustomerAdapter(ArrayList<ProductResponseDTO> items, OnProductCustomerActionListener onProductCustomerActionListener) {
         this.onProductCustomerActionListener = onProductCustomerActionListener;
         this.items = items;
     }
 
     Context context;
+
     public interface OnProductCustomerActionListener {
         void onViewDetail(ProductResponseDTO productResponseDTO);
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,8 +44,8 @@ public class ProductCustomerAdapter extends RecyclerView.Adapter<ProductCustomer
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name_product.setText(items.get(position).getName());
         holder.price.setText(String.valueOf(items.get(position).getPrice()));
-        Glide.with(context).load("http://192.168.1.128:8080/images/products/laptop1.jpg").into(holder.image_product);
-        holder.btn_viewDetail.setOnClickListener(v -> onProductCustomerActionListener.onViewDetail(items.get(position)));
+        Glide.with(context).load(items.get(position).getImg()).centerInside().into(holder.image_product);
+        holder.layout.setOnClickListener(v -> onProductCustomerActionListener.onViewDetail(items.get(position)));
 
     }
 
@@ -57,12 +60,12 @@ public class ProductCustomerAdapter extends RecyclerView.Adapter<ProductCustomer
         ImageView image_product;
         TextView btn_viewDetail;
         ConstraintLayout layout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name_product = itemView.findViewById(R.id.textProductName);
             price = itemView.findViewById(R.id.textProductPrice);
             image_product = itemView.findViewById(R.id.imageProduct);
-            btn_viewDetail = itemView.findViewById(R.id.buttonViewDetail);
             layout = itemView.findViewById(R.id.sanpham_layout);
         }
     }
