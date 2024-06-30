@@ -36,7 +36,6 @@ public class OrderDetailListActivity extends AppCompatActivity {
     private OrderDetailAdapter adapterOrderDetailList;
     private RecyclerView recyclerView;
     private OrderService orderService;
-    private OrderDetailService orderDetailService;
     private TextView priceView, fullnameView, phoneView, addressView, statusView, receiverView;
     private Button updateButton;
     private ImageButton deleteButton;
@@ -62,7 +61,6 @@ public class OrderDetailListActivity extends AppCompatActivity {
         if (intent != null) {
             // Lấy dữ liệu từ intent (ví dụ: orderId)
             OrderResponseDTO order = (OrderResponseDTO) intent.getSerializableExtra("order");
-
             priceView.setText(FormatCurrency.formatCurrency(order.getTotalAmount()));
             phoneView.setText(order.getNumberPhone());
             fullnameView.setText(order.getCustomerDTO().getFullname());

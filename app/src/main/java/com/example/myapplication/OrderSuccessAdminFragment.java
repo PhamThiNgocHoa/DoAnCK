@@ -34,7 +34,7 @@ import retrofit2.Response;
  */
 public class OrderSuccessAdminFragment extends Fragment {
     private RecyclerView recyclerView;
-
+    private OrderAdapter adapterOrderList;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     static final String ARG_PARAM1 = "param1";
@@ -44,9 +44,17 @@ public class OrderSuccessAdminFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    @SuppressLint("NotifyDataSetChanged")
     public OrderSuccessAdminFragment() {
-        // Required empty public constructor
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Load lại dữ liệu ở đây
+        getOrders();
+    }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -89,6 +97,7 @@ public class OrderSuccessAdminFragment extends Fragment {
     private void getOrders() {
         OrderService orderService = RetrofitClient.getOrderService();
         orderService.getOrdersByStatus("Xác nhận thành công").enqueue(new Callback<List<OrderResponseDTO>>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(Call<List<OrderResponseDTO>> call, Response<List<OrderResponseDTO>> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -112,7 +121,7 @@ public class OrderSuccessAdminFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        OrderAdapter adapterOrderList = new OrderAdapter((ArrayList<OrderResponseDTO>) orders);
+        adapterOrderList = new OrderAdapter((ArrayList<OrderResponseDTO>) orders);
         adapterOrderList.setOnOrderClickListener(this::handleOrderClick);
         recyclerView.setAdapter(adapterOrderList);
     }

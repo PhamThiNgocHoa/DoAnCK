@@ -39,7 +39,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OrderListActivity extends AppCompatActivity {
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
@@ -54,10 +53,8 @@ public class OrderListActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         tabLayout = findViewById(R.id.tab_layout_test);
         viewPager = findViewById(R.id.view_pager_test);
-
         ViewPagerOrderAdminAdapter adapter = new ViewPagerOrderAdminAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         viewPager.setAdapter(adapter);

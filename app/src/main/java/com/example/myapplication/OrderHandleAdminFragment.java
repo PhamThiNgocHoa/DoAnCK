@@ -38,6 +38,7 @@ import retrofit2.Response;
 
 public class OrderHandleAdminFragment extends Fragment {
 
+    private OrderAdapter adapterOrderList;
     private RecyclerView recyclerView;
 
     private static final String ARG_PARAM1 = "param1";
@@ -47,7 +48,13 @@ public class OrderHandleAdminFragment extends Fragment {
     private String mParam2;
 
     public OrderHandleAdminFragment() {
-        // Required empty public constructor
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Load lại dữ liệu ở đây
+        getOrders();
     }
 
     public static OrderHandleAdminFragment newInstance(String param1, String param2) {
@@ -66,7 +73,6 @@ public class OrderHandleAdminFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @SuppressLint("MissingInflatedId")
@@ -82,11 +88,13 @@ public class OrderHandleAdminFragment extends Fragment {
     private void getOrders() {
         OrderService orderService = RetrofitClient.getOrderService();
         orderService.getOrdersByStatus("Đang xử lý").enqueue(new Callback<List<OrderResponseDTO>>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(Call<List<OrderResponseDTO>> call, Response<List<OrderResponseDTO>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<OrderResponseDTO> orders = response.body();
                     setupRecyclerView(orders);
+                    adapterOrderList.notifyDataSetChanged();
                 } else {
                     Log.e("Response null", "Response null");
                 }
@@ -99,13 +107,14 @@ public class OrderHandleAdminFragment extends Fragment {
         });
     }
 
-
+    @SuppressLint("NotifyDataSetChanged")
     private void setupRecyclerView(List<OrderResponseDTO> orders) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        OrderAdapter adapterOrderList = new OrderAdapter((ArrayList<OrderResponseDTO>) orders);
+        adapterOrderList = new OrderAdapter((ArrayList<OrderResponseDTO>) orders);
+        adapterOrderList.setConfirmOrder(this::confirmOrder);
         adapterOrderList.setOnOrderClickListener(this::handleOrderClick);
         recyclerView.setAdapter(adapterOrderList);
     }
@@ -114,6 +123,23 @@ public class OrderHandleAdminFragment extends Fragment {
         Intent intent = new Intent(getContext(), OrderDetailListActivity.class);
         intent.putExtra("order", order);
         startActivity(intent);
+    }
+
+    private void confirmOrder(OrderResponseDTO order) {
+        OrderService orderService = RetrofitClient.getOrderService();
+        orderService.changeOrderStatus("Xác nhận thành công", order.getId()).enqueue(new Callback<Void>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.e("Xác nhận thành công", "Xác nhận thành công");
+                getOrders();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable throwable) {
+                Log.e("Xác nhận khoong thành công", "Xác nhận khoong thành công");
+            }
+        });
     }
 
     private void handleOrderLoadError(Throwable throwable) {

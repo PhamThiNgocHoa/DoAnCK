@@ -16,6 +16,10 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface OrderService {
+
+    @PUT("api/order/status/{status}&&{orderId}")
+    Call<Void> changeOrderStatus(@Path("status") String status, @Path("orderId") int orderId);
+
     @GET("api/order/list")
     Call<List<OrderResponseDTO>> getOrders();
 
