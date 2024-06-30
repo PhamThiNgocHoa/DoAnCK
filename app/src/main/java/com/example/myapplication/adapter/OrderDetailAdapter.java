@@ -68,7 +68,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     @Override
     public void onBindViewHolder(@NonNull OrderDetailAdapter.ViewHolder holder, int position) {
         holder.quantity.setText("x" + items.get(position).getQuantity());
-//        Glide.with(context).load(responseDTO.getImg()).into(holder.image);
+        Glide.with(context).load(items.get(position).getProductResponseDTO().getImg()).centerCrop().into(holder.image);
         holder.price.setText(FormatCurrency.formatCurrency(items.get(position).getProductResponseDTO().getPrice()));
         holder.name.setText(items.get(position).getProductResponseDTO().getName());
         holder.category.setText(items.get(position).getProductResponseDTO().getCategoryName());

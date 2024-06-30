@@ -19,6 +19,9 @@ public interface OrderService {
     @GET("api/order/list")
     Call<List<OrderResponseDTO>> getOrders();
 
+    @GET("api/order/{status}")
+    Call<List<OrderResponseDTO>> getOrdersByStatus(@Path("status") String status);
+
     @PUT("api/order/order/{orderId}")
     Call<Void> editOrder(@Path("orderId") int orderId, @Body OrderEditRequestDTO requestDTO);
 

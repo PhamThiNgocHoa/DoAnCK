@@ -1,12 +1,6 @@
-package com.example.myapplication.activity;
+package com.example.myapplication;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,36 +8,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.myapplication.R;
-import com.example.myapplication.adapter.OrderAdapter;
 import com.example.myapplication.adapter.ViewPagerOrderAdminAdapter;
-import com.example.myapplication.network.CustomerService;
-import com.example.myapplication.network.OrderService;
-import com.example.myapplication.network.RetrofitClient;
-import com.example.myapplication.network.dto.response.CustomerResponseDTO;
-import com.example.myapplication.network.dto.response.MonthlyRevenueResponse;
-import com.example.myapplication.network.dto.response.OrderDetailResponseDTO;
-import com.example.myapplication.network.dto.response.OrderResponseDTO;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class OrderListActivity extends AppCompatActivity {
-
+public class TestTabLayout extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,5 +38,3 @@ public class OrderListActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 }
-
-
