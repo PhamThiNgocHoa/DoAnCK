@@ -49,13 +49,10 @@ public class EditCustomerActivity extends AppCompatActivity {
 
         customerService = RetrofitClient.getCustomerService();
 
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customer.setPhone(editTextPhone.getText().toString());
-                customer.setEmail(editTextEmail.getText().toString());
-                updateCustomer(customer);
-            }
+        buttonSave.setOnClickListener(v -> {
+            customer.setPhone(editTextPhone.getText().toString());
+            customer.setEmail(editTextEmail.getText().toString());
+            updateCustomer(customer);
         });
     }
 
@@ -65,7 +62,8 @@ public class EditCustomerActivity extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(EditCustomerActivity.this, "Cập Nhật Thành Công", Toast.LENGTH_SHORT).show();
-                    finish(); // Close the activity
+                    Intent intent = new Intent(EditCustomerActivity.this, CustomerListActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(EditCustomerActivity.this, "Cập Nhật Thất Bại", Toast.LENGTH_SHORT).show();
                 }

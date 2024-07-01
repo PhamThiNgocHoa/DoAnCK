@@ -4,19 +4,17 @@ package com.example.myapplication.network.dto.request;
 import java.io.Serializable;
 
 public class ProductRequestDTO implements Serializable {
-    private int id;
     private String name;
     private String img;
-    private double price;
-    private int categoryId;
+    private int price;
+    private String categoryName;
     private String detail;
 
-    public ProductRequestDTO(int id, String name, String img, double price, int categoryId, String detail) {
-        this.id = id;
+    public ProductRequestDTO(String name, String img, int price, String categoryName, String detail) {
         this.name = name;
         this.img = img;
         this.price = price;
-        this.categoryId = categoryId;
+        this.categoryName = categoryName;
         this.detail = detail;
     }
 
@@ -36,20 +34,20 @@ public class ProductRequestDTO implements Serializable {
         this.img = img;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getDetail() {
@@ -58,13 +56,5 @@ public class ProductRequestDTO implements Serializable {
 
     public void setDetail(String detail) {
         this.detail = detail;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

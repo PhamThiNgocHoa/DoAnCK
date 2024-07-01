@@ -1,7 +1,7 @@
 package com.example.myapplication.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 
 import com.example.myapplication.R;
 import com.example.myapplication.network.OrderService;
@@ -27,6 +26,7 @@ public class EditOrderAdmin extends AppCompatActivity {
     private Button updateButton;
     private OrderService orderService;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +63,6 @@ public class EditOrderAdmin extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     Log.i("Edit thanh cong", "edit thanh cong");
-
-                    // Hiển thị dialog thông báo thành công
                     showSuccessDialog();
                 }
 
@@ -81,13 +79,9 @@ public class EditOrderAdmin extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Thành công")
                 .setMessage("Đã cập nhật đơn hàng thành công")
-                .setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Chuyển về trang OrderListActivity khi người dùng bấm xác nhận
-                        Intent intent = new Intent(EditOrderAdmin.this, OrderListActivity.class);
-                        startActivity(intent);
-                    }
+                .setPositiveButton("Xác nhận", (dialog, which) -> {
+                    Intent intent = new Intent(EditOrderAdmin.this, OrderListActivity.class);
+                    startActivity(intent);
                 })
                 .setCancelable(false)
                 .show();

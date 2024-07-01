@@ -38,7 +38,7 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Chi tiết đơn hàng"
+                    android:text="Chi tiết sản phẩm"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -55,97 +55,120 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/status_label"
+                android:id="@+id/category_label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:text="Status:"
+                android:text="Category:"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/fullname_label"
+                android:id="@+id/name_label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="50dp"
-                android:text="Full Name:"
+                android:text="Name:"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/status_label" />
+                app:layout_constraintTop_toBottomOf="@id/category_label" />
 
             <TextView
-                android:id="@+id/address_label"
+                android:id="@+id/price_label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="50dp"
-                android:text="Address:"
+                android:text="Price"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fullname_label" />
+                app:layout_constraintTop_toBottomOf="@+id/name_label" />
 
             <TextView
-                android:id="@+id/phone_label"
+                android:id="@+id/img_label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="50dp"
-                android:text="Phone:"
+                android:text="Image Url:"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/address_label" />
+                app:layout_constraintTop_toBottomOf="@+id/price_label" />
+
+            <TextView
+                android:id="@+id/detail_label"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="50dp"
+                android:text="Detail:"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_label" />
 
             <EditText
-                android:id="@+id/status_info"
+                android:id="@+id/img_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="11dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="29dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="Name"
-                app:layout_constraintStart_toEndOf="@+id/status_label"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/img_label"
+                app:layout_constraintTop_toBottomOf="@+id/price_info" />
+
+            <EditText
+                android:id="@+id/price_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="29dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Name"
+                app:layout_constraintStart_toEndOf="@+id/price_label"
+                app:layout_constraintTop_toBottomOf="@+id/fullname_info" />
 
             <EditText
                 android:id="@+id/fullname_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="29dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="Name"
-                app:layout_constraintStart_toEndOf="@+id/fullname_label"
-                app:layout_constraintTop_toBottomOf="@+id/status_info" />
+                app:layout_constraintStart_toEndOf="@+id/name_label"
+                app:layout_constraintTop_toBottomOf="@+id/category_name" />
 
             <EditText
-                android:id="@+id/address_info"
+                android:id="@+id/category_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="29dp"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Name"
-                app:layout_constraintStart_toEndOf="@+id/address_label"
-                app:layout_constraintTop_toBottomOf="@+id/fullname_info" />
-
-            <EditText
-                android:id="@+id/phone_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="29dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="11dp"
                 android:ems="10"
                 android:inputType="text"
                 android:text="Name"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/phone_label"
-                app:layout_constraintTop_toBottomOf="@+id/address_info" />
+                app:layout_constraintStart_toEndOf="@+id/category_label"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="29dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Name"
+                app:layout_constraintStart_toEndOf="@+id/detail_label"
+                app:layout_constraintTop_toBottomOf="@+id/img_info" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

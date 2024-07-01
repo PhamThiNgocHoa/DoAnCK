@@ -20,17 +20,21 @@ import com.example.myapplication.network.dto.response.ProductResponseDTO;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     ArrayList<ProductResponseDTO> items;
     private OnProductActionListener onProductActionListener;
+
     public ProductAdapter(ArrayList<ProductResponseDTO> items, OnProductActionListener onProductActionListener) {
         this.onProductActionListener = onProductActionListener;
         this.items = items;
     }
 
     Context context;
+
     public interface OnProductActionListener {
         void onEdit(ProductResponseDTO productResponseDTO);
+
         void onDelete(ProductResponseDTO productResponseDTO);
     }
 
@@ -41,15 +45,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         context = parent.getContext();
         return new ViewHolder(inflator);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name_product.setText(items.get(position).getName());
         holder.price.setText(String.valueOf(items.get(position).getPrice()));
+        holder.category_name.setText(items.get(position).getCategoryName());
         Glide.with(context).load(items.get(position).getImg()).into(holder.image_product);
-        holder.edit.setOnClickListener(v ->onProductActionListener.onEdit(items.get(position)));
+        holder.edit.setOnClickListener(v -> onProductActionListener.onEdit(items.get(position)));
         holder.delete.setOnClickListener(v -> onProductActionListener.onDelete(items.get(position)));
     }
-
 
 
     @Override
@@ -58,7 +63,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name_product, price;
+        TextView name_product, price, category_name;
         ImageView image_product;
         ConstraintLayout layout;
         Button edit, delete;
@@ -67,9 +72,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             super(itemView);
             name_product = itemView.findViewById(R.id.name_product);
             price = itemView.findViewById(R.id.price);
+            category_name = itemView.findViewById(R.id.category);
             image_product = itemView.findViewById(R.id.image_product);
             layout = itemView.findViewById(R.id.layout_order);
-            edit =itemView.findViewById(R.id.btn_edit);
+            edit = itemView.findViewById(R.id.btn_edit);
             delete = itemView.findViewById(R.id.btn_delete);
         }
     }

@@ -1,5 +1,6 @@
 package com.example.myapplication.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.network.dto.response.CustomerResponseDTO;
 
 import java.util.ArrayList;
+
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHolder> {
 
     private ArrayList<CustomerResponseDTO> items;
@@ -38,11 +40,12 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         return new ViewHolder(inflator);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CustomerAdapter.ViewHolder holder, int position) {
-        holder.username.setText(items.get(position).getUsername());
-        holder.email.setText(String.valueOf(items.get(position).getEmail()));
-        holder.phone.setText(String.valueOf(items.get(position).getPhone()));
+        holder.username.setText("Username: " + items.get(position).getUsername());
+        holder.email.setText("Email: " + items.get(position).getEmail());
+        holder.phone.setText("Phone: " + items.get(position).getPhone());
         holder.edit.setOnClickListener(v -> onCustomerActionListener.onEdit(items.get(position)));
         holder.delete.setOnClickListener(v -> onCustomerActionListener.onDelete(items.get(position)));
     }

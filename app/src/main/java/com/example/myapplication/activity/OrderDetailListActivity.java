@@ -1,11 +1,10 @@
 package com.example.myapplication.activity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.OrderDetailAdapter;
 import com.example.myapplication.format.FormatCurrency;
-import com.example.myapplication.network.OrderDetailService;
 import com.example.myapplication.network.OrderService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.response.OrderDetailResponseDTO;
@@ -77,6 +75,15 @@ public class OrderDetailListActivity extends AppCompatActivity {
             deleteButton.setOnClickListener(v -> {
                 showDialogDelete(order.getId());
             });
+
+            if (order.getStatus().equalsIgnoreCase("Xác nhận thành công")) {
+                deleteButton.setVisibility(View.GONE);
+                updateButton.setVisibility(View.GONE);
+            } else {
+                deleteButton.setVisibility(View.VISIBLE);
+                updateButton.setVisibility(View.VISIBLE);
+            }
+
             // Xử lý dữ liệu theo nhu cầu của bạn
             getOrderDetails(order);
             // Ví dụ: hiển thị thông tin chi tiết của order có orderId

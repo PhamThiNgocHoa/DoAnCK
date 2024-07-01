@@ -1,5 +1,6 @@
 package com.example.myapplication.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
     private RecyclerView recyclerView;
     private ProductService productService;
     private List<ProductResponseDTO> products;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +35,8 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
         getProducts();
     }
 
-    private void getProducts()  {
-        productService  = RetrofitClient.getProductService();
+    private void getProducts() {
+        productService = RetrofitClient.getProductService();
         productService.getProducts().enqueue(new Callback<List<ProductResponseDTO>>() {
             @Override
             public void onResponse(Call<List<ProductResponseDTO>> call, Response<List<ProductResponseDTO>> response) {
@@ -43,8 +45,8 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
                     recyclerView = findViewById(R.id.view);
 
                     recyclerView.setLayoutManager(new LinearLayoutManager(ProductListActivity.this, LinearLayoutManager.VERTICAL, false));
-        adapterCoursesList = new ProductAdapter((ArrayList<ProductResponseDTO>) products, ProductListActivity.this);
-        recyclerView.setAdapter(adapterCoursesList);
+                    adapterCoursesList = new ProductAdapter((ArrayList<ProductResponseDTO>) products, ProductListActivity.this);
+                    recyclerView.setAdapter(adapterCoursesList);
 
                 } else {
                     Log.e("CoursesListActivity", "Response not successful");
@@ -62,7 +64,9 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
 
     @Override
     public void onEdit(ProductResponseDTO productResponseDTO) {
-
+        Intent intent = new Intent(ProductListActivity.this, EditProductActivity.class);
+        intent.putExtra("product", productResponseDTO);
+        startActivity(intent);
     }
 
     @Override

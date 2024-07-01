@@ -1,11 +1,14 @@
 package com.example.myapplication.activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.CustomerAdapter;
 import com.example.myapplication.network.CustomerService;
@@ -18,6 +21,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 public class CustomerListActivity extends AppCompatActivity implements CustomerAdapter.OnCustomerActionListener {
 
     private RecyclerView recyclerView;
