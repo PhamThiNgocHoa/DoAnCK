@@ -70,6 +70,9 @@
             android:name=".activity.EditProductActivity"
             android:exported="true" />
         <activity
+            android:name=".activity.AddProductActivity"
+            android:exported="true" />
+        <activity
             android:name=".DetailedActivity"
             android:exported="true" />
         <activity

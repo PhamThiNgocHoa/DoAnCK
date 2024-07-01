@@ -1,11 +1,13 @@
 package com.example.myapplication.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,11 +30,19 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
     private ProductService productService;
     private List<ProductResponseDTO> products;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_product_list);
+        ConstraintLayout addProductBtn = findViewById(R.id.add_product_btn);
         getProducts();
+
+
+        addProductBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ProductListActivity.this, AddProductActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void getProducts() {
