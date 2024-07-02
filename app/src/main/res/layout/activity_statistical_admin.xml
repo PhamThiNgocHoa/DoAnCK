@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/back_btn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:background="@drawable/back_btn"

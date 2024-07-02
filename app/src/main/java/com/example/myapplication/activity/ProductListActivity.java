@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,11 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
 
         addProductBtn.setOnClickListener(v -> {
             Intent intent = new Intent(ProductListActivity.this, AddProductActivity.class);
+            startActivity(intent);
+        });
+        ConstraintLayout back = findViewById(R.id.back_admin);
+        back.setOnClickListener(v -> {
+            Intent intent = new Intent(ProductListActivity.this, AdminActivity.class);
             startActivity(intent);
         });
     }

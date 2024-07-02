@@ -1,5 +1,6 @@
 package com.example.myapplication.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +39,7 @@ public class CategoryListActivity extends AppCompatActivity implements CategoryA
     private RecyclerView recyclerView;
     private CategoryService categoryService;
     List<CategoryResponseDTO> products;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +60,9 @@ public class CategoryListActivity extends AppCompatActivity implements CategoryA
         getCategories();
 
     }
-    private void getCategories()  {
-        categoryService  = RetrofitClient.getCategoryService();
+
+    private void getCategories() {
+        categoryService = RetrofitClient.getCategoryService();
         categoryService.getCategories().enqueue(new Callback<List<CategoryResponseDTO>>() {
             @Override
             public void onResponse(Call<List<CategoryResponseDTO>> call, Response<List<CategoryResponseDTO>> response) {
@@ -94,6 +97,7 @@ public class CategoryListActivity extends AppCompatActivity implements CategoryA
     public void onDelete(CategoryResponseDTO categoryResponseDTO) {
         categoryService = RetrofitClient.getCategoryService();
         categoryService.deleteCategory(categoryResponseDTO.getId()).enqueue(new Callback<Void>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
@@ -101,7 +105,7 @@ public class CategoryListActivity extends AppCompatActivity implements CategoryA
                     int position = ((ArrayList<CategoryResponseDTO>) products).indexOf(categoryResponseDTO);
                     if (position != -1) {
                         ((ArrayList<CategoryResponseDTO>) products).remove(position);
-                        adapterCategoryList.notifyItemRemoved(position);
+                        adapterCategoryList.notifyDataSetChanged();
                     }
                 } else {
                     Toast.makeText(CategoryListActivity.this, "Xóa Thất Bại " + categoryResponseDTO.getName(), Toast.LENGTH_SHORT).show();

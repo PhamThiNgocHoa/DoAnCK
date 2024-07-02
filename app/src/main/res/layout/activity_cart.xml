@@ -29,15 +29,15 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="35dp"
                 android:background="@drawable/back" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:paddingLeft="140dp"
-                android:text="CART"
-                android:layout_marginTop="30dp"
-                android:textSize="30dp"
 
-                />
+            <TextView
+                android:layout_width="325dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:text="CART"
+                android:textAlignment="center"
+
+                android:textSize="30dp" />
 
         </Toolbar>
 

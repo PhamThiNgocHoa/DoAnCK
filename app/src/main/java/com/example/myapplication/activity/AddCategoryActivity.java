@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class AddCategoryActivity extends AppCompatActivity {
     private TextView category, image;
     private Button addButton;
     private CategoryService categoryService;
+    private ImageView back;
 
     @Override
     @SuppressLint("MissingInflatedId")
@@ -34,6 +36,11 @@ public class AddCategoryActivity extends AppCompatActivity {
         category = findViewById(R.id.category_name);
         image = findViewById(R.id.img_info);
         addButton = findViewById(R.id.updateButton);
+        back = findViewById(R.id.back);
+        back.setOnClickListener(v -> {
+            Intent intent = new Intent(AddCategoryActivity.this, CategoryListActivity.class);
+            startActivity(intent);
+        });
         addButton.setOnClickListener(v -> {
             CategoryRequestDTO categoryRequestDTO = new CategoryRequestDTO(category.getText().toString(), image.getText().toString());
             addCategory(categoryRequestDTO);
@@ -49,6 +56,7 @@ public class AddCategoryActivity extends AppCompatActivity {
                 Intent intent = new Intent(AddCategoryActivity.this, CategoryListActivity.class);
                 startActivity(intent);
             }
+
             @Override
             public void onFailure(Call<Integer> call, Throwable throwable) {
                 Toast.makeText(AddCategoryActivity.this, "Thêm Khong Thành Công", Toast.LENGTH_SHORT).show();

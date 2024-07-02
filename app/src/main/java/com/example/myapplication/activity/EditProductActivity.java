@@ -3,6 +3,7 @@ package com.example.myapplication.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,12 @@ public class EditProductActivity extends AppCompatActivity {
         image = findViewById(R.id.img_info);
         detail = findViewById(R.id.detail);
         updateButton = findViewById(R.id.updateButton);
+        ImageView backBtn;
+        backBtn = findViewById(R.id.back);
+        backBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(EditProductActivity.this, ProductListActivity.class);
+            startActivity(intent);
+        });
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("product")) {

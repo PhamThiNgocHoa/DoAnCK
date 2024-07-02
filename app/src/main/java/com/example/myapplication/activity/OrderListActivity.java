@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -53,10 +56,15 @@ public class OrderListActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         tabLayout = findViewById(R.id.tab_layout_test);
         viewPager = findViewById(R.id.view_pager_test);
         ViewPagerOrderAdminAdapter adapter = new ViewPagerOrderAdminAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-
+        ConstraintLayout back = findViewById(R.id.back_admin);
+        back.setOnClickListener(v -> {
+            Intent intent = new Intent(OrderListActivity.this, AdminActivity.class);
+            startActivity(intent);
+        });
         viewPager.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(viewPager);

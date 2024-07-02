@@ -40,4 +40,8 @@ public interface OrderService {
 
     @GET("api/order/customer/{customerId}")
     Call<List<OrderResponseDTO>> getOrdersByCustomerId(@Path("customerId") int customerId);
+
+    @GET("api/order/client/{status}&&{customerId}")
+    Call<List<OrderResponseDTO>> getOrdersByStatusAndCustomerId(@Path("customerId") int customerId, @Path("status") String status);
+
 }

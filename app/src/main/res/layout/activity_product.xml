@@ -16,32 +16,63 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp">
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LAPTOP PRO"
                 android:textColor="#82C4E1"
-                android:textSize="24sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-            <ImageView
-                android:id="@+id/cartIv"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_baseline_shopping_cart_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="0dp">
+
+                <ImageView
+                    android:id="@+id/cartIv"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="354dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/ic_baseline_shopping_cart_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/red_circle_background"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="-15dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintStart_toEndOf="@+id/cartIv"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/redcircle" />
+
+                <TextView
+                    android:id="@+id/quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@id/red_circle_background"
+                    app:layout_constraintLeft_toLeftOf="@id/red_circle_background"
+                    app:layout_constraintRight_toRightOf="@id/red_circle_background"
+                    app:layout_constraintTop_toTopOf="@id/red_circle_background" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </Toolbar>
 
@@ -109,12 +140,6 @@
                         android:text="Danh Mục Nổi Bật "
                         android:textColor="@color/black" />
 
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="160dp"
-                        android:text=" Xem Thêm " />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -146,12 +171,6 @@
                         android:text="Sản Phâm Nổi Bật "
                         android:textColor="@color/black" />
 
-                    <TextView
-                        android:id="@+id/xemThemSanPham"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="160dp"
-                        android:text=" Xem Thêm " />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -169,37 +188,41 @@
         android:id="@+id/tool"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="2dp"
         android:layout_alignParentBottom="true"
-        app:cardElevation="8dp"
+        android:layout_marginLeft="2dp"
+        android:background="@drawable/show"
         app:cardCornerRadius="0dp"
-        android:background="@drawable/show">
+        app:cardElevation="8dp">
 
         <Toolbar
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/white">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/home"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/baseline_home_24"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/baseline_home_24" />
+
                 <ImageView
                     android:id="@+id/history"
-                    android:layout_marginLeft="60dp"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_marginLeft="60dp"
                     android:background="@drawable/baseline_menu_24" />
+
                 <ImageView
                     android:id="@+id/user"
-                    android:layout_marginLeft="60dp"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_marginLeft="60dp"
                     android:background="@drawable/baseline_person_24" />
 
                 <ImageView

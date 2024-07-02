@@ -8,8 +8,10 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.ProductActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.ultil.SharedPrefManager;
 
 public class AdminActivity extends AppCompatActivity {
     private ConstraintLayout khachHang, sanPham, danhMuc, banHang;
@@ -40,7 +42,8 @@ public class AdminActivity extends AppCompatActivity {
         });
 
         banHang.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminActivity.this, ProductActivity.class);
+            SharedPrefManager.deleteCustomer(getApplicationContext());
+            Intent intent = new Intent(AdminActivity.this, MainActivity.class);
             startActivity(intent);
         });
 

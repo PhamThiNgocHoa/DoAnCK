@@ -3,6 +3,7 @@ package com.example.myapplication.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class AddProductActivity extends AppCompatActivity {
     private TextView category, name, price, image, detail;
     private Button addButton;
     private ProductService productService;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,12 @@ public class AddProductActivity extends AppCompatActivity {
         image = findViewById(R.id.img_info);
         detail = findViewById(R.id.detail);
         addButton = findViewById(R.id.updateButton);
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(v -> {
+            Intent intent = new Intent(AddProductActivity.this, ProductListActivity.class);
+            startActivity(intent);
+        });
 
         addButton.setOnClickListener(v -> {
             ProductRequestDTO requestDTO = new ProductRequestDTO(name.getText().toString(),

@@ -1,10 +1,13 @@
 package com.example.myapplication.activity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.myapplication.R;
 import com.example.myapplication.network.OrderService;
@@ -34,11 +37,19 @@ import retrofit2.Response;
 public class StatisticalActivity extends AppCompatActivity implements OnChartValueSelectedListener {
     private CombinedChart combinedChart;
     private OrderService orderService;
+    private ConstraintLayout backBtn;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistical_admin);
+        backBtn = findViewById(R.id.back_btn);
+
+        backBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(StatisticalActivity.this, AdminActivity.class);
+            startActivity(intent);
+        });
 
         combinedChart = findViewById(R.id.combinedChart);
         combinedChart.getDescription().setEnabled(false);

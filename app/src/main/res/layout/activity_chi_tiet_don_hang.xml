@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Order">
+    tools:context=".ChiTietDonHangAdmin">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:elevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                >
 
-                <ImageView
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/de"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/back"
-                    tools:ignore="MissingConstraints" />
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/back_btn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/back"
+                        tools:ignore="MissingConstraints" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
@@ -45,157 +62,93 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+
+                <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+                <!--                    android:id="@+id/delete_btn"-->
+                <!--                    android:layout_width="45dp"-->
+                <!--                    android:layout_height="45dp"-->
+                <!--                    android:layout_marginEnd="16dp"-->
+                <!--                    android:background="@drawable/back_btn"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent"-->
+                <!--                    tools:ignore="MissingConstraints">-->
+
+                <!--                    <ImageButton-->
+                <!--                        android:id="@+id/imageButton"-->
+                <!--                        android:layout_width="35dp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:backgroundTint="@color/white"-->
+                <!--                        android:contentDescription="TODO"-->
+                <!--                        android:importantForAccessibility="no"-->
+                <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                <!--                        app:layout_constraintTop_toTopOf="parent"-->
+                <!--                        app:srcCompat="@drawable/ic_baseline_delete_24" />-->
+                <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </Toolbar>
+
         <LinearLayout
             android:layout_width="400dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text"
             android:orientation="vertical"
-            android:layout_marginLeft="6dp"
             tools:ignore="MissingConstraints">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
                 android:orientation="vertical">
+
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Giao dịch của bạn đã thành công"
-                    android:padding="10dp"
-                    android:layout_marginLeft="70dp"
-                    android:textSize="18dp"
-                    />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/tv_ma_giao_dich_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mã giao dịch: "
-                        android:textSize="17dp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="20dp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="hdksjind"
-                        android:textSize="17dp"
-                        android:layout_toRightOf="@id/tv_ma_giao_dich_label"
-                        android:gravity="right"
-                        android:layout_marginRight="20dp"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/tv_thoi_gian_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Thời gian giao dịch:  "
-                        android:textSize="17dp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="20dp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="hdksjind"
-                        android:textSize="17dp"
-                        android:layout_toRightOf="@id/tv_thoi_gian_label"
-                        android:gravity="right"
-                        android:layout_marginRight="20dp"/>
-                </RelativeLayout>
+                    android:inputType="text"
+                    android:text="Đang xử lý"
+                    android:textSize="21dp"
+                    android:textStyle="bold" />
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10px"
                     android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/adidas_questar_shoes"/>
 
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/view"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="10dp"
-                        >
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:textSize="17dp"
-                                android:textStyle="bold"
-                                android:text="Tên sản phẩm"
-                                />
-                            <TextView
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="40.000VND"
-                                android:gravity="right"
-                                android:textStyle="bold"
-                                />
-
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:text="Mô tả sản phẩm"
-                            android:layout_marginTop="5dp"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="x1"
-                            />
-                    </LinearLayout>
+                        android:layout_height="match_parent" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_margin="20dp"
+                    android:layout_marginLeft="20dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Thanh toán"
                         android:layout_marginBottom="15dp"
-                        android:textStyle="bold"
-                        android:textSize="17dp"/>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:layout_marginBottom="10dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Gía "
-                            android:textSize="16dp"
-                            android:textStyle="bold"
-                            />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="40.000VND"
-                            android:gravity="right"/>
-                    </RelativeLayout>
+                        android:text="Thanh toán"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
@@ -204,32 +157,50 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Khuyến mại "
+                            android:text="Giá"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
+
                         <TextView
+                            android:id="@+id/price"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="- 40.000VND"
-                            android:gravity="right"/>
+                            android:gravity="right"
+                            android:text="40.000VND" />
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:layout_marginBottom="10dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tổng tiền "
-                            android:textSize="16dp"
-                            android:textStyle="bold"
-                            />
+                            android:text="Người đặt hàng"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginBottom="10dp">
+
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Họ và tên"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/fullname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="40.000VND"
-                            android:gravity="right"/>
+                            android:gravity="right"
+                            android:text="40.000VND" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -238,33 +209,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Địa chỉ giao hàng"
                         android:layout_marginBottom="15dp"
-                        android:textStyle="bold"
-                        android:textSize="17dp"/>
+                        android:text="Địa chỉ giao hàng"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:layout_marginBottom="10dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Họ và tên  "
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
+
                         <TextView
+                            android:id="@+id/receiver"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Pham Thi Ngoc Hoa"
-                            android:gravity="right"/>
+                            android:gravity="right"
+                            android:text="Pham Thi Ngoc Hoa" />
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
@@ -275,34 +251,38 @@
                             android:layout_height="wrap_content"
                             android:text="Điện thoại "
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
+
                         <TextView
+                            android:id="@+id/phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="0348429274"
-                            android:gravity="right"/>
+                            android:gravity="right"
+                            android:text="0348429274" />
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
                         android:layout_marginBottom="10dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Địa chỉ "
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
+
                         <TextView
+                            android:id="@+id/address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Cat Thang - Phu Cat - Binh Dinh"
-                            android:gravity="right"/>
+                            android:gravity="right"
+                            android:text="Cat Thang - Phu Cat - Binh Dinh" />
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

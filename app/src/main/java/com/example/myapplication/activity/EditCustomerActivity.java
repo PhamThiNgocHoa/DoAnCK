@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,12 +26,19 @@ public class EditCustomerActivity extends AppCompatActivity {
     private Button buttonSave;
     private CustomerService customerService;
     private CustomerResponseDTO customer;
+    private ImageView backBtn;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_edit_customer);
+        backBtn = findViewById(R.id.back);
+
+        backBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(EditCustomerActivity.this, CustomerListActivity.class);
+            startActivity(intent);
+        });
 
         editTextPhone = findViewById(R.id.editPhone);
         editTextEmail = findViewById(R.id.editEmail);

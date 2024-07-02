@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="handle_order">Handle order</string>
     <string name="success_order">Success order</string>
+    <string name="hoan_thanh" />
 </resources>

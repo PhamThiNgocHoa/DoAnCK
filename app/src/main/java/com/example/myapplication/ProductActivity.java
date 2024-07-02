@@ -1,11 +1,13 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -42,7 +44,10 @@ public class ProductActivity extends AppCompatActivity implements ProductCustome
     private ProductService productService;
     private RecyclerView recyclerViewProduct;
     private SearchView find_Product;
+    private ImageView red_circle_background;
+    private TextView quantity;
 
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -54,6 +59,9 @@ public class ProductActivity extends AppCompatActivity implements ProductCustome
         ImageView user = findViewById(R.id.user);
         ImageView cartIv = findViewById(R.id.cartIv);
         ImageView logout = findViewById(R.id.logout);
+        red_circle_background = findViewById(R.id.red_circle_background);
+        quantity = findViewById(R.id.quantity);
+
         find_Product = findViewById(R.id.search_product);
 
         find_Product.setImeOptions(EditorInfo.IME_ACTION_SEARCH); // Set IME action to "Search"

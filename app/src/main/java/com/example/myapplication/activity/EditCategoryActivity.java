@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,8 @@ public class EditCategoryActivity extends AppCompatActivity {
     private Button buttonSave;
     private CategoryService categoryService;
     private CategoryResponseDTO category;
+    private ImageView backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,12 @@ public class EditCategoryActivity extends AppCompatActivity {
 
         nameCategory = findViewById(R.id.editCategory);
         buttonSave = findViewById(R.id.saveCategoryButton);
+        ImageView backBtn;
+        backBtn = findViewById(R.id.back);
+        backBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(EditCategoryActivity.this, CategoryListActivity.class);
+            startActivity(intent);
+        });
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("category")) {

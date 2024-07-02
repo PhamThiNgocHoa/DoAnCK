@@ -1,11 +1,13 @@
 package com.example.myapplication.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,11 +30,18 @@ public class CustomerListActivity extends AppCompatActivity implements CustomerA
     private CustomerAdapter adapterCustomerList;
     private CustomerService customerService;
     private List<CustomerResponseDTO> customers;
+    private ConstraintLayout backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_customer_list);
+        backBtn = findViewById(R.id.back_admin);
+
+        backBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(CustomerListActivity.this, AdminActivity.class);
+            startActivity(intent);
+        });
 
         recyclerView = findViewById(R.id.view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -74,6 +83,7 @@ public class CustomerListActivity extends AppCompatActivity implements CustomerA
     public void onDelete(CustomerResponseDTO customer) {
         customerService = RetrofitClient.getCustomerService();
         customerService.delete(customer.getId()).enqueue(new Callback<Void>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
@@ -81,7 +91,7 @@ public class CustomerListActivity extends AppCompatActivity implements CustomerA
                     int position = customers.indexOf(customer);
                     if (position != -1) {
                         customers.remove(position);
-                        adapterCustomerList.notifyItemRemoved(position);
+                        adapterCustomerList.notifyDataSetChanged();
                     }
                 } else {
                     Toast.makeText(CustomerListActivity.this, "Failed to delete: " + customer.getUsername(), Toast.LENGTH_SHORT).show();
