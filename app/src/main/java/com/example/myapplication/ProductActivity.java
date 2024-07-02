@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.adapter.CategoryCustomerAdapter;
 import com.example.myapplication.adapter.ProductCustomerAdapter;
 import com.example.myapplication.network.CategoryService;
+import com.example.myapplication.network.CustomerService;
 import com.example.myapplication.network.ProductService;
 import com.example.myapplication.network.RetrofitClient;
 import com.example.myapplication.network.dto.response.CategoryResponseDTO;
@@ -61,6 +62,23 @@ public class ProductActivity extends AppCompatActivity implements ProductCustome
         ImageView logout = findViewById(R.id.logout);
         red_circle_background = findViewById(R.id.red_circle_background);
         quantity = findViewById(R.id.quantity);
+
+        CustomerService customerService = RetrofitClient.getCustomerService();
+        customerService.getQuantityCart(savedCustomer.getId()).enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.isSuccessful()) {
+                    Log.e("Quantity", "Quantity" + response.body());
+                    quantity.setText(String.valueOf(response.body()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable throwable) {
+                Toast.makeText(ProductActivity.this, "Khong goi duoc api", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         find_Product = findViewById(R.id.search_product);
 

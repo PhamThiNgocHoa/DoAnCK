@@ -25,6 +25,9 @@ import retrofit2.http.Query;
 
 public interface CustomerService {
 
+    @GET("api/customer/quantity/{customerId}")
+    Call<Integer> getQuantityCart(@Path("customerId") int customerId);
+
     @GET("api/customer/{customerId}")
     Call<CustomerResponseDTO> getCustomerById(@Path("customerId") int customerId);
 
@@ -33,6 +36,7 @@ public interface CustomerService {
 
     @POST("api/customer/login")
     Call<CustomerResponseDTO> login(@Body LoginRequest loginRequest);
+
     @POST("api/customer")
     Call<Integer> register(@Body CustomerRequestDTO customerRequestDTO);
 
