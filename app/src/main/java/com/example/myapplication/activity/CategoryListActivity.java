@@ -50,6 +50,11 @@ public class CategoryListActivity extends AppCompatActivity implements CategoryA
                 startActivity(intent);
             }
         });
+        ConstraintLayout addCategoryButton = findViewById(R.id.add_category);
+        addCategoryButton.setOnClickListener(v -> {
+            Intent intent = new Intent(CategoryListActivity.this, AddCategoryActivity.class);
+            startActivity(intent);
+        });
         getCategories();
 
     }

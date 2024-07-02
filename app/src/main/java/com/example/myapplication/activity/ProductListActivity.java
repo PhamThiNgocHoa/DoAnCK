@@ -82,15 +82,18 @@ public class ProductListActivity extends AppCompatActivity implements ProductAda
     @Override
     public void onDelete(ProductResponseDTO productResponseDTO) {
         productService = RetrofitClient.getProductService();
+        Log.e("ID", "ID" + productResponseDTO.getId());
         productService.deleteProduct(productResponseDTO.getId()).enqueue(new Callback<Void>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(ProductListActivity.this, "Xóa Thành Công " + productResponseDTO.getName(), Toast.LENGTH_SHORT).show();
                     int position = ((ArrayList<ProductResponseDTO>) products).indexOf(productResponseDTO);
+                    Toast.makeText(ProductListActivity.this, "Xóa Thành Công " + productResponseDTO.getName(), Toast.LENGTH_SHORT).show();
+
                     if (position != -1) {
                         ((ArrayList<ProductResponseDTO>) products).remove(position);
-                        adapterCoursesList.notifyItemRemoved(position);
+                        adapterCoursesList.notifyDataSetChanged();
                     }
                 } else {
                     Toast.makeText(ProductListActivity.this, "Xóa Thất Bại " + productResponseDTO.getName(), Toast.LENGTH_SHORT).show();

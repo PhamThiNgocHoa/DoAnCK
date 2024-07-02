@@ -50,7 +50,7 @@ public class EditProductActivity extends AppCompatActivity {
         updateButton.setOnClickListener(v -> {
             ProductRequestDTO requestDTO = new ProductRequestDTO(name.getText().toString(),
                     image.getText().toString(),
-                    Integer.parseInt(price.getText().toString()),
+                    Integer.valueOf(price.getText().toString()),
                     category.getText().toString(),
                     detail.getText().toString());
             updateProduct(product.getId(), requestDTO);

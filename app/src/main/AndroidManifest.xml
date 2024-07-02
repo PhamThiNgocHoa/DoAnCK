@@ -55,6 +55,9 @@
             android:exported="true"></activity>
         <activity
             android:name=".activity.AdminActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.AddCategoryActivity"
             android:exported="true">
 
         </activity>
