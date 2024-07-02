@@ -57,5 +57,6 @@ dependencies {
     implementation("com.github.PhilJay:MPAndroidChart:3.0.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
 
+
 }
 

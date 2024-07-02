@@ -13,9 +13,15 @@ common = "18.10.0"
 mpandroidchart = "v3.1.0"
 recyclerview = "1.2.0"
 retrofit = "2.11.0"
+tedbottompicker = "2.0.1"
+tedbottompickerVersion = "2.0.1"
+tedpermission = "2.2.3"
+tedpermissionNormal = "3.3.0"
+tedpermissionRx3 = "3.3.0"
 
 [libraries]
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+gun0912-tedbottompicker = { module = "gun0912.ted:tedbottompicker", version.ref = "tedbottompickerVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -25,9 +31,15 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 common = { group = "com.google.mlkit", name = "common", version.ref = "common" }
 mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
+parksanggwon-tedpermission-rx3 = { module = "io.github.ParkSangGwon:tedpermission-rx3", version.ref = "tedpermissionRx3" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+tedbottompicker = { module = "io.github.ParkSangGwon:tedbottompicker", version.ref = "tedbottompicker" }
+tedpermission = { module = "gun0912.ted:tedpermission", version.ref = "tedpermission" }
+tedpermission-coroutine = { module = "io.github.ParkSangGwon:tedpermission-coroutine", version.ref = "tedpermissionNormal" }
+tedpermission-normal = { module = "io.github.ParkSangGwon:tedpermission-normal", version.ref = "tedpermissionNormal" }
+tedpermission-rx2 = { module = "io.github.ParkSangGwon:tedpermission-rx2", version.ref = "tedpermissionNormal" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

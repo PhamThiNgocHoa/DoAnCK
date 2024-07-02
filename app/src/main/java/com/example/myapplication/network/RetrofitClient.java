@@ -49,4 +49,9 @@ public class RetrofitClient {
         return getRetrofitInstance().create(OrderDetailService.class);
     }
 
+    public static ImageUploadService getImageUpload() {
+        return getRetrofitInstance().create(ImageUploadService.class);
+    }
+
+
 }
